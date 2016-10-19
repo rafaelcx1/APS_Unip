@@ -88,4 +88,35 @@ public class LoginController {
 
 	}
 
+	private class LblCadastrarListener implements MouseListener {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// Inserir Código
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// Inserir Código
+
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// Inserir Código
+
+		}
+
+
+
+	}
 }
