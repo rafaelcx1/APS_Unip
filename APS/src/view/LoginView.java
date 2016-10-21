@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 public class LoginView extends JFrame implements IView{
 	private JPanel panelPrincipal;
 	private JLabel tituloPrincipal;
@@ -23,7 +24,10 @@ public class LoginView extends JFrame implements IView{
 	private JButton btnSair;
 
 	public LoginView(){
-		//Inserir Código
+		panelPrincipal = new JPanel();
+		
+		getContentPane().add(panelPrincipal);
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	}
 
 	public String getUsuario(){
@@ -75,5 +79,9 @@ public class LoginView extends JFrame implements IView{
 	public void displayMsg(String msg) {
 		// Inserir Código
 
+	}
+	
+	public static void main(String[] args){
+		LoginView l = new LoginView();
 	}
 }
