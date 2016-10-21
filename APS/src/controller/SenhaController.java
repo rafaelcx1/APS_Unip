@@ -15,8 +15,14 @@ public class SenhaController {
 	public SenhaController(SenhaModel senhaModel, SenhaView senhaView){
 		this.senhaModel = senhaModel;
 		this.senhaView = senhaView;
+		
+		senhaView.setConferirUsuarioListener(new ConferirUsuarioListener());
+		senhaView.setConferirRespostaListener(new ConferirRespostaListener());
+		senhaView.setConcluirListener(new ConcluirListener());
+		senhaView.setVoltarListener(new VoltarListener());
 
-		// Inserir Código
+		
+		
 	}
 
 
