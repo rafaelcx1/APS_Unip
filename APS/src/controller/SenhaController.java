@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import model.SenhaModel;
+import view.LoginView;
 import view.SenhaView;
 
 public class SenhaController {
@@ -30,7 +31,26 @@ public class SenhaController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
+			
+			
+			try {
+				
+			String senha = senhaView.getSenha();
+			String repetirSenha = senhaView.getNovaSenha();
+			
+			if(senha.equals(repetirSenha)){
+				senhaModel.trocarSenha(senhaModel.getUsuario(), senha);
+				senhaView.displayMsg("Senha trocada com sucesso !");
+				MainController.abrirTelaLogin();
+			}else{
+				senhaView.displayMsg("Verfique corretamente os campos ! ");
+			}
+				
+			} catch (Exception e2) {
+				
+				senhaView.displayMsg("Ocorreu um erro ao tentar trocar a senha" + e2.getMessage());
+				
+			}
 
 		}
 
@@ -40,7 +60,15 @@ public class SenhaController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
+			
+			try {
+				
+				MainController.abrirTelaLogin();
+				
+			} catch (Exception e2) {
+				
+				senhaView.displayMsg("Ocorreu um erro ao voltar !" + e2.getMessage());
+			}
 
 		}
 
@@ -50,7 +78,22 @@ public class SenhaController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
+			
+			try {
+				
+				String resposta = senhaView.getResposta();
+				if(senhaModel.conferirResposta(resposta)){
+					senhaView.setRegiaoNovaSenhaEnable(true);
+					senhaView.setLblStatusResposta("Conferido !");
+					senhaView.setRegiaoPerguntaEnable(false);
+					
+				}else{
+					senhaView.setLblStatusResposta("Resposta incorreta!");
+				}
+				
+			} catch (Exception e2) {
+				senhaView.displayMsg("Ocorreu um erro ao conferir Resposta !" + e2.getMessage()) ;
+			}
 
 		}
 
@@ -60,7 +103,28 @@ public class SenhaController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
+			
+			try {
+				String usuario = senhaView.getUsuario();
+				if(senhaModel.conferirUsuario(usuario)){
+					senhaView.setRegiaoUsuarioEnable(false);
+					senhaView.setRegiaoPerguntaEnable(true);
+					String pergunta = senhaModel.getPergunta();
+					senhaView.setLblPergunta(pergunta);
+					senhaView.setLblStatusUsuario("Conferido!");
+					
+				}else{
+					
+					senhaView.setLblStatusUsuario("Usuário não encontrado !");
+					
+				}
+			} catch (Exception e2) {
+				senhaView.displayMsg("Ocorreu um erro ao conferir Usuario !" + e2.getMessage());
+			}
+	
+			
+			
+			
 
 		}
 
