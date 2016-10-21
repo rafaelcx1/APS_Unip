@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SenhaView implements IView {
@@ -19,8 +20,8 @@ public class SenhaView implements IView {
 	private JLabel lblConfirmaSenha;
 	private JTextField txUsuario;
 	private JTextField txResposta;
-	private JTextField txNovaSenha;
-	private JTextField txConferirSenha;
+	private JPasswordField txNovaSenha;
+	private JPasswordField txConferirSenha;
 	private JButton btnConferirUsuario;
 	private JButton btnConferirResposta;
 	private JButton btnConcluir;
@@ -34,6 +35,8 @@ public class SenhaView implements IView {
 	public SenhaView(){
 
 	}
+	
+	
 
 	public String getUsuario() {
 		return txUsuario.getText();
@@ -42,9 +45,11 @@ public class SenhaView implements IView {
 	public String getResposta() {
 		return txResposta.getText();
 	}
-
+	public String getSenha(){
+		return String.valueOf(txConferirSenha.getPassword());
+	}
 	public String getNovaSenha() {
-		return txNovaSenha.getText();
+		return String.valueOf(txNovaSenha.getPassword());
 	}
 
 	public void setConferirUsuarioListener(ActionListener event) {
@@ -71,8 +76,12 @@ public class SenhaView implements IView {
 		lblStatusResposta.setText(status);
 	}
 
-	public void setRegiaoUsuarioEnable(boolean b, String pergunta) {
+	public void setRegiaoUsuarioEnable(boolean b) {
 		// Inserir Código
+	}
+	
+	public void setLblPergunta(String pergunta){
+		
 	}
 
 	public void setRegiaoPerguntaEnable(boolean b) {
@@ -87,6 +96,10 @@ public class SenhaView implements IView {
 	public void displayMsg(String msg) {
 		// Inserir Código
 
+	}
+	
+	public void setBtnVoltarListener(ActionListener event){
+		btnVoltar.addActionListener(event);
 	}
 
 }
