@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class CadastroView extends JFrame {
+public class CadastroView extends JFrame implements IView {
 
 	private JLabel lblTitulo;
 	private JLabel lblNome;
@@ -90,6 +90,12 @@ public class CadastroView extends JFrame {
 
 	public void resetarCampos(){
 		// Inserir Código
+	}
+
+	@Override
+	public void displayMsg(String msg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
