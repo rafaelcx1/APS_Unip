@@ -6,7 +6,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import model.LoginModel;
+import model.UsuarioLoginModel;
 import view.LoginView;
 
 public class LoginController {
@@ -16,7 +18,13 @@ public class LoginController {
 	public LoginController(LoginModel loginModel, LoginView loginView){
 		this.loginModel = loginModel;
 		this.loginView = loginView;
-		//Inserir Código
+
+		loginView.setTextFieldEvent(new TextFieldListener());
+		loginView.setLblEsqueciSenhaEvent(new LblEsqueciSenhaListener());
+		loginView.setLblCadastrarEvent(new LblCadastrarListener());
+		loginView.setBtnLogarEvent(new BtnLogarListener());
+		loginView.setBtnSairEvent(new BtnSairListener());
+		loginView.setVisible(true);
 	}
 
 
@@ -28,7 +36,9 @@ public class LoginController {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			//Inserir Código
+			if(e.getKeyCode() == KeyEvent.VK_ENTER){
+				loginView.botaoClick();
+			}
 
 		}
 
@@ -42,8 +52,15 @@ public class LoginController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
-
+			String usuario = loginView.getUsuario();
+			String senha = loginView.getSenha();
+			boolean validado = loginModel.conferirLogin(new UsuarioLoginModel(usuario, senha));
+			if(validado == false){
+				String msg = loginModel.getMsgErro();
+				loginView.displayMsg(msg);
+			} else {
+				MainController.abrirTelaPrincipalUsuario(loginModel.getUsuarioLogado());
+			}
 		}
 
 	}
@@ -52,8 +69,7 @@ public class LoginController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// Inserir Código
-
+			MainController.abrirTelaSenha();
 		}
 
 		@Override
@@ -66,14 +82,12 @@ public class LoginController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// Inserir Código
-
+			loginView.lblAcaoMouseEntered();
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// Inserir Código
-
+			loginView.lblAcaoMouseExited();
 		}
 
 	}
@@ -82,8 +96,8 @@ public class LoginController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Inserir Código
-
+			loginView.fechar();
+			System.exit(0);
 		}
 
 	}
@@ -92,8 +106,7 @@ public class LoginController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// Inserir Código
-
+			MainController.abrirTelaCadastro();
 		}
 
 		@Override
@@ -106,17 +119,13 @@ public class LoginController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// Inserir Código
-
+			loginView.lblAcaoMouseEntered();
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// Inserir Código
-
+			loginView.lblAcaoMouseExited();
 		}
-
-
 
 	}
 }

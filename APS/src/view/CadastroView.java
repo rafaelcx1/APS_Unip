@@ -37,6 +37,7 @@ public class CadastroView extends JFrame {
 	private JPanel panelBotoes;
 
 	public CadastroView(){
+		// Inserir Código
 	}
 
 	public String getNome(){
