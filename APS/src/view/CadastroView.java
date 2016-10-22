@@ -18,8 +18,6 @@ public class CadastroView extends JFrame implements IView {
 	private JLabel lblSenha;
 	private JLabel lblDataNasc;
 	private JLabel lblGenero;
-	private JLabel lblEstado;
-	private JLabel lblCidade;
 	private JLabel lblPerguntaSecret;
 	private JLabel lblRespostaSecret;
 	private JTextField txNome;
@@ -28,7 +26,7 @@ public class CadastroView extends JFrame implements IView {
 	private JTextField txGenero;
 	private JTextField txEstado;
 	private JTextField txCidade;
-	private JComboBox<String> cbPerguntaSecret;
+	private JComboBox<String> cbPerguntaSecret; // As perguntas terão que começar com um número, por exemplo: 1- Cidade em que nasceu
 	private JTextField txRespostaSecret;
 	private JButton btnCadastrar;
 	private JButton btnLimpar;
@@ -95,7 +93,7 @@ public class CadastroView extends JFrame implements IView {
 	@Override
 	public void displayMsg(String msg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

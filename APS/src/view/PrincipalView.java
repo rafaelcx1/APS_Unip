@@ -1,6 +1,6 @@
 package view;
 
-import model.UsuarioModel;
+import model.tables.UsuarioModel;
 
 public class PrincipalView {
 

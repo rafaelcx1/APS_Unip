@@ -2,13 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import model.CadastroModel;
-import model.UsuarioModel;
+import model.tables.PerguntasModel;
+import model.tables.UsuarioModel;
 import view.CadastroView;
-import view.LoginView;
 
 public class CadastroController {
 	private CadastroModel cadastroModel;
@@ -28,7 +26,7 @@ public class CadastroController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			String nome = cadastroView.getNome();
 			String usuario = cadastroView.getUsuario();
 			String senha = cadastroView.getSenha();
@@ -38,7 +36,7 @@ public class CadastroController {
 			String cidade = cadastroView.getCidade();
 			int perguntaSecreta = cadastroView.getPerguntaSecret();
 			String respostaSecreta = cadastroView.getRespostaSecret();
-			
+
 			UsuarioModel usuarioModel = new UsuarioModel();
 			usuarioModel.setNome(nome);
 			usuarioModel.setUsuario(usuario);
@@ -47,19 +45,16 @@ public class CadastroController {
 			usuarioModel.setGenero(genero);
 			usuarioModel.setEstado(estado);
 			usuarioModel.setCidade(cidade);
-			usuarioModel.setPerguntaSecret(perguntaSecreta);
+			usuarioModel.setPerguntaSecret(new PerguntasModel(perguntaSecreta));
 			usuarioModel.setRespostaSecret(respostaSecreta);
-			
-			try {
-				cadastroModel.cadastrarUsuario(usuarioModel);
-			} catch (Exception e2) {
-				cadastroView.displayMsg("Ocorreu um erro na aplicação !" +e2.getMessage());
+
+			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
+				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
+				MainController.abrirTelaLogin();
+			} else {
+				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usuário!\nErro: " + cadastroModel.getMsgErro());
 			}
-			
-			
-
 		}
-
 	}
 
 	private class BtnVoltarListener implements ActionListener {
@@ -69,13 +64,13 @@ public class CadastroController {
 			try {
 				MainController.abrirTelaLogin();
 			} catch (Exception e2) {
-				cadastroView.displayMsg("Ocorreu um erro na aplicação !" + e2.getMessage());
+				cadastroView.displayMsg("Ocorreu um erro ao voltar!" + e2.getMessage());
 			}
 
 		}
 
 	}
-	
-	
+
+
 
 }

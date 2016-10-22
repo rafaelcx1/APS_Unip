@@ -2,11 +2,16 @@ package model;
 
 public class SenhaModel {
 
+	private String usuario;
 	private String pergunta;
 	private String msgErro;
 
-	public SenhaModel() {
-		// Inserir Código
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getPergunta() {

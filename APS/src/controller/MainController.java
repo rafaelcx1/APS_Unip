@@ -4,7 +4,7 @@ import model.CadastroModel;
 import model.LoginModel;
 import model.PrincipalModel;
 import model.SenhaModel;
-import model.UsuarioModel;
+import model.tables.UsuarioModel;
 import view.CadastroView;
 import view.LoginView;
 import view.PrincipalView;

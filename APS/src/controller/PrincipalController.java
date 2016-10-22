@@ -1,7 +1,7 @@
 package controller;
 
 import model.PrincipalModel;
-import model.UsuarioModel;
+import model.tables.UsuarioModel;
 import view.PrincipalView;
 
 public class PrincipalController {
