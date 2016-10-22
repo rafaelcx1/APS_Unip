@@ -9,11 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 
-<<<<<<< HEAD
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-=======
->>>>>>> 5c07ad40fa94c914efad527f352d5e948ababa08
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,7 +43,7 @@ public class LoginView extends JFrame implements IView{
 		JPanel others = new JPanel(new MigLayout());
 		
 		tituloPrincipal = new JLabel(logo);
-		lblUsuario = new JLabel("Usuário");
+		lblUsuario = new JLabel("Usuï¿½rio");
 		lblSenha = new JLabel("Senha");
 		lblEsqueciSenha = new JLabel("Esqueci minha senha");
 		lblCadastrar = new JLabel("Criar uma conta");
@@ -116,11 +113,11 @@ public class LoginView extends JFrame implements IView{
 	}
 
 	public void lblAcaoMouseEntered(){
-		// Inserir Código
+		// Inserir Cï¿½digo
 	}
 
 	public void lblAcaoMouseExited(){
-		// Inserir Código
+		// Inserir Cï¿½digo
 	}
 
 	public void setLblEsqueciSenhaEvent(MouseListener event){
@@ -146,7 +143,7 @@ public class LoginView extends JFrame implements IView{
 
 	@Override
 	public void displayMsg(String msg) {
-		// Inserir Código
+		// Inserir Cï¿½digo
 
 	}
 	
