@@ -1,4 +1,4 @@
-package model;
+package model.tables;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,27 +14,17 @@ public class UsuarioModel {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "usuario")
-	private UsuarioLoginModel usuario;
+	@Column(name = "usuario")
+	private String usuario;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "senha")
-	private UsuarioLoginModel senha;
+	@Column(name = "Senha")
+	private String senha;
 
 	@Column(name = "dataNasc", nullable = false)
 	private String dataNasc;
 
 	@Column(name = "genero")
 	private String genero;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idEstado")
-	private EstadoModel estado;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idCidade")
-	private CidadeModel cidade;
 
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPergunta")
@@ -44,15 +34,9 @@ public class UsuarioModel {
 	private String respostaSecret;
 
 
-	public void setEstado(EstadoModel estado) {
-		this.estado = estado;
-	}
-
-
 	public String getNome() {
 		return nome;
 	}
-
 
 
 	public void setNome(String nome) {
@@ -60,29 +44,24 @@ public class UsuarioModel {
 	}
 
 
-
-	public UsuarioLoginModel getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
 
 
-
-	public void setUsuario(UsuarioLoginModel usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 
 
-
-	public UsuarioLoginModel getSenha() {
+	public String getSenha() {
 		return senha;
 	}
 
 
-
-	public void setSenha(UsuarioLoginModel senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 
 
 	public String getDataNasc() {
@@ -90,11 +69,9 @@ public class UsuarioModel {
 	}
 
 
-
 	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-
 
 
 	public String getGenero() {
@@ -102,23 +79,9 @@ public class UsuarioModel {
 	}
 
 
-
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
-
-
-
-	public CidadeModel getCidade() {
-		return cidade;
-	}
-
-
-
-	public void setCidade(CidadeModel cidade) {
-		this.cidade = cidade;
-	}
-
 
 
 	public PerguntasModel getPerguntaSecret() {
@@ -126,11 +89,9 @@ public class UsuarioModel {
 	}
 
 
-
 	public void setPerguntaSecret(PerguntasModel perguntaSecret) {
 		this.perguntaSecret = perguntaSecret;
 	}
-
 
 
 	public String getRespostaSecret() {
@@ -138,17 +99,9 @@ public class UsuarioModel {
 	}
 
 
-
 	public void setRespostaSecret(String respostaSecret) {
 		this.respostaSecret = respostaSecret;
 	}
-
-
-
-	public EstadoModel getEstado() {
-		return estado;
-	}
-
 
 
 	public UsuarioModel(){

@@ -18,8 +18,6 @@ public class CadastroView extends JFrame implements IView {
 	private JLabel lblSenha;
 	private JLabel lblDataNasc;
 	private JLabel lblGenero;
-	private JLabel lblEstado;
-	private JLabel lblCidade;
 	private JLabel lblPerguntaSecret;
 	private JLabel lblRespostaSecret;
 	private JTextField txNome;
@@ -60,14 +58,6 @@ public class CadastroView extends JFrame implements IView {
 		return txGenero.getText();
 	}
 
-	public String getEstado(){
-		return txEstado.getText();
-	}
-
-	public String getCidade(){
-		return txCidade.getText();
-	}
-
 	public int getPerguntaSecret(){
 		return cbPerguntaSecret.getSelectedIndex();
 	}
@@ -95,7 +85,7 @@ public class CadastroView extends JFrame implements IView {
 	@Override
 	public void displayMsg(String msg) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

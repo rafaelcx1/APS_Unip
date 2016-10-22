@@ -1,5 +1,7 @@
 package model;
 
+import model.tables.UsuarioModel;
+
 public class CadastroModel {
 
 	private String msgErro;

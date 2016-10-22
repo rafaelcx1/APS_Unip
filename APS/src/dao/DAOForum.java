@@ -5,15 +5,25 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import model.UsuarioLoginModel;
+import model.tables.UsuarioModel;
 
 public class DAOForum {
 
-	public static EntityManagerFactory factory;
-	public static EntityManager manager;
+	private static EntityManagerFactory factory;
+	private static EntityManager manager;
 
-	public static boolean conferirLogin(UsuarioLoginModel usuario){
+	public static UsuarioModel conferirLogin(UsuarioLoginModel usuario){
 		factory = Persistence.createEntityManagerFactory("forum");
 		manager = factory.createEntityManager();
-		UsuarioModelLogin usuarioEncontrado = manager.find(UsuarioLoginModel.class, usuario.getUsuario())
+		UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario.getUsuario());
+		closeConexao();
+		return usuarioEncontrado;
+	}
+
+	private static void closeConexao() {
+		factory.close();
+		manager.close();
+		factory = null;
+		manager = null;
 	}
 }

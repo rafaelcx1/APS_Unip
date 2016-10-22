@@ -2,13 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import model.CadastroModel;
-import model.UsuarioModel;
+import model.tables.PerguntasModel;
+import model.tables.UsuarioModel;
 import view.CadastroView;
-import view.LoginView;
 
 public class CadastroController {
 	private CadastroModel cadastroModel;
@@ -28,35 +26,31 @@ public class CadastroController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			String nome = cadastroView.getNome();
 			String usuario = cadastroView.getUsuario();
 			String senha = cadastroView.getSenha();
 			String dataNasc = cadastroView.getDataNasc();
 			String genero = cadastroView.getGenero();
-			String estado = cadastroView.getEstado();
-			String cidade = cadastroView.getCidade();
 			int perguntaSecreta = cadastroView.getPerguntaSecret();
 			String respostaSecreta = cadastroView.getRespostaSecret();
-			
+
 			UsuarioModel usuarioModel = new UsuarioModel();
 			usuarioModel.setNome(nome);
 			usuarioModel.setUsuario(usuario);
 			usuarioModel.setSenha(senha);
 			usuarioModel.setDataNasc(dataNasc);
 			usuarioModel.setGenero(genero);
-			usuarioModel.setEstado(estado);
-			usuarioModel.setCidade(cidade);
-			usuarioModel.setPerguntaSecret(perguntaSecreta);
+			usuarioModel.setPerguntaSecret(new PerguntasModel(perguntaSecreta));
 			usuarioModel.setRespostaSecret(respostaSecreta);
-			
+
 			try {
 				cadastroModel.cadastrarUsuario(usuarioModel);
 			} catch (Exception e2) {
 				cadastroView.displayMsg("Ocorreu um erro na aplicação !" +e2.getMessage());
 			}
-			
-			
+
+
 
 		}
 
@@ -75,7 +69,7 @@ public class CadastroController {
 		}
 
 	}
-	
-	
+
+
 
 }
