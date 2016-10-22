@@ -2,6 +2,7 @@ package view;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -35,7 +36,23 @@ public class CadastroView extends JFrame implements IView {
 	private JPanel panelBotoes;
 
 	public CadastroView(){
-		// Inserir Código
+		lblTitulo = new JLabel();
+		lblNome = new JLabel("Nome");
+		lblUsuario = new JLabel("Usuário");
+		lblSenha = new JLabel("Senha");
+		lblDataNasc = new JLabel("Data de nascimento");
+		lblGenero = new JLabel("Gênero");
+		lblPerguntaSecret = new JLabel("Pergunta secreta");
+		lblRespostaSecret = new JLabel("Resposta secreta");
+		
+		txNome = new JTextField();
+		ptxSenha = new JPasswordField();
+		txCidade = new JTextField();
+		txRespostaSecret = new JTextField();
+		
+		btnCadastrar = new JButton("Cadastrar");
+		btnLimpar = new JButton("Limpar");
+		btnVoltar = new JButton("", new ImageIcon());
 	}
 
 	public String getNome(){
