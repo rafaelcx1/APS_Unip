@@ -26,6 +26,12 @@ public class UsuarioModel {
 	@Column(name = "genero")
 	private String genero;
 
+	@Column(name = "estado")
+	private String estado;
+
+	@Column(name = "cidade")
+	private String cidade;
+
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idPergunta")
 	private PerguntasModel perguntaSecret;
@@ -38,66 +44,69 @@ public class UsuarioModel {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getUsuario() {
 		return usuario;
 	}
 
-
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-
 
 	public String getSenha() {
 		return senha;
 	}
 
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
 
 	public String getDataNasc() {
 		return dataNasc;
 	}
 
-
 	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
-
 
 	public String getGenero() {
 		return genero;
 	}
 
-
 	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 
+	public String getEstado(){
+		return estado;
+	}
+
+	public void setEstado(String estado){
+		this.estado = estado;
+	}
+
+	public String getCidade(){
+		return cidade;
+	}
+
+	public void setCidade(String cidade){
+		this.cidade = cidade;
+	}
 
 	public PerguntasModel getPerguntaSecret() {
 		return perguntaSecret;
 	}
 
-
 	public void setPerguntaSecret(PerguntasModel perguntaSecret) {
 		this.perguntaSecret = perguntaSecret;
 	}
 
-
 	public String getRespostaSecret() {
 		return respostaSecret;
 	}
-
 
 	public void setRespostaSecret(String respostaSecret) {
 		this.respostaSecret = respostaSecret;

@@ -26,7 +26,7 @@ public class CadastroView extends JFrame implements IView {
 	private JTextField txGenero;
 	private JTextField txEstado;
 	private JTextField txCidade;
-	private JComboBox<String> cbPerguntaSecret;
+	private JComboBox<String> cbPerguntaSecret; // As perguntas terão que começar com um número, por exemplo: 1- Cidade em que nasceu
 	private JTextField txRespostaSecret;
 	private JButton btnCadastrar;
 	private JButton btnLimpar;
@@ -56,6 +56,14 @@ public class CadastroView extends JFrame implements IView {
 
 	public String getGenero(){
 		return txGenero.getText();
+	}
+
+	public String getEstado(){
+		return txEstado.getText();
+	}
+
+	public String getCidade(){
+		return txCidade.getText();
 	}
 
 	public int getPerguntaSecret(){

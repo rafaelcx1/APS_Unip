@@ -32,6 +32,8 @@ public class CadastroController {
 			String senha = cadastroView.getSenha();
 			String dataNasc = cadastroView.getDataNasc();
 			String genero = cadastroView.getGenero();
+			String estado = cadastroView.getEstado();
+			String cidade = cadastroView.getCidade();
 			int perguntaSecreta = cadastroView.getPerguntaSecret();
 			String respostaSecreta = cadastroView.getRespostaSecret();
 
@@ -41,19 +43,18 @@ public class CadastroController {
 			usuarioModel.setSenha(senha);
 			usuarioModel.setDataNasc(dataNasc);
 			usuarioModel.setGenero(genero);
+			usuarioModel.setEstado(estado);
+			usuarioModel.setCidade(cidade);
 			usuarioModel.setPerguntaSecret(new PerguntasModel(perguntaSecreta));
 			usuarioModel.setRespostaSecret(respostaSecreta);
 
-			try {
-				cadastroModel.cadastrarUsuario(usuarioModel);
-			} catch (Exception e2) {
-				cadastroView.displayMsg("Ocorreu um erro na aplicação !" +e2.getMessage());
+			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
+				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
+				MainController.abrirTelaLogin();
+			} else {
+				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usuário!\nErro: " + cadastroModel.getMsgErro());
 			}
-
-
-
 		}
-
 	}
 
 	private class BtnVoltarListener implements ActionListener {
@@ -63,7 +64,7 @@ public class CadastroController {
 			try {
 				MainController.abrirTelaLogin();
 			} catch (Exception e2) {
-				cadastroView.displayMsg("Ocorreu um erro na aplicação !" + e2.getMessage());
+				cadastroView.displayMsg("Ocorreu um erro ao voltar!" + e2.getMessage());
 			}
 
 		}

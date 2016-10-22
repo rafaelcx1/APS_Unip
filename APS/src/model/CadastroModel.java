@@ -1,17 +1,22 @@
 package model;
 
+import dao.DAOForum;
 import model.tables.UsuarioModel;
 
 public class CadastroModel {
 
 	private String msgErro;
 
-	public CadastroModel(){
-
+	public String getMsgErro(){
+		return msgErro;
 	}
 
 	public boolean cadastrarUsuario(UsuarioModel usuario){
-		// Inserir Código
-		return false;
+		if(DAOForum.cadastrarUsuario(usuario)){
+			return true;
+		} else {
+			msgErro = DAOForum.getMsgErro();
+			return false;
+		}
 	}
 }
