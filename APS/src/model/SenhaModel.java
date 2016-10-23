@@ -1,35 +1,68 @@
 package model;
 
+import dao.DAOForum;
+import model.tables.UsuarioModel;
+
 public class SenhaModel {
 
-	private String usuario;
-	private String pergunta;
+	private UsuarioModel usuario;
 	private String msgErro;
 
 	public String getUsuario() {
-		return usuario;
+		return usuario.getNome();
 	}
 
 	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+		this.usuario.setUsuario(usuario);;
 	}
 
 	public String getPergunta() {
-		return pergunta;
+		return usuario.getPerguntaSecret().getPergunta();
+	}
+
+	public String getMsgErro() {
+		return msgErro;
 	}
 
 	public boolean conferirUsuario(String usuario) {
-		// Inserir Código
-		return true;
+		try {
+			this.usuario = DAOForum.conferirUsuario(usuario);
+			if(this.usuario != null){
+				return true;
+			} else {
+				msgErro = "Usuário não encontrado!";
+				return false;
+			}
+		} catch(Exception e){
+			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public boolean conferirResposta(String resposta) {
-		// Inserir Código
-		return true;
+		try {
+			if(usuario.getRespostaSecret().equals(resposta)){
+				return true;
+			} else {
+				msgErro = "Resposta inválida!";
+				return false;
+			}
+		} catch(Exception e){
+			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	public boolean trocarSenha(String usuario, String novaSenha) {
-		// Inserir Código
-		return true;
+	public boolean trocarSenha(String novaSenha) {
+		try {
+			usuario.setSenha(novaSenha);
+			return DAOForum.trocarSenha(usuario);
+		} catch (Exception e){
+			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

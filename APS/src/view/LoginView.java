@@ -1,15 +1,10 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-
-import net.miginfocom.swing.MigLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,9 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
+import net.miginfocom.swing.MigLayout;
 
 
+@SuppressWarnings("serial")
 public class LoginView extends JFrame implements IView{
 	private JPanel panelPrincipal;
 	private JLabel tituloPrincipal;
@@ -33,50 +29,50 @@ public class LoginView extends JFrame implements IView{
 	private JButton btnSair;
 
 	public LoginView(){
-		Color background = new Color(0xE0E0E0); 
+		Color background = new Color(0xE0E0E0);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		ImageIcon logo = new ImageIcon("logo.png");
-		
+
 		panelPrincipal = new JPanel(new MigLayout("fillx, insets 25% 0% 0% 0%", "[center]rel[grow,fill]", ""));
 		JPanel fieldset = new JPanel(new MigLayout());
 		JPanel actions = new JPanel(new MigLayout());
 		JPanel others = new JPanel(new MigLayout());
-		
+
 		tituloPrincipal = new JLabel(logo);
 		lblUsuario = new JLabel("Usu�rio");
 		lblSenha = new JLabel("Senha");
 		lblEsqueciSenha = new JLabel("Esqueci minha senha");
 		lblCadastrar = new JLabel("Criar uma conta");
 		JLabel lblDivider = new JLabel(" | ");
-		
+
 		lblUsuario.setFont(word);
 		lblSenha.setFont(word);
-		
+
 		txUsuario = new JTextField(28);
 		txSenha = new JPasswordField(28);
-		
+
 		txUsuario.setFont(word);
 		txSenha.setFont(word);
-		
+
 		btnLogar = new JButton("Entrar");
 		btnSair = new JButton("Sair");
-		
+
 		btnLogar.setForeground(Color.white);
 		btnSair.setForeground(Color.white);
 		btnLogar.setBackground(Color.BLACK);
 		btnSair.setBackground(Color.BLACK);
-		
+
 		actions.add(btnSair, "gapleft 128");
 		actions.add(btnLogar);
-		
+
 		actions.setBackground(background);
-		
+
 		others.add(lblEsqueciSenha, "gap 80");
 		others.add(lblDivider);
 		others.add(lblCadastrar);
-		
+
 		others.setBackground(background);
-		
+
 		fieldset.add(tituloPrincipal, "span, wrap 32, gap 104");
 		fieldset.add(lblUsuario);
 		fieldset.add(txUsuario, "wrap 8");
@@ -84,13 +80,13 @@ public class LoginView extends JFrame implements IView{
 		fieldset.add(txSenha, " wrap 16");
 		fieldset.add(actions, "span, wrap 64");
 		fieldset.add(others, "span");
-		
+
 		fieldset.setBackground(background);
-		
+
 		panelPrincipal.add(fieldset, "span");
-		
+
 		panelPrincipal.setBackground(background);
-		
+
 		getContentPane().add(panelPrincipal);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -146,7 +142,7 @@ public class LoginView extends JFrame implements IView{
 		// Inserir C�digo
 
 	}
-	
+
 	public static void main(String[] args){
 		LoginView l = new LoginView();
 	}
