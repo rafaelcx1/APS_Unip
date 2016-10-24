@@ -1,11 +1,13 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -114,13 +116,29 @@ public class LoginView extends JFrame implements IView{
 
 	public void lblAcaoMouseEntered(JLabel lblTemp){
 		if(lblTemp.equals(lblCadastrar)){
+			Map atributos = lblCadastrar.getFont().getAttributes();
+			atributos.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+			lblCadastrar.setFont(new Font(atributos));
+			lblCadastrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		} else {
+			Map atributos = lblEsqueciSenha.getFont().getAttributes();
+			atributos.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+			lblEsqueciSenha.setFont(new Font(atributos));
+			lblEsqueciSenha.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 	}
 
 	public void lblAcaoMouseExited(JLabel lblTemp){
 		if(lblTemp.equals(lblCadastrar)){
+			Map atributos = lblCadastrar.getFont().getAttributes();
+			atributos.put(TextAttribute.UNDERLINE, -1);
+			lblCadastrar.setFont(new Font(atributos));
+			lblCadastrar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		} else {
+			Map atributos = lblEsqueciSenha.getFont().getAttributes();
+			atributos.put(TextAttribute.UNDERLINE, -1);
+			lblEsqueciSenha.setFont(new Font(atributos));
+			lblEsqueciSenha.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 	}
 
