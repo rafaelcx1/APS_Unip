@@ -116,12 +116,14 @@ public class LoginView extends JFrame implements IView{
 
 	public void lblAcaoMouseEntered(JLabel lblTemp){
 		if(lblTemp.equals(lblCadastrar)){
-			Map atributos = lblCadastrar.getFont().getAttributes();
+			@SuppressWarnings("unchecked")
+			Map<TextAttribute, Integer> atributos = (Map<TextAttribute, Integer>) lblCadastrar.getFont().getAttributes();
 			atributos.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			lblCadastrar.setFont(new Font(atributos));
 			lblCadastrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		} else {
-			Map atributos = lblEsqueciSenha.getFont().getAttributes();
+			@SuppressWarnings("unchecked")
+			Map<TextAttribute, Integer> atributos = (Map<TextAttribute, Integer>) lblEsqueciSenha.getFont().getAttributes();
 			atributos.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
 			lblEsqueciSenha.setFont(new Font(atributos));
 			lblEsqueciSenha.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -130,12 +132,14 @@ public class LoginView extends JFrame implements IView{
 
 	public void lblAcaoMouseExited(JLabel lblTemp){
 		if(lblTemp.equals(lblCadastrar)){
-			Map atributos = lblCadastrar.getFont().getAttributes();
+			@SuppressWarnings("unchecked")
+			Map<TextAttribute, Integer> atributos = (Map<TextAttribute, Integer>) lblCadastrar.getFont().getAttributes();
 			atributos.put(TextAttribute.UNDERLINE, -1);
 			lblCadastrar.setFont(new Font(atributos));
 			lblCadastrar.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		} else {
-			Map atributos = lblEsqueciSenha.getFont().getAttributes();
+			@SuppressWarnings("unchecked")
+			Map<TextAttribute, Integer> atributos = (Map<TextAttribute, Integer>) lblEsqueciSenha.getFont().getAttributes();
 			atributos.put(TextAttribute.UNDERLINE, -1);
 			lblEsqueciSenha.setFont(new Font(atributos));
 			lblEsqueciSenha.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
