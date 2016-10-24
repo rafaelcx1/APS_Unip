@@ -71,6 +71,7 @@ public class DAOForum {
 			closeConexao();
 		}
 	}
+
 	public static boolean trocarSenha(UsuarioModel usuario){
 		try {
 			factory = Persistence.createEntityManagerFactory("forum");

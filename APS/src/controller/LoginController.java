@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLabel;
+
 import model.LoginModel;
 import model.UsuarioLoginModel;
 import view.LoginView;
@@ -82,12 +84,12 @@ public class LoginController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			loginView.lblAcaoMouseEntered();
+			loginView.lblAcaoMouseEntered((JLabel) e.getSource());
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			loginView.lblAcaoMouseExited();
+			loginView.lblAcaoMouseExited((JLabel) e.getSource());
 		}
 
 	}
@@ -119,13 +121,17 @@ public class LoginController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			loginView.lblAcaoMouseEntered();
+			loginView.lblAcaoMouseEntered((JLabel) e.getSource());
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			loginView.lblAcaoMouseExited();
+			loginView.lblAcaoMouseExited((JLabel) e.getSource());
 		}
 
+	}
+
+	public static void main(String[] args){
+		new LoginController(new LoginModel(), new LoginView());
 	}
 }

@@ -17,9 +17,6 @@ public class SenhaController {
 		senhaView.setConferirRespostaListener(new ConferirRespostaListener());
 		senhaView.setConcluirListener(new ConcluirListener());
 		senhaView.setVoltarListener(new VoltarListener());
-
-
-
 	}
 
 

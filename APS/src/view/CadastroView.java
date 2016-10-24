@@ -53,6 +53,7 @@ public class CadastroView extends JFrame implements IView {
 		btnCadastrar = new JButton("Cadastrar");
 		btnLimpar = new JButton("Limpar");
 		btnVoltar = new JButton("", new ImageIcon());
+		setVisible(true);
 	}
 
 	public String getNome(){
@@ -113,4 +114,7 @@ public class CadastroView extends JFrame implements IView {
 
 	}
 
+	public static void main(String[] args){
+		new CadastroView();
+	}
 }

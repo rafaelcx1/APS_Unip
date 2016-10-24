@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 
 
@@ -39,8 +43,8 @@ public class LoginView extends JFrame implements IView{
 		JPanel others = new JPanel(new MigLayout());
 
 		tituloPrincipal = new JLabel(logo);
-		lblUsuario = new JLabel("Usuï¿½rio");
-		lblSenha = new JLabel("Senha");
+		lblUsuario = new JLabel("Usuário:");
+		lblSenha = new JLabel("Senha:");
 		lblEsqueciSenha = new JLabel("Esqueci minha senha");
 		lblCadastrar = new JLabel("Criar uma conta");
 		JLabel lblDivider = new JLabel(" | ");
@@ -108,12 +112,16 @@ public class LoginView extends JFrame implements IView{
 		this.dispose();
 	}
 
-	public void lblAcaoMouseEntered(){
-		// Inserir Cï¿½digo
+	public void lblAcaoMouseEntered(JLabel lblTemp){
+		if(lblTemp.equals(lblCadastrar)){
+		} else {
+		}
 	}
 
-	public void lblAcaoMouseExited(){
-		// Inserir Cï¿½digo
+	public void lblAcaoMouseExited(JLabel lblTemp){
+		if(lblTemp.equals(lblCadastrar)){
+		} else {
+		}
 	}
 
 	public void setLblEsqueciSenhaEvent(MouseListener event){
