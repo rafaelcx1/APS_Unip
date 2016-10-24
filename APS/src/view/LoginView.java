@@ -7,13 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
-import java.util.ArrayList;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -35,6 +34,7 @@ public class LoginView extends JFrame implements IView{
 	private JButton btnSair;
 
 	public LoginView(){
+		super("JSolve - Fórum");
 		Color background = new Color(0xE0E0E0);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		ImageIcon logo = new ImageIcon("logo.png");
@@ -169,11 +169,6 @@ public class LoginView extends JFrame implements IView{
 
 	@Override
 	public void displayMsg(String msg) {
-		// Inserir Cï¿½digo
-
-	}
-
-	public static void main(String[] args){
-		LoginView l = new LoginView();
+		JOptionPane.showMessageDialog(this, msg);
 	}
 }
