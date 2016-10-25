@@ -218,6 +218,19 @@ public class DAOForum {
 		}
 	}
 
+
+	public static void curtirTopico(int idTopico){
+
+	}
+
+	public static void postarPostagem(int idTopico, PostagemModel postagem) {
+
+	}
+
+	public static void postarTopico(TopicoModel topico) {
+
+	}
+
 	private static void closeConexao() {
 		factory.close();
 		manager.close();
