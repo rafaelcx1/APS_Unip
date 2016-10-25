@@ -114,7 +114,6 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 			anos[a] = i;
 		}
 		
-<<<<<<< HEAD
 		String[] estados = {"AM", "AC", "AL", "BA", "SP"};
 		String[] perguntas  = {"Teste", "Teste 1"};
 		
@@ -163,11 +162,6 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		getContentPane().add(panelPrincipal);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-=======
-		btnCadastrar = new JButton("Cadastrar");
-		btnLimpar = new JButton("Limpar");
-		btnVoltar = new JButton("", new ImageIcon());
->>>>>>> 80a267d713be654ceaf1b4633f37505c5fcbb796
 		setVisible(true);
 	}
 
