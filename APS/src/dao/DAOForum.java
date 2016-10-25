@@ -1,11 +1,17 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import model.UsuarioLoginModel;
+import model.models.FiltroModel;
+import model.tables.TagsModel;
+import model.tables.TopicoModel;
+import model.tables.UsuarioLoginModel;
 import model.tables.UsuarioModel;
+
 
 public class DAOForum {
 
@@ -89,6 +95,69 @@ public class DAOForum {
 			closeConexao();
 		}
 	}
+
+	@SuppressWarnings("unchecked")
+	public static List<TopicoModel> getTopicos(FiltroModel filtro) {
+		String filtros = "";
+
+		if(filtro.getUsuario() != null & !filtro.getUsuario().equals("")) {
+			filtros += " usuario = " + filtro.getUsuario() + ",";
+		}
+
+		if(filtro.getData() != null & !filtro.getData().equals("")) {
+			filtros += " data = " + filtro.getData() + ",";
+		}
+
+		if(filtro.getTag() != null & !filtro.getTag().equals("")) {
+			filtros += " tag = " + filtro.getTag() + ",";
+		}
+
+		if(filtro.getTitulo() != null & !filtro.getTitulo().equals("")) {
+			filtros += " titulo = " + filtro.getTitulo() + ",";
+		}
+
+		filtros.substring(0, filtros.length() - 1);
+
+		if(filtro.getOrderDate() == FiltroModel.DESCENDENTE) {
+			filtros += " order by data DESC";
+		} else {
+			filtros += " order by data ASC";
+		}
+
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<TopicoModel> topicos = manager.createQuery("select * from topicos where" + filtros).getResultList();
+			return topicos;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao solicitar os tópicos.\nMensagem do erro: " + e.getMessage();
+			return null;
+
+		} finally {
+			closeConexao();
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<TagsModel> getTags() {
+		try{
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<TagsModel> tags = manager.createQuery("select * from tags").getResultList();
+			return tags;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao solicitar as tags.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+
+	}
+
+
 
 	private static void closeConexao() {
 		factory.close();

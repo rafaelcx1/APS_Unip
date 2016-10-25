@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import model.LoginModel;
-import model.UsuarioLoginModel;
+import model.tables.UsuarioLoginModel;
 import view.LoginView;
 
 public class LoginController {
@@ -28,7 +28,6 @@ public class LoginController {
 		loginView.setBtnSairEvent(new BtnSairListener());
 		loginView.setVisible(true);
 	}
-
 
 	private class TextFieldListener implements KeyListener {
 
