@@ -45,31 +45,31 @@ public class MainController {
 	}
 
 	public static void abrirTelaLogin(){
-		setJanelasNull();
 		MainController.loginModel = new LoginModel();
 		MainController.loginView = new LoginView();
 		MainController.loginController = new LoginController(MainController.loginModel, MainController.loginView);
+		setJanelasNull();
 	}
 
 	public static void abrirTelaCadastro(){
-		setJanelasNull();
 		MainController.cadastroModel = new CadastroModel();
 		MainController.cadastroView = new CadastroView();
 		MainController.cadastroController = new CadastroController(MainController.cadastroModel, MainController.cadastroView);
+		setJanelasNull();
 	}
 
 	public static void abrirTelaSenha(){
-		setJanelasNull();
 		MainController.senhaModel = new SenhaModel();
 		MainController.senhaView = new SenhaView();
 		MainController.senhaController = new SenhaController(MainController.senhaModel, MainController.senhaView);
+		setJanelasNull();
 	}
 
 	public static void abrirTelaPrincipalUsuario(UsuarioModel usuarioConectado){
-		setJanelasNull();
 		MainController.principalModel = new PrincipalModel();
 		MainController.principalView = new PrincipalView(MainController.usuarioModel);
 		MainController.principalController = new PrincipalController(MainController.principalModel, MainController.principalView, MainController.usuarioModel);
+		setJanelasNull();
 	}
 
 	public static void main(String[] args) {

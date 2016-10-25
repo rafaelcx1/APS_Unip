@@ -14,15 +14,43 @@ public class DAOForum {
 	private static EntityManager manager;
 
 	public static String getMsgErro() {
-		return msgErro;
+		String msgErroTemp = msgErro;
+		msgErro = null;
+		return msgErroTemp;
 	}
 
-	public static UsuarioModel conferirLogin(UsuarioLoginModel usuario){
-		factory = Persistence.createEntityManagerFactory("forum");
-		manager = factory.createEntityManager();
-		UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario.getUsuario());
-		closeConexao();
-		return usuarioEncontrado;
+	public static UsuarioModel conferirUsuario(UsuarioLoginModel usuario){
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario.getUsuario());
+			closeConexao();
+			return usuarioEncontrado;
+		} catch (Exception e){
+			manager.getTransaction().rollback();
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao conferir usuário.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static UsuarioModel conferirUsuario(String usuario){
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario);
+			closeConexao();
+			return usuarioEncontrado;
+		} catch (Exception e){
+			manager.getTransaction().rollback();
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao conferir usuário.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
 	}
 
 	public static boolean cadastrarUsuario(UsuarioModel usuario){
@@ -35,9 +63,30 @@ public class DAOForum {
 			closeConexao();
 			return true;
 		} catch(Exception e){
-			msgErro = "Ocorreu um erro ao cadastrar usuário. \n Erro: " + e.getMessage();
+			manager.getTransaction().rollback();
+			msgErro = "Ocorreu um erro ao cadastrar usuário.\nMensagem do erro: " + e.getMessage();
 			e.printStackTrace();
 			return false;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static boolean trocarSenha(UsuarioModel usuario){
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.merge(usuario);
+			manager.getTransaction().commit();
+			return true;
+		} catch(Exception e){
+			manager.getTransaction().rollback();
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao trocar a senha.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
 		}
 	}
 

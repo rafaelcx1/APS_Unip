@@ -17,7 +17,7 @@ public class LoginModel {
 
 	public boolean conferirLogin(UsuarioLoginModel usuario){
 		try {
-			usuarioLogado = DAOForum.conferirLogin(usuario);
+			usuarioLogado = DAOForum.conferirUsuario(usuario);
 			if(usuarioLogado == null) {
 				msgErro = "Usuário inválido";
 				return false;
