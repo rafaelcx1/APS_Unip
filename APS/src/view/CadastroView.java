@@ -48,13 +48,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JPanel panelBotoes;
 
 	public CadastroView(){
-<<<<<<< HEAD
-Font word = new Font("Open Sans", Font.BOLD , 14);
-		
-=======
 		Font word = new Font("Open Sans", Font.BOLD , 14);
-
->>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel subFieldset = new JPanel(new MigLayout());
@@ -119,13 +113,7 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
 			anos[a] = i;
 		}
-<<<<<<< HEAD
-		
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
-=======
-
-		String[] estados = {"AM", "AC", "AL", "BA", "SP"};
->>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		String[] perguntas  = {"Teste", "Teste 1"};
 
 		cbDiaNasc = new JComboBox<String>(dias);
@@ -133,15 +121,9 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
-<<<<<<< HEAD
 		
 		cbEstado.setSelectedIndex(24);
 		
-=======
-
-		cbEstado.setSelectedIndex(4);
-
->>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
 
