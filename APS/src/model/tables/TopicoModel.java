@@ -26,9 +26,8 @@ public class TopicoModel {
 	private int qtdCurtidas;
 	@Column(name = "qtdRespostas")
 	private int qtdRespostas;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idTag")
-	private TagsModel tag;
+	@Column(name = "tag")
+	private String tag;
 
 	public TopicoModel() {
 
@@ -83,12 +82,12 @@ public class TopicoModel {
 	}
 
 
-	public TagsModel getTag() {
+	public String getTag() {
 		return tag;
 	}
 
 
-	public void setTag(TagsModel tag) {
+	public void setTag(String tag) {
 		this.tag = tag;
 	}
 
