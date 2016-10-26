@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.CadastroModel;
-import model.tables.PerguntasModel;
 import model.tables.UsuarioModel;
 import view.CadastroView;
 
@@ -34,7 +33,7 @@ public class CadastroController {
 			String genero = cadastroView.getGenero();
 			String estado = cadastroView.getEstado();
 			String cidade = cadastroView.getCidade();
-			int perguntaSecreta = cadastroView.getPerguntaSecret();
+			String perguntaSecreta = cadastroView.getPerguntaSecret();
 			String respostaSecreta = cadastroView.getRespostaSecret();
 
 			UsuarioModel usuarioModel = new UsuarioModel();
@@ -45,7 +44,7 @@ public class CadastroController {
 			usuarioModel.setGenero(genero);
 			usuarioModel.setEstado(estado);
 			usuarioModel.setCidade(cidade);
-			usuarioModel.setPerguntaSecret(new PerguntasModel(perguntaSecreta));
+			usuarioModel.setPerguntaSecret(perguntaSecreta);
 			usuarioModel.setRespostaSecret(respostaSecreta);
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {

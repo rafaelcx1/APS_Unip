@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
 import model.LoginModel;
-import model.tables.UsuarioLoginModel;
+import model.models.UsuarioLoginModel;
 import view.LoginView;
 
 public class LoginController {

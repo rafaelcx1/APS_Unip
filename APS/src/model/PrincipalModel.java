@@ -5,7 +5,6 @@ import model.models.TagsMaisAtivasModel;
 import model.models.UsuarioAtivoModel;
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
-import model.tables.UsuarioModel;
 
 public class PrincipalModel {
 
@@ -17,7 +16,7 @@ public class PrincipalModel {
 	}
 
 	public TopicoModel[] getTopicos(int numeroPag) {
-		return null;
+		return topicos;
 	}
 
 	public String getMsgErro() {
@@ -44,16 +43,20 @@ public class PrincipalModel {
 		return null;
 	}
 
-	public UsuarioModel getUsuario(String usuario) {
-		return null;
-	}
-
 	public PostagemModel[] getPostagens(int idTopico) {
 		return null;
 	}
 
-	public TopicoModel[] getTopicoOrdData(int ordem) {
-		return null;
+	public boolean curtirTopico(int idTopico, boolean curtir) {
+		return false;
+	}
+
+	public boolean postarPostagem(int idTopico, PostagemModel postagem) {
+		return false;
+	}
+
+	public boolean criarTopico(TopicoModel topico) {
+		return false;
 	}
 
 }

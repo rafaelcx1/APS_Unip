@@ -1,7 +1,7 @@
 package model;
 
 import dao.DAOForum;
-import model.tables.UsuarioLoginModel;
+import model.models.UsuarioLoginModel;
 import model.tables.UsuarioModel;
 
 public class LoginModel {

@@ -9,10 +9,10 @@ import javax.persistence.Persistence;
 import model.models.FiltroModel;
 import model.models.TagsMaisAtivasModel;
 import model.models.UsuarioAtivoModel;
+import model.models.UsuarioLoginModel;
 import model.tables.PostagemModel;
 import model.tables.TagsModel;
 import model.tables.TopicoModel;
-import model.tables.UsuarioLoginModel;
 import model.tables.UsuarioModel;
 
 
@@ -21,6 +21,7 @@ public class DAOForum {
 	private static String msgErro;
 	private static EntityManagerFactory factory;
 	private static EntityManager manager;
+
 
 	public static String getMsgErro() {
 		String msgErroTemp = msgErro;
@@ -141,7 +142,6 @@ public class DAOForum {
 
 	}
 
-
 	public static List<PostagemModel> getPostagens(int idTopico) {
 		try {
 			factory = Persistence.createEntityManagerFactory("forum");
@@ -218,17 +218,60 @@ public class DAOForum {
 		}
 	}
 
+	public static boolean curtirTopico(int idTopico, boolean curtir){
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			int rows = 0;
 
-	public static void curtirTopico(int idTopico){
+			if(curtir)
+				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas + 1 where idTopico = " + idTopico).executeUpdate();
+			else
+				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas - 1 where idTopico = " + idTopico).executeUpdate();
 
+			System.out.println(rows + " linhas afetadas");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao curtir/descurtir o tópico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
 	}
 
-	public static void postarPostagem(int idTopico, PostagemModel postagem) {
-
+	public static boolean postarPostagem(PostagemModel postagem) {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.persist(postagem);
+			manager.getTransaction().commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar a resposta.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
 	}
 
-	public static void postarTopico(TopicoModel topico) {
-
+	public static boolean postarTopico(TopicoModel topico) {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.persist(topico);
+			manager.getTransaction().commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
 	}
 
 	private static void closeConexao() {
