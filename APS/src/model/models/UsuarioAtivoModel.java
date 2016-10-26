@@ -5,6 +5,14 @@ public class UsuarioAtivoModel {
 	private String nome;
 	private int numPublicacoes;
 
+	public UsuarioAtivoModel() {
+
+	}
+
+	public UsuarioAtivoModel(String nome, int numPublicacoes) {
+		this.nome = nome;
+		this.numPublicacoes = numPublicacoes;
+	}
 
 	public String getNome() {
 		return nome;

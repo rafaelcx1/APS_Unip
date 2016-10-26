@@ -7,9 +7,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import model.models.FiltroModel;
+import model.models.TagsMaisAtivasModel;
+import model.models.UsuarioAtivoModel;
+import model.models.UsuarioLoginModel;
+import model.tables.PostagemModel;
 import model.tables.TagsModel;
 import model.tables.TopicoModel;
-import model.tables.UsuarioLoginModel;
 import model.tables.UsuarioModel;
 
 
@@ -18,6 +21,7 @@ public class DAOForum {
 	private static String msgErro;
 	private static EntityManagerFactory factory;
 	private static EntityManager manager;
+
 
 	public static String getMsgErro() {
 		String msgErroTemp = msgErro;
@@ -96,7 +100,6 @@ public class DAOForum {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public static List<TopicoModel> getTopicos(FiltroModel filtro) {
 		String filtros = "";
 
@@ -127,29 +130,42 @@ public class DAOForum {
 		try {
 			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<TopicoModel> topicos = manager.createQuery("select * from topicos where" + filtros).getResultList();
+			List<TopicoModel> topicos = manager.createQuery("select * from topicos where" + filtros, TopicoModel.class).getResultList();
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao solicitar os tópicos.\nMensagem do erro: " + e.getMessage();
 			return null;
-
 		} finally {
 			closeConexao();
 		}
 
 	}
 
-	@SuppressWarnings("unchecked")
+	public static List<PostagemModel> getPostagens(int idTopico) {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<PostagemModel> postagens = manager.createQuery("select * from postagens where idTopico = " + idTopico + " order by data DESC", PostagemModel.class).getResultList();
+			return postagens;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao consultar as postagens.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+	}
+
 	public static List<TagsModel> getTags() {
 		try{
 			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<TagsModel> tags = manager.createQuery("select * from tags").getResultList();
+			List<TagsModel> tags = manager.createQuery("select * from tags", TagsModel.class).getResultList();
 			return tags;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao solicitar as tags.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao consultar as tags.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexao();
@@ -157,7 +173,106 @@ public class DAOForum {
 
 	}
 
+	public static List<TopicoModel> getTopicosMaisCurtidos() {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<TopicoModel> topicos = manager.createQuery("select * from topicos where qtdCurtidas > 0 order by qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
+			return topicos;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao consultar os tópicos mais curtidos.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+	}
 
+	public static List<UsuarioAtivoModel> getUsuariosMaisAtivos() {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<UsuarioAtivoModel> usuariosAtivos = manager.createQuery("select new UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from postagens group by usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+			return usuariosAtivos;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao consultar os usuários mais ativos.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static List<TagsMaisAtivasModel> getTagsMaisAtivas() {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			List<TagsMaisAtivasModel> tags = manager.createQuery("select new TagsMaisAtivasModel(tag, count(*) as qtdPublicacoes) from topicos group by tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
+			return tags;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao consultar as tags mais ativas.\nMensagem do erro: " + e.getMessage();
+			return null;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static boolean curtirTopico(int idTopico, boolean curtir){
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			int rows = 0;
+
+			if(curtir)
+				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas + 1 where idTopico = " + idTopico).executeUpdate();
+			else
+				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas - 1 where idTopico = " + idTopico).executeUpdate();
+
+			System.out.println(rows + " linhas afetadas");
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao curtir/descurtir o tópico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static boolean postarPostagem(PostagemModel postagem) {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.persist(postagem);
+			manager.getTransaction().commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar a resposta.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
+	}
+
+	public static boolean postarTopico(TopicoModel topico) {
+		try {
+			factory = Persistence.createEntityManagerFactory("forum");
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.persist(topico);
+			manager.getTransaction().commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexao();
+		}
+	}
 
 	private static void closeConexao() {
 		factory.close();

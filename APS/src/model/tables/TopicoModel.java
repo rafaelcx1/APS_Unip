@@ -1,19 +1,33 @@
 package model.tables;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "topicos")
 public class TopicoModel {
 
-
+	@Id @GeneratedValue
 	private int idTopico;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario")
 	private UsuarioModel usuarioAutor;
+	@Column(name = "titulo")
 	private String titulo;
+	@Column(name = "dtCriacao")
 	private String dtCriacao;
+	@Column(name = "qtdCurtidas")
 	private int qtdCurtidas;
+	@Column(name = "qtdRespostas")
 	private int qtdRespostas;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idTag")
 	private TagsModel tag;
 
 	public TopicoModel() {

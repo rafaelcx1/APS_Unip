@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
+@SuppressWarnings("serial")
 public class CadastroView extends JFrame implements IView, ActionListener{
 
 	private JLabel lblTitulo;
@@ -38,7 +39,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JTextField txGenero;
 	private JComboBox<String> cbEstado;
 	private JTextField txCidade;
-	private JComboBox<String> cbPerguntaSecret; // As perguntas terão que começar com um número, por exemplo: 1- Cidade em que nasceu
+	private JComboBox<String> cbPerguntaSecret;
 	private JTextField txRespostaSecret;
 	private JButton btnCadastrar;
 	private JButton btnLimpar;
@@ -47,17 +48,22 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JPanel panelBotoes;
 
 	public CadastroView(){
+<<<<<<< HEAD
 Font word = new Font("Open Sans", Font.BOLD , 14);
 		
+=======
+		Font word = new Font("Open Sans", Font.BOLD , 14);
+
+>>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel subFieldset = new JPanel(new MigLayout());
 		JPanel subBotoes = new JPanel();
 		panelPrincipal = new JPanel(new BorderLayout());
 		panelBotoes = new JPanel(new MigLayout("fillx", "[center]"));
-		
+
 		panelHeader.setBackground(new Color(0x212121));
-		
+
 		JLabel logo = new JLabel(new ImageIcon("logo.png"));
 		lblTitulo = new JLabel("Criar uma conta");
 		lblNome = new JLabel("Nome");
@@ -69,7 +75,7 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		lblCidade = new JLabel("Cidade");
 		lblPerguntaSecret = new JLabel("Pergunta secreta");
 		lblRespostaSecret = new JLabel("Resposta secreta");
-		
+
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 18));
 		lblTitulo.setForeground(Color.WHITE);
 		lblNome.setFont(word);
@@ -81,56 +87,67 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		lblCidade.setFont(word);
 		lblPerguntaSecret.setFont(word);
 		lblRespostaSecret.setFont(word);
-		
+
 		txNome = new JTextField(48);
 		txUsuario = new JTextField(48);
 		ptxSenha = new JPasswordField(48);
 		txCidade = new JTextField(48);
 		txRespostaSecret = new JTextField(48);
-		
+
 		txNome.setFont(word);
 		txUsuario.setFont(word);
 		ptxSenha.setFont(word);
 		txCidade.setFont(word);
 		txRespostaSecret.setFont(word);
-		
+
 		btnCadastrar = new JButton("Cadastrar", new ImageIcon("create.png"));
 		btnLimpar = new JButton("Limpar", new ImageIcon("clear.png"));
 		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
+
 		btnCadastrar.setBackground(Color.BLACK);
 		btnCadastrar.setForeground(Color.WHITE);
 		btnLimpar.setBackground(Color.BLACK);
 		btnLimpar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(Color.BLACK);
-		
+
 		setBtnLimparListener(this);
-		
+
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		String[] meses = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
 		Integer[] anos = new Integer[117];
-		
+
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
 			anos[a] = i;
 		}
+<<<<<<< HEAD
 		
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+=======
+
+		String[] estados = {"AM", "AC", "AL", "BA", "SP"};
+>>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		String[] perguntas  = {"Teste", "Teste 1"};
-		
+
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
+<<<<<<< HEAD
 		
 		cbEstado.setSelectedIndex(24);
 		
+=======
+
+		cbEstado.setSelectedIndex(4);
+
+>>>>>>> e91a415c45979858181f17ab162021ebb6ff105b
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
-		
+
 		panelHeader.add(btnVoltar);
 		panelHeader.add(lblTitulo);
-		
+
 		subFieldset.add(logo, "wrap 64, span, gapleft 268");
 		subFieldset.add(lblNome);
 		subFieldset.add(txNome, "wrap 16, gapleft 16");
@@ -150,15 +167,15 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		subFieldset.add(cbPerguntaSecret, "wrap 16, grow, gapleft 16");
 		subFieldset.add(lblRespostaSecret);
 		subFieldset.add(txRespostaSecret, "gapleft 16");
-		
+
 		fieldset.add(subFieldset);
-		
+
 		panelBotoes.add(subBotoes);
-		
+
 		panelPrincipal.add(panelHeader, "North");
 		panelPrincipal.add(fieldset, "Center");
 		panelPrincipal.add(panelBotoes, "South");
-		
+
 		getContentPane().add(panelPrincipal);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -192,8 +209,8 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		return txCidade.getText();
 	}
 
-	public int getPerguntaSecret(){
-		return cbPerguntaSecret.getSelectedIndex();
+	public String getPerguntaSecret(){
+		return (String) cbPerguntaSecret.getSelectedItem();
 	}
 
 	public String getRespostaSecret(){
@@ -225,7 +242,7 @@ Font word = new Font("Open Sans", Font.BOLD , 14);
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLimpar){
 			resetarCampos();

@@ -1,43 +1,35 @@
 package model.tables;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuario")
 public class UsuarioModel {
 
-	@Column(name = "nome", nullable = false)
-	private String nome;
-
+	@Id
 	@Column(name = "usuario")
 	private String usuario;
-
-	@Column(name = "Senha")
+	@Column(name = "senha", nullable = false)
 	private String senha;
-
-	@Column(name = "dataNasc", nullable = false)
+	@Column(name = "nome", nullable = false)
+	private String nome;
+	@Column(name = "dataNasc")
 	private String dataNasc;
-
 	@Column(name = "genero")
 	private String genero;
-
 	@Column(name = "estado")
 	private String estado;
-
 	@Column(name = "cidade")
 	private String cidade;
-
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idPergunta")
-	private PerguntasModel perguntaSecret;
-
-	@Column(name = "respostaSecret")
+	@Column(name = "perguntaSecret", nullable = false)
+	private String perguntaSecret;
+	@Column(name = "respostaSecret", nullable = false)
 	private String respostaSecret;
+
+
 
 
 	public String getNome() {
@@ -96,11 +88,13 @@ public class UsuarioModel {
 		this.cidade = cidade;
 	}
 
-	public PerguntasModel getPerguntaSecret() {
+
+
+	public String getPerguntaSecret() {
 		return perguntaSecret;
 	}
 
-	public void setPerguntaSecret(PerguntasModel perguntaSecret) {
+	public void setPerguntaSecret(String perguntaSecret) {
 		this.perguntaSecret = perguntaSecret;
 	}
 
@@ -112,8 +106,7 @@ public class UsuarioModel {
 		this.respostaSecret = respostaSecret;
 	}
 
-
 	public UsuarioModel(){
 	}
-
 }
+

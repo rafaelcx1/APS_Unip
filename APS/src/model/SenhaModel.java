@@ -17,7 +17,7 @@ public class SenhaModel {
 	}
 
 	public String getPergunta() {
-		return usuario.getPerguntaSecret().getPergunta();
+		return usuario.getPerguntaSecret();
 	}
 
 	public String getMsgErro() {
