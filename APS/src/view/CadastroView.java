@@ -49,7 +49,6 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 
 	public CadastroView(){
 		Font word = new Font("Open Sans", Font.BOLD , 14);
-
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel subFieldset = new JPanel(new MigLayout());
@@ -114,8 +113,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
 			anos[a] = i;
 		}
-
-		String[] estados = {"AM", "AC", "AL", "BA", "SP"};
+		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 		String[] perguntas  = {"Teste", "Teste 1"};
 
 		cbDiaNasc = new JComboBox<String>(dias);
@@ -123,9 +121,9 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
-
-		cbEstado.setSelectedIndex(4);
-
+		
+		cbEstado.setSelectedIndex(24);
+		
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
 
@@ -163,7 +161,6 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		getContentPane().add(panelPrincipal);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		setVisible(true);
 	}
 
 	public String getNome(){

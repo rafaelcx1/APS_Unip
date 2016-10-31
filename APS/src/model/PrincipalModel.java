@@ -40,7 +40,6 @@ public class PrincipalModel {
 			msgErro = DAOForum.getMsgErro();
 			return false;
 		}
-
 	}
 
 	public TopicoModel[] getTopicosMaisCurtidos() {
@@ -74,7 +73,13 @@ public class PrincipalModel {
 	}
 
 	public String[] getTags() {
-		return tags;
+		try {
+			List<TagsModel> tagsList = DAOForum.getTags();
+			return (String) tagsList.toArray();
+		} catch(Exception e) {
+			msgErro = DAOForum.getMsgErro;
+			return null;
+		}
 	}
 
 	public PostagemModel[] getPostagens(int idTopico) {
