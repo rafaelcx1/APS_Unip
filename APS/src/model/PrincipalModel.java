@@ -73,13 +73,7 @@ public class PrincipalModel {
 	}
 
 	public String[] getTags() {
-		try {
-			List<TagsModel> tagsList = DAOForum.getTags();
-			return (String) tagsList.toArray();
-		} catch(Exception e) {
-			msgErro = DAOForum.getMsgErro;
-			return null;
-		}
+		return tags;
 	}
 
 	public PostagemModel[] getPostagens(int idTopico) {
@@ -108,7 +102,7 @@ public class PrincipalModel {
 
 	public boolean postarPostagem(int idTopico, PostagemModel postagem) {
 		try {
-			if(DAOForum.postarPostagem(postagem)) {
+			if(DAOForum.postarPostagem(postagem, idTopico)) {
 				return true;
 			} else {
 				msgErro = DAOForum.getMsgErro();
@@ -133,5 +127,7 @@ public class PrincipalModel {
 			return false;
 		}
 	}
+
+
 
 }

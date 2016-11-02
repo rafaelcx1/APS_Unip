@@ -1,6 +1,5 @@
 package dao;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -118,37 +117,45 @@ public class DAOForum {
 	}
 
 	public static List<TopicoModel> getTopicos(FiltroModel filtro) {
-		String filtros = "";
+		String filtros = "where";
+		short contaFiltros = 0;
 
 		if(filtro.getUsuario() != null & !filtro.getUsuario().equals("")) {
-			filtros += " usuario = " + filtro.getUsuario() + ",";
+			filtros += " t.usuario = " + filtro.getUsuario() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getData() != null & !filtro.getData().equals("")) {
-			filtros += " data = " + filtro.getData() + ",";
+			filtros += " t.data = " + filtro.getData() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getTag() != null & !filtro.getTag().equals("")) {
-			filtros += " tag = " + filtro.getTag() + ",";
+			filtros += " t.tag = " + filtro.getTag() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getTitulo() != null & !filtro.getTitulo().equals("")) {
-			filtros += " titulo = " + filtro.getTitulo() + ",";
+			filtros += " t.titulo = " + filtro.getTitulo() + ",";
+			contaFiltros++;
 		}
 
-		filtros.substring(0, filtros.length() - 1);
+		if(contaFiltros > 0)
+			filtros.substring(0, filtros.length() - 1);
+		else
+			filtros = "";
 
 		if(filtro.getOrderDate() == FiltroModel.DESCENDENTE) {
-			filtros += " order by data DESC";
+			filtros += " order by t.dtCriacao DESC";
 		} else {
-			filtros += " order by data ASC";
+			filtros += " order by t.dtCriacao ASC";
 		}
 
 		try {
 			manager = factory.createEntityManager();
 			List<TopicoModel> topicos = null;
 			if(factory != null & manager != null)
-				topicos = manager.createQuery("select * from topicos where" + filtros, TopicoModel.class).getResultList();
+				topicos = manager.createQuery("from TopicoModel t " + filtros, TopicoModel.class).getResultList();
 
 			return topicos;
 		} catch(Exception e) {
@@ -166,7 +173,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<PostagemModel> postagens = null;
 			if(factory != null & manager != null)
-				postagens = manager.createQuery("select * from postagens where idTopico = " + idTopico + " order by data DESC", PostagemModel.class).getResultList();
+				postagens = manager.createQuery("from PostagemModel p where p.idTopico = " + idTopico + " order by p.dataPost", PostagemModel.class).getResultList();
 
 			return postagens;
 		} catch(Exception e) {
@@ -184,7 +191,7 @@ public class DAOForum {
 			List<TopicoModel> topicos = null;
 
 			if(factory != null & manager != null)
-				topicos = manager.createQuery("select * from topicos where qtdCurtidas > 0 order by qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
+				topicos = manager.createQuery("from TopicoModel t where t.qtdCurtidas > 0 order by t.qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
 
 			return topicos;
 		} catch(Exception e) {
@@ -201,7 +208,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<UsuarioAtivoModel> usuariosAtivos = null;
 			if(factory != null & manager != null)
-				usuariosAtivos = manager.createQuery("select new UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from postagens group by usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from PostagemModel p group by p.usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
 
 			return usuariosAtivos;
 		} catch(Exception e) {
@@ -218,7 +225,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<TagsMaisAtivasModel> tags = null;
 			if(factory != null & manager != null)
-				tags = manager.createQuery("select new TagsMaisAtivasModel(tag, count(*) as qtdPublicacoes) from topicos group by tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
+				tags = manager.createQuery("select new model.models.TagsMaisAtivasModel(t.tag, count(t.idTopico) as qtdPublicacoes) from TopicoModel t group by t.tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
 
 			return tags;
 		} catch(Exception e) {
@@ -234,15 +241,19 @@ public class DAOForum {
 		try {
 			manager = factory.createEntityManager();
 			int rows = 0;
+			manager.getTransaction().begin();
 			if(factory != null & manager != null) {
 				if(curtir)
-					rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas + 1 where idTopico = " + idTopico).executeUpdate();
+					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas + 1 where t.idTopico = " + idTopico).executeUpdate();
 				else
-					rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas - 1 where idTopico = " + idTopico).executeUpdate();
+					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas - 1 where t.idTopico = " + idTopico).executeUpdate();
 			}
+			manager.getTransaction().commit();
 			System.out.println(rows + " linhas afetadas");
 			return true;
 		} catch(Exception e) {
+			if(manager != null)
+				manager.getTransaction().rollback();
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao curtir/descurtir o tópico.\nMensagem do erro: " + e.getMessage();
 			return false;
@@ -251,12 +262,14 @@ public class DAOForum {
 		}
 	}
 
-	public static boolean postarPostagem(PostagemModel postagem) {
+	public static boolean postarPostagem(PostagemModel postagem, int idTopico) {
 		try {
 			manager = factory.createEntityManager();
+			postagem.setIdTopico(manager.getReference(TopicoModel.class, idTopico));
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
-				manager.persist(postagem);
+				manager.merge(postagem);
+				manager.createQuery("update TopicoModel t set t.qtdRespostas = t.qtdRespostas + 1 where t.idTopico = " + idTopico).executeUpdate();
 				manager.getTransaction().commit();
 			}
 			return true;
@@ -274,7 +287,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
-				manager.persist(topico);
+				manager.merge(topico);
 				manager.getTransaction().commit();
 			}
 			return true;
@@ -299,57 +312,6 @@ public class DAOForum {
 			manager.close();
 			manager = null;
 		}
-	}
-
-	public static void main(String[] args) {
-		UsuarioModel usuario = new UsuarioModel();
-		usuario.setUsuario("rafaelcx");
-		usuario.setSenha("teste123");
-		usuario.setNome("Rafael Felipe Moraes");
-		usuario.setCidade("Jacareí");
-		usuario.setEstado("São Paulo");
-		usuario.setPerguntaSecret("Nome do Cachorro(a)");
-		usuario.setRespostaSecret("Nina");
-		usuario.setGenero("Masculino");
-		usuario.setDataNasc("13/01/1997");
-		DAOForum.cadastrarUsuario(usuario);
-		UsuarioModel usuarioConferido = DAOForum.conferirUsuario("rafaelcx");
-		System.out.println(usuarioConferido.getUsuario() + ";\n" +
-				usuarioConferido.getSenha() + ";\n" +
-				usuarioConferido.getNome() + ";\n" +
-				usuarioConferido.getCidade() + ";\n" +
-				usuarioConferido.getEstado() + ";\n" +
-				usuarioConferido.getPerguntaSecret() + ";\n" +
-				usuarioConferido.getRespostaSecret() + ";\n" +
-				usuarioConferido.getGenero() + ";\n" +
-				usuarioConferido.getDataNasc() + ";\n");
-		usuarioConferido.setSenha("teste12345");
-
-		DAOForum.trocarSenha(usuarioConferido);
-
-		TopicoModel topico = new TopicoModel();
-		topico.setTitulo("Teste");
-		topico.setQtdCurtidas(0);
-		topico.setQtdRespostas(0);
-		topico.setTag("teste");
-		topico.setUsuario(usuarioConferido);
-		topico.setDtCriacao(LocalDateTime.now().toString());
-
-		DAOForum.postarTopico(topico);
-
-		PostagemModel postagem = new PostagemModel();
-		postagem.setIdTopico(topico);
-		postagem.setDataPost(LocalDateTime.now().toString());
-		postagem.setTextoPost("Teste");
-		postagem.setUsuario(usuarioConferido);
-
-		DAOForum.postarPostagem(postagem);
-
-		List<TagsMaisAtivasModel> tags = DAOForum.getTagsMaisAtivas();
-		List<TopicoModel> topicosModel = DAOForum.getTopicosMaisCurtidos();
-		List<UsuarioAtivoModel> users = DAOForum.getUsuariosMaisAtivos();
-		List<TopicoModel> topicosT = DAOForum.getTopicos(new FiltroModel());
-		List<PostagemModel> postagens = DAOForum.getPostagens(1);
 	}
 
 }

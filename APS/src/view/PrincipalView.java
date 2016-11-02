@@ -21,7 +21,7 @@ public class PrincipalView {
 	private CriarTopicoPanel criarTopicoPanel;
 	private VisualizarTopicoPanel visualizarTopicoPanel;
 
-	PrincipalView(UsuarioModel usuario) {
+	public PrincipalView(UsuarioModel usuario) {
 
 	}
 

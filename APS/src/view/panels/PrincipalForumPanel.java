@@ -1,8 +1,11 @@
 package view.panels;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
+import model.models.FiltroModel;
 import model.tables.TopicoModel;
+import view.BotaoTopicoPanel;
 
 public class PrincipalForumPanel {
 
@@ -67,7 +70,7 @@ public class PrincipalForumPanel {
 		return null;
 	}
 
-	public void setTopicos(topicoModel[] topicos) {
+	public void setTopicos(TopicoModel[] topicos) {
 
 	}
 

@@ -12,7 +12,11 @@ public class FiltroModel {
 	private boolean orderDate;
 
 	public FiltroModel(){
-
+		this.tag = "";
+		this.data = "";
+		this.usuario = "";
+		this.titulo = "";
+		this.orderDate = false;
 	}
 
 	public String getTag() {

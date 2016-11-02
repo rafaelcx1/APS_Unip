@@ -3,11 +3,11 @@ package model.models;
 public class TagsMaisAtivasModel {
 
 	private String nome;
-	private int numPublicacoes;
+	private long numPublicacoes;
 
 	public TagsMaisAtivasModel(){}
 
-	public TagsMaisAtivasModel(String nome, int numPublicacoes) {
+	public TagsMaisAtivasModel(String nome, long numPublicacoes) {
 		this.nome = nome;
 		this.numPublicacoes = numPublicacoes;
 	}
@@ -18,10 +18,10 @@ public class TagsMaisAtivasModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getNumPublicacoes() {
+	public long getNumPublicacoes() {
 		return numPublicacoes;
 	}
-	public void setNumPublicacoes(int numPublicacoes) {
+	public void setNumPublicacoes(long numPublicacoes) {
 		this.numPublicacoes = numPublicacoes;
 	}
 
