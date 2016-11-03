@@ -19,7 +19,7 @@ public class PrincipalController {
 		this.principalView = principalView;
 		this.usuarioConectado = usuario;
 
-		// Inserir Código
+		// Inserir CÃ³digo
 	}
 
 
@@ -173,46 +173,19 @@ public class PrincipalController {
 
 	}
 
-	private class LblFiltrarUsuarioTopicosListener implements MouseListener {
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
 	private class LblFiltrarDataTopicosListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			FiltroModel filtroData = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
+			boolean dataAscentente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
+			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
+			if(principalModel.atualizarTopicos(filtroData)) {
+				TopicoModel[] topicos = principalModel.getTopicos(0);
+				principalView.setTopicos(topicos);
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 		}
 
 		@Override
@@ -229,14 +202,13 @@ public class PrincipalController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
+			principalView.getPrincipalForumPanel().getPanelFiltros().lblFiltrarDataEntered();
 
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.getPrincipalForumPanel().getPanelFiltros().lblFiltrarDataExited();
 		}
 
 	}
