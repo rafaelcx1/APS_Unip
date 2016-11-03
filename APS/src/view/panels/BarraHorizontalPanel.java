@@ -11,7 +11,6 @@ public class BarraHorizontalPanel {
 	private JButton btnSair;
 	private JLabel lblUsuario;
 	private JLabel lblData;
-	private UsuarioModel usuario;
 
 	public void PanelBarraHorizontal(UsuarioModel usuario) {
 

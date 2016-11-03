@@ -31,19 +31,19 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public PerfilPanel getPerfilPanel() {
-		return null;
+		return perfilPanel;
 	}
 
 	public CriarTopicoPanel getCriarTopicoPanel() {
-		return null;
+		return criarTopicoPanel;
 	}
 
-	public view.panels.PrincipalForumPanel getPrincipalForumPanel() {
-		return null;
+	public PrincipalForumPanel getPrincipalForumPanel() {
+		return principalForumPanel;
 	}
 
-	public view.panels.VisualizarTopicoPanel getVisualizarTopicoPanel() {
-		return null;
+	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
+		return visualizarTopicoPanel;
 	}
 
 	public ResponderTopicoPanel getResponderTopicoPanel() {
@@ -136,8 +136,6 @@ public class PrincipalView extends JFrame implements IView{
 
 	@Override
 	public void displayMsg(String msg) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

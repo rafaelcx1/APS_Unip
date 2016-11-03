@@ -13,8 +13,8 @@ public class BarraVerticalPanel {
 	private String[] usuariosMaisAtivos;
 	private String[] tagsMaisUsadas;
 	private String[] topicosMaisCurtidos;
-	
-	BarraVerticalPanel() {
+
+	public BarraVerticalPanel() {
 
 	}
 

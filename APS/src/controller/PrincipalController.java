@@ -22,7 +22,7 @@ public class PrincipalController {
 		this.principalView = principalView;
 		this.usuarioConectado = usuario;
 
-		// Inserir CÃ³digo
+		// Inserir Código
 	}
 
 
