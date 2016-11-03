@@ -12,7 +12,7 @@ import model.tables.TopicoModel;
 public class PrincipalModel {
 
 	private TopicoModel[] topicos;
-	private String[] tags = {"tag1", "tag2"}; // Escrever tags
+	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "Edição de Áudio e Vídeo|TI", "Programação|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e Mangás", "Notícias"};
 	private String msgErro;
 
 	public PrincipalModel() {
