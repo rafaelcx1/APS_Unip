@@ -30,6 +30,9 @@ public class UsuarioModel {
 	private String respostaSecret;
 	@Column(name = "dataCadastro")
 	private String dataCadastro;
+	@Column(name = "avatar")
+	@Lob(type = LobType.BLOB)
+	private byte[] avatar;
 
 	public String getNome() {
 		return nome;
@@ -109,6 +112,14 @@ public class UsuarioModel {
 	
 	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
 	}
 
 	public UsuarioModel(){
