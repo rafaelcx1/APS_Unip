@@ -33,4 +33,7 @@ public class CriarTopicoPanel {
 		return null;
 	}
 
+	public TopicoModel getTopicoModel() {
+		
+	}
 }
