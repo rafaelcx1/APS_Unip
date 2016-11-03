@@ -9,20 +9,16 @@ import model.PrincipalModel;
 import model.models.FiltroModel;
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
-import model.tables.UsuarioModel;
 import view.PrincipalView;
 
 public class PrincipalController {
 	private PrincipalModel principalModel;
 	private PrincipalView principalView;
-	private UsuarioModel usuarioConectado;
 
-	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView, UsuarioModel usuario){
+	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView){
 		this.principalModel = principalModel;
 		this.principalView = principalView;
-		this.usuarioConectado = usuario;
 
-		// Inserir Código
 	}
 
 

@@ -26,9 +26,6 @@ public class MainController {
 	private static PrincipalModel principalModel;
 	private static UsuarioModel usuarioModel;
 
-	public MainController(){
-	}
-
 	public static void setJanelasNull(){
 		MainController.loginController = null;
 		MainController.loginView = null;
@@ -68,7 +65,7 @@ public class MainController {
 	public static void abrirTelaPrincipalUsuario(UsuarioModel usuarioConectado){
 		MainController.principalModel = new PrincipalModel();
 		MainController.principalView = new PrincipalView(MainController.usuarioModel);
-		MainController.principalController = new PrincipalController(MainController.principalModel, MainController.principalView, MainController.usuarioModel);
+		MainController.principalController = new PrincipalController(MainController.principalModel, MainController.principalView);
 		setJanelasNull();
 	}
 
