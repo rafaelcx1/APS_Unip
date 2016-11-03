@@ -101,7 +101,7 @@ public class PrincipalView {
 
 	}
 
-	public void setBtnResponderListener(ActionListener event) {
+	public void setBtnPostarRespostaListener(ActionListener event) {
 
 	}
 
@@ -109,7 +109,7 @@ public class PrincipalView {
 
 	}
 
-	public void setBtnPostarListener(ActionListener event) {
+	public void setBtnPostarTopicoListener(ActionListener event) {
 
 	}
 
