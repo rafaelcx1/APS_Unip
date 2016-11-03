@@ -46,7 +46,6 @@ public class CadastroController {
 			usuarioModel.setCidade(cidade);
 			usuarioModel.setPerguntaSecret(perguntaSecreta);
 			usuarioModel.setRespostaSecret(respostaSecreta);
-			usuarioModel.setDataCadastro(DateUtil.format(LocalDate.now()));
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
 				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
