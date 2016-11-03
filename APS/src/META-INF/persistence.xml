@@ -10,7 +10,6 @@
 	   <class>model.PostagemModel</class>
 	   <class>model.TopicoModel</class>
 	   <class>model.UsuarioModel</class>
-	   <class>model.TagsModel</class>
 
 	   <properties>
 
