@@ -46,12 +46,13 @@ public class CadastroController {
 			usuarioModel.setCidade(cidade);
 			usuarioModel.setPerguntaSecret(perguntaSecreta);
 			usuarioModel.setRespostaSecret(respostaSecreta);
+			usuarioModel.setDataCadastro(DateUtil.format(LocalDate.now()));
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
-				cadastroView.displayMsg("Usu·rio cadastrado com sucesso!");
+				cadastroView.displayMsg("Usu√°rio cadastrado com sucesso!");
 				MainController.abrirTelaLogin();
 			} else {
-				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usu·rio!\nErro: " + cadastroModel.getMsgErro());
+				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usu√°rio!\nErro: " + cadastroModel.getMsgErro());
 			}
 		}
 	}
