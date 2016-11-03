@@ -20,6 +20,7 @@ public class PrincipalView {
 	private PrincipalForumPanel principalForumPanel;
 	private CriarTopicoPanel criarTopicoPanel;
 	private VisualizarTopicoPanel visualizarTopicoPanel;
+	private ResponderTopicoPanel responderTopicoPanel;
 
 	public PrincipalView(UsuarioModel usuario) {
 
@@ -39,6 +40,10 @@ public class PrincipalView {
 
 	public view.panels.VisualizarTopicoPanel getVisualizarTopicoPanel() {
 		return null;
+	}
+	
+	public ResponderTopicoPanel getResponderTopicoPanel() {
+		return responderTopicoPanel;
 	}
 
 	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivos, String[] topicosMaisCurtidos) {
