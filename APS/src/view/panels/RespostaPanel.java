@@ -1,5 +1,5 @@
 package view.panels;
 
-public class RespostaPanel {
-
+public class RespostaPanel extends JPanel {
+      private JButton btnPostarResposta;
 }
