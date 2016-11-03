@@ -2,6 +2,13 @@ package view.panels;
 
 public class PanelFiltros extends JPanel {
     private JLabel lblFiltrarData;
+    private boolean dataAscendente = false;
+	
+    public FiltroModel getFiltroData() {
+	    FiltroModel filtroData = new FiltroModel();
+	    filtroData.setOrderDate(dataAscendente);
+	    return filtroData;
+    }
   
     public void lblFiltrarDataEntered() {
       @SuppressWarnings("unchecked")
