@@ -123,7 +123,17 @@ public class PrincipalController {
 
 	}
 
-	private class BtnPostarListener implements ActionListener {
+	private class BtnPostarTopicoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+	
+	private class BtnPostarRespostaListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
