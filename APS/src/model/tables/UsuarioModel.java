@@ -28,9 +28,8 @@ public class UsuarioModel {
 	private String perguntaSecret;
 	@Column(name = "respostaSecret", nullable = false)
 	private String respostaSecret;
-
-
-
+	@Column(name = "dataCadastro")
+	private String dataCadastro;
 
 	public String getNome() {
 		return nome;
@@ -88,8 +87,6 @@ public class UsuarioModel {
 		this.cidade = cidade;
 	}
 
-
-
 	public String getPerguntaSecret() {
 		return perguntaSecret;
 	}
@@ -104,6 +101,14 @@ public class UsuarioModel {
 
 	public void setRespostaSecret(String respostaSecret) {
 		this.respostaSecret = respostaSecret;
+	}
+	
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+	
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public UsuarioModel(){
