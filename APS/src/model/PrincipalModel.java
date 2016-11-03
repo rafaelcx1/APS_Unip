@@ -114,7 +114,7 @@ public class PrincipalModel {
 		}
 	}
 
-	public boolean criarTopico(TopicoModel topico) {
+	public boolean postarTopico(TopicoModel topico) {
 		try {
 			if(DAOForum.postarTopico(topico)){
 				return true;
