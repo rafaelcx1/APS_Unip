@@ -265,7 +265,7 @@ public class DAOForum {
 	public static boolean postarPostagem(PostagemModel postagem, int idTopico) {
 		try {
 			manager = factory.createEntityManager();
-			postagem.setIdTopico(manager.getReference(TopicoModel.class, idTopico));
+			postagem.setTopico(manager.getReference(TopicoModel.class, idTopico));
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
 				manager.merge(postagem);

@@ -1,7 +1,13 @@
 package view.panels;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import model.tables.PostagemModel;
+import model.tables.TopicoModel;
 
 public class CriarTopicoPanel {
 
@@ -18,7 +24,7 @@ public class CriarTopicoPanel {
 	private String tags[];
 
 	CriarTopicoPanel(String[] tags) {
-		
+
 	}
 
 	public JButton getBtnPostar() {
@@ -34,6 +40,6 @@ public class CriarTopicoPanel {
 	}
 
 	public TopicoModel getTopicoModel() {
-		
+		return null;
 	}
 }

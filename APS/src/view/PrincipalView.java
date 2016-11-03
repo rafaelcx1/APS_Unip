@@ -1,6 +1,9 @@
 package view;
 
-import java.awt.event.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
 
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
@@ -10,9 +13,10 @@ import view.panels.BarraVerticalPanel;
 import view.panels.CriarTopicoPanel;
 import view.panels.PerfilPanel;
 import view.panels.PrincipalForumPanel;
+import view.panels.ResponderTopicoPanel;
 import view.panels.VisualizarTopicoPanel;
 
-public class PrincipalView {
+public class PrincipalView extends JFrame implements IView{
 
 	private BarraHorizontalPanel barraHorizontal;
 	private BarraVerticalPanel barraVertical;
@@ -26,11 +30,11 @@ public class PrincipalView {
 
 	}
 
-	public view.panels.PerfilPanel getPerfilPanel() {
+	public PerfilPanel getPerfilPanel() {
 		return null;
 	}
 
-	public view.panels.CriarTopicoPanel getCriarTopicoPanel() {
+	public CriarTopicoPanel getCriarTopicoPanel() {
 		return null;
 	}
 
@@ -41,7 +45,7 @@ public class PrincipalView {
 	public view.panels.VisualizarTopicoPanel getVisualizarTopicoPanel() {
 		return null;
 	}
-	
+
 	public ResponderTopicoPanel getResponderTopicoPanel() {
 		return responderTopicoPanel;
 	}
@@ -127,6 +131,12 @@ public class PrincipalView {
 	}
 
 	public void setFiltrarDataTopicosListener(MouseListener event) {
+
+	}
+
+	@Override
+	public void displayMsg(String msg) {
+		// TODO Auto-generated method stub
 
 	}
 

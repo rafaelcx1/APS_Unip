@@ -1,9 +1,14 @@
 package model.tables;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import util.DataUtil;
 
 @Entity
 @Table(name="usuario")
@@ -31,7 +36,7 @@ public class UsuarioModel {
 	@Column(name = "dataCadastro")
 	private String dataCadastro;
 	@Column(name = "avatar")
-	@Lob(type = LobType.BLOB)
+	@Lob
 	private byte[] avatar;
 
 	public String getNome() {
@@ -105,19 +110,19 @@ public class UsuarioModel {
 	public void setRespostaSecret(String respostaSecret) {
 		this.respostaSecret = respostaSecret;
 	}
-	
+
 	public String getDataCadastro() {
 		return dataCadastro;
 	}
-	
+
 	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
+
 	public byte[] getAvatar() {
 		return avatar;
 	}
-	
+
 	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}

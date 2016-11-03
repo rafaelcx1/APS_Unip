@@ -1,23 +1,33 @@
 package view.panels;
 
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import model.models.FiltroModel;
+
 public class PanelFiltros extends JPanel {
     private JLabel lblFiltrarData;
     private boolean dataAscendente = false;
-	
+
     public FiltroModel getFiltroData() {
 	    FiltroModel filtroData = new FiltroModel();
 	    filtroData.setOrderDate(dataAscendente);
 	    return filtroData;
     }
-	
+
     public void setDataAscendente(boolean dataAscendente) {
 	    this.dataAscendente = dataAscendente;
     }
-	
+
     public boolean getDataAscendente() {
-	    return dataAscentente;
+	    return dataAscendente;
     }
-  
+
     public void lblFiltrarDataEntered() {
       @SuppressWarnings("unchecked")
 			Map<TextAttribute, Integer> atributos = (Map<TextAttribute, Integer>) lblFiltrarData.getFont().getAttributes();

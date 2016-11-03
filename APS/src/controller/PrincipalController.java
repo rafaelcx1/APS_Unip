@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.PrincipalModel;
+import model.models.FiltroModel;
+import model.tables.PostagemModel;
+import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
 import view.PrincipalView;
 
@@ -130,8 +133,8 @@ public class PrincipalController {
 			TopicoModel topico = principalView.getCriarTopicoPanel().getTopicoModel();
 			PostagemModel postagemInicial = principalView.getCriarTopicoPanel().getPostagemModel();
 			if(principalModel.postarTopico(topico)) {
-				if(principalModel.postarPostagem(postagemInicial)) {
-					principalView.displayMsg("TÃ³pico postado com sucesso!");
+				if(principalModel.postarPostagem(topico.getIdTopico(), postagemInicial)) {
+					principalView.displayMsg("Tópico postado com sucesso!");
 				} else {
 					principalView.displayMsg(principalModel.getMsgErro());
 				}
@@ -142,13 +145,13 @@ public class PrincipalController {
 		}
 
 	}
-	
+
 	private class BtnPostarRespostaListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
-			if(principalModel.postarPostagem(postagemInicial)) {
+			if(principalModel.postarPostagem(postagem.getTopico().getIdTopico(), postagem)) {
 				principalView.displayMsg("Postagem feita com sucesso!");
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
@@ -203,7 +206,7 @@ public class PrincipalController {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			FiltroModel filtroData = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
-			boolean dataAscentente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
+			boolean dataAscendente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
 			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
 			if(principalModel.atualizarTopicos(filtroData)) {
 				TopicoModel[] topicos = principalModel.getTopicos(0);

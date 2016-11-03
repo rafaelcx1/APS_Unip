@@ -12,7 +12,7 @@ import model.tables.TopicoModel;
 public class PrincipalModel {
 
 	private TopicoModel[] topicos;
-	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "Edição de Áudio e Vídeo|TI", "Programação|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e Mangás", "Notícias"};
+	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "EdiÃ§Ã£o de Ã�udio e VÃ­deo|TI", "ProgramaÃ§Ã£o|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e MangÃ¡s", "NotÃ­cias"};
 	private String msgErro;
 
 	public PrincipalModel() {
@@ -27,7 +27,7 @@ public class PrincipalModel {
 		return msgErro;
 	}
 
-	public boolean atuaizarTopicos(FiltroModel filtro) {
+	public boolean atualizarTopicos(FiltroModel filtro) {
 		try {
 			if(filtro == null){
 				filtro = new FiltroModel();
