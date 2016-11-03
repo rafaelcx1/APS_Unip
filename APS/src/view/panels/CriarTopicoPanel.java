@@ -13,7 +13,7 @@ public class CriarTopicoPanel {
 	private JTextField txTituloTopico;
 	private JComboBox cbTags;
 	private JTextArea taTextoPostagem;
-	private JButton btnPostar;
+	private JButton btnPostarTopico;
 	private JButton btnVoltar;
 	private String tags[];
 
