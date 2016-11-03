@@ -51,7 +51,7 @@ public class CadastroController {
 				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
 				MainController.abrirTelaLogin();
 			} else {
-				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usuário!\nErro: " + cadastroModel.getMsgErro());
+				cadastroView.displayMsg(cadastroModel.getMsgErro());
 			}
 		}
 	}
