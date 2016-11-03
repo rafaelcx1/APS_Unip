@@ -30,6 +30,10 @@ public class PrincipalForumPanel {
 
 	}
 
+	public PanelFiltros getPanelFiltros() {
+		return panelFiltros;
+	}
+	
 	public int getPagina() {
 		return 0;
 	}
