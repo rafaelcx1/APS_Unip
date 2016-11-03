@@ -9,6 +9,14 @@ public class PanelFiltros extends JPanel {
 	    filtroData.setOrderDate(dataAscendente);
 	    return filtroData;
     }
+	
+    public void setDataAscendente(boolean dataAscendente) {
+	    this.dataAscendente = dataAscendente;
+    }
+	
+    public boolean getDataAscendente() {
+	    return dataAscentente;
+    }
   
     public void lblFiltrarDataEntered() {
       @SuppressWarnings("unchecked")
