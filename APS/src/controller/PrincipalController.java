@@ -127,7 +127,17 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			TopicoModel topico = principalView.getCriarTopicoPanel().getTopicoModel();
+			PostagemModel postagemInicial = principalView.getCriarTopicoPanel().getPostagemModel();
+			if(principalModel.postarTopico(topico)) {
+				if(principalModel.postarPostagem(postagemInicial)) {
+					principalView.displayMsg("Tópico postado com sucesso!");
+				} else {
+					principalView.displayMsg(principalModel.getMsgErro());
+				}
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 
 		}
 
@@ -137,7 +147,12 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
+			if(principalModel.postarPostagem(postagemInicial)) {
+				principalView.displayMsg("Postagem feita com sucesso!");
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 
 		}
 
