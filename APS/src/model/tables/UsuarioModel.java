@@ -123,6 +123,7 @@ public class UsuarioModel {
 	}
 
 	public UsuarioModel(){
+		dataCadastro = DataUtil.format(LocalDate.now());
 	}
 }
 
