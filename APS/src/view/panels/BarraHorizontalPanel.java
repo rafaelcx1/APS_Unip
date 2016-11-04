@@ -24,7 +24,7 @@ public class BarraHorizontalPanel {
 		return BtnPerfil;
 	}
 
-	public JButton getBtnPostagem() {
+	public JButton getBtnPostagens() {
 		return btnPostagens;
 	}
 
