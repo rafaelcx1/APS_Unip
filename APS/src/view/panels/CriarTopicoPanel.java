@@ -27,7 +27,7 @@ public class CriarTopicoPanel {
 
 	}
 
-	public JButton getBtnPostar() {
+	public JButton getBtnPostarTopico() {
 		return null;
 	}
 
