@@ -30,7 +30,8 @@ public class TopicoModel {
 	private String tag;
 
 	public TopicoModel() {
-
+		qtdRespostas = 0;
+		qtdCurtidas = 0;
 	}
 
 	public int getIdTopico() {
