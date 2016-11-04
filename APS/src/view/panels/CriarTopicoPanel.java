@@ -9,15 +9,13 @@ import javax.swing.JTextField;
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
 
-public class CriarTopicoPanel {
+public class CriarTopicoPanel extends JPanel{
 
 	private JLabel lblTitulo;
-	private JLabel lblTituloTopico;
-	private JLabel lblTags;
+	private JLabel lblTag;
 	private JLabel lblTextoPostagem;
 	private JTextField txTitulo;
-	private JTextField txTituloTopico;
-	private JComboBox cbTags;
+	private JComboBox<String> cbTag;
 	private JTextArea taTextoPostagem;
 	private JButton btnPostarTopico;
 	private JButton btnVoltar;
@@ -28,18 +26,26 @@ public class CriarTopicoPanel {
 	}
 
 	public JButton getBtnPostarTopico() {
-		return null;
+		return btnPostarTopico;
 	}
 
 	public JButton getBtnVoltar() {
-		return null;
+		return btnVoltar;
 	}
 
 	public PostagemModel getPostagemModel() {
-		return null;
+		PostagemModel postagem = new PostagemModel();
+		postagem.setTopico(getTopicoModel());
+		postagem.setTextoPost(taTextoPostagem.getText());
+		postagem.setDataPost(DataUtil.format(LocalDate.now()));
+		return postagem;
 	}
 
-	public TopicoModel getTopicoModel() {
-		return null;
+	private TopicoModel getTopicoModel() {
+		TopicoModel topico = new TopicoModel();
+		topico.setTitulo(txTitulo.getText());
+		topico.setTag((String) cbTag.getSelectedItem());
+		topico.setDtCriacao(DataUtil.format(LocalDate.now()));
+		return topico;
 	}
 }
