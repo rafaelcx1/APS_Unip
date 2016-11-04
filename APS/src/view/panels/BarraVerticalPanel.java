@@ -19,15 +19,15 @@ public class BarraVerticalPanel {
 	}
 
 	public void setUsuariosMaisAtivos(String[] usuariosMaisAtivos) {
-
+		this.usuariosMaisAtivos = usuariosMaisAtivos;
 	}
 
 	public void setTagsMaisUsadas(String[] tagsMaisUsadas) {
-
+		this.tagsMaisUsadas = tagsMaisUsadas;
 	}
 
 	public void setTopicosMaisCurtidos(String[] topicosMaisCurtidas) {
-
+		this.topicosMaisCurtidas = topicosMaisCurtidas;
 	}
 
 	public void setLblTituloUsuarios(String titulo) {
