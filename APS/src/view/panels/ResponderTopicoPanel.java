@@ -8,23 +8,26 @@ import model.tables.TopicoModel;
 
 public class ResponderTopicoPanel extends JPanel {
       private JButton btnPostarResposta;
-      private TopicoModel topico;
-      private PostagemModel postagem;
+      private JTextArea taTextoPost;
+      private int idTopico;
 
-      public ResponderTopicoPanel(TopicoModel topico, PostagemModel postagem) {
-    	  this.topico = topico;
-    	  this.postagem = postagem;
+      public ResponderTopicoPanel(int idTopico) {
+            this.idTopico = idTopico;
+            //Completar
       }
 
       public JButton getBtnPostarResposta() {
             return btnPostarResposta;
       }
-
-      public PostagemModel getPostagemModel() {
-    	  return postagem;
+      
+      public int getIdTopico() {
+            return idTopico;
       }
 
-      public TopicoModel getTopicoModel() {
-    	  return topico;
+      public PostagemModel getPostagemModel() {
+        PostagemModel postagem = new PostagemModel();
+        postagem.setTextoPost(taTextoPost.getText());
+        postagem.setDataPost(DataUtil.format(LocalDate.now()));
+    	  return postagem;
       }
 }
