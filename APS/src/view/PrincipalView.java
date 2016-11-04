@@ -1,15 +1,9 @@
 package view;
 
-<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.*;
-=======
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-
-import javax.swing.JFrame;
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +31,6 @@ public class PrincipalView extends JFrame implements IView{
 	private VisualizarTopicoPanel visualizarTopicoPanel;
 	private ResponderTopicoPanel responderTopicoPanel;
 
-<<<<<<< HEAD
 	PrincipalView(UsuarioModel usuario) {
 		JPanel main = new JPanel(new BorderLayout());
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
@@ -62,25 +55,6 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public PerfilPanel getPerfilPanel() {
-		return null;
-	}
-
-	public CriarTopicoPanel getCriarTopicoPanel() {
-		return null;
-	}
-
-	public PrincipalForumPanel getPrincipalForumPanel() {
-		return null;
-	}
-
-	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
-		return null;
-=======
-	public PrincipalView(UsuarioModel usuario) {
-		//Completar
-	}
-
-	public PerfilPanel getPerfilPanel() {
 		return perfilPanel;
 	}
 
@@ -94,7 +68,6 @@ public class PrincipalView extends JFrame implements IView{
 
 	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
 		return visualizarTopicoPanel;
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
 	public ResponderTopicoPanel getResponderTopicoPanel() {
@@ -103,7 +76,7 @@ public class PrincipalView extends JFrame implements IView{
 
 	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivas, String[] topicosMaisCurtidos) {
 		barraVertical.setUsuariosMaisAtivos(usuariosMaisAtivos);
-		barraVertical.setTagsMaisAtivas(tagsMaisAtivas);
+		barraVertical.setTagsMaisUsadas(tagsMaisAtivas);
 		barraVertical.setTopicosMaisCurtidos(topicosMaisCurtidos);
 	}
 
@@ -190,7 +163,7 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public void setBtnSalvarPerfilListener(ActionListener event) {
-		perfilPanel.getBtnSalvarPerfil().addActionListener(event);
+		perfilPanel.getBtnSalvar().addActionListener(event);
 	}
 
 	@Override

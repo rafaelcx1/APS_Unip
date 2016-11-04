@@ -1,29 +1,26 @@
 package view.panels;
 
-<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.time.LocalDate;
 
-import javax.swing.*;
-import javax.swing.border.Border;
-
-import model.tables.PostagemModel;
-import net.miginfocom.swing.MigLayout;
-
-public class CriarTopicoPanel extends JPanel {
-=======
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
+import net.miginfocom.swing.MigLayout;
+import util.DataUtil;
 
 public class CriarTopicoPanel extends JPanel{
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 
 	private JLabel lblTitulo;
 	private JLabel lblTag;
@@ -35,8 +32,7 @@ public class CriarTopicoPanel extends JPanel{
 	private JButton btnVoltar;
 	private String tags[];
 
-	CriarTopicoPanel(String[] tags) {
-<<<<<<< HEAD
+	public CriarTopicoPanel(String[] tags) {
 		setLayout(new BorderLayout());
 		
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
@@ -50,47 +46,41 @@ public class CriarTopicoPanel extends JPanel{
 		panelHeader.setBackground(new Color(0x212121));
 		
 		lblTitulo = new JLabel("Criar tópico");
-		lblTituloTopico = new JLabel("Titulo");
-		lblTags = new JLabel("Tags");
+		lblTag = new JLabel("Tags");
 		lblTextoPostagem = new JLabel("Texto");
 		
 		lblTitulo.setFont(titulo1);
 		lblTitulo.setHorizontalAlignment(JLabel.CENTER);
-		lblTituloTopico.setFont(titulo2);
-		lblTags.setFont(titulo2);
+		lblTitulo.setFont(titulo2);
+		lblTag.setFont(titulo2);
 		lblTextoPostagem.setFont(titulo2);
 		
 		txTitulo = new JTextField(48);
-		txTituloTopico = new JTextField(48);
 		
-		cbTags = new JComboBox();
+		cbTag = new JComboBox();
 		
 		taTextoPostagem = new JTextArea();
 		
-		btnPostar = new JButton("Criar");
+		btnPostarTopico = new JButton("Criar");
 		btnVoltar = new JButton("", new ImageIcon("back.png"));
 		
-		btnPostar.setBorder(defaultLayout);
-		btnPostar.setBackground(Color.BLACK);
-		btnPostar.setForeground(Color.WHITE);
+		btnPostarTopico.setBorder(defaultLayout);
+		btnPostarTopico.setBackground(Color.BLACK);
+		btnPostarTopico.setForeground(Color.WHITE);
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(defaultLayout);
 		
 		panelHeader.add(btnVoltar);
 		
 		main.add(lblTitulo, "wrap 16");
-		main.add(lblTituloTopico, "wrap 8");
-		main.add(lblTags, "wrap 8");
+		main.add(lblTag, "wrap 8");
 		main.add(lblTextoPostagem, "wrap 8");
 		
-		footer.add(btnPostar);
+		footer.add(btnPostarTopico);
 		
 		add(panelHeader, "North");
 		add(main, "Center");
 		add(footer, "South");
-=======
-
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
 	public JButton getBtnPostarTopico() {

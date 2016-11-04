@@ -45,24 +45,13 @@ public class PerfilPanel extends JPanel {
 		Font titulo2 = new Font("Open Sans", Font.BOLD , 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		
-		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel main = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel footer = new JPanel(new MigLayout("fillx", "[center]"));
-		
-		panelHeader.setBackground(new Color(0x212121));
 		
 		lblTitulo = new JLabel("Perfil");
 		lblAvatar = new JLabel();
 		lblNome = new JLabel();
 		
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
-		btnVoltar.setBackground(Color.BLACK);
-		btnVoltar.setBorder(defaultLayout);
-		
-		panelHeader.add(btnVoltar);
-		
-		add(panelHeader, "North");
 		add(main, "Center");
 		add(footer, "South");
 	}

@@ -11,13 +11,12 @@ import javax.swing.border.Border;
 public class BarraHorizontalPanel extends JPanel {
 
 	private JButton btnInicio;
-	private JButton BtnPerfil;
+	private JButton btnPerfil;
 	private JButton btnPostagens;
 	private JButton btnSair;
 	private JLabel lblUsuario;
 	private JLabel lblData;
 
-<<<<<<< HEAD
 	public BarraHorizontalPanel(UsuarioModel usuario) {
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
@@ -35,7 +34,7 @@ public class BarraHorizontalPanel extends JPanel {
 		userIn.setBackground(new Color(0x212121));
 		
 		btnInicio = new JButton("Teste");
-		btnMeuPerfil = new JButton("Teste");
+		btnPerfil = new JButton("Teste");
 		btnPostagens = new JButton("Teste");
 		btnSair = new JButton("Teste");
 		
@@ -43,10 +42,10 @@ public class BarraHorizontalPanel extends JPanel {
 		btnInicio.setForeground(Color.WHITE);
 		btnInicio.setFont(new Font("Open Sans", Font.BOLD , 18));
 		btnInicio.setBorder(defaultLayout);
-		btnMeuPerfil.setBackground(null);
-		btnMeuPerfil.setForeground(Color.WHITE);
-		btnMeuPerfil.setFont(new Font("Open Sans", Font.BOLD , 18));
-		btnMeuPerfil.setBorder(defaultLayout);
+		btnPerfil.setBackground(null);
+		btnPerfil.setForeground(Color.WHITE);
+		btnPerfil.setFont(new Font("Open Sans", Font.BOLD , 18));
+		btnPerfil.setBorder(defaultLayout);
 		btnPostagens.setBackground(null);
 		btnPostagens.setForeground(Color.WHITE);
 		btnPostagens.setFont(new Font("Open Sans", Font.BOLD , 18));
@@ -69,7 +68,7 @@ public class BarraHorizontalPanel extends JPanel {
 		img.add(logo);
 		
 		buttons.add(btnInicio);
-		buttons.add(btnMeuPerfil);
+		buttons.add(btnPerfil);
 		buttons.add(btnPostagens);
 		buttons.add(btnSair);
 		
@@ -81,10 +80,6 @@ public class BarraHorizontalPanel extends JPanel {
 		add(img, "split 2");
 		add(buttons, "gapleft 32px");
 		add(user, "grow, pad 26px 0 0 0");
-=======
-	public void PanelBarraHorizontal(UsuarioModel usuario) {
-		// Completar
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
 	public JButton getBtnInicio() {
@@ -92,7 +87,7 @@ public class BarraHorizontalPanel extends JPanel {
 	}
 
 	public JButton getBtnPerfil() {
-		return BtnPerfil;
+		return btnPerfil;
 	}
 
 	public JButton getBtnPostagens() {

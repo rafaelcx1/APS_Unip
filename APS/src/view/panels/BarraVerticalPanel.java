@@ -17,7 +17,6 @@ public class BarraVerticalPanel extends JPanel {
 	private String[] usuariosMaisAtivos;
 	private String[] tagsMaisUsadas;
 	private String[] topicosMaisCurtidos;
-<<<<<<< HEAD
 	
 	public BarraVerticalPanel() {
 		JPanel main = new JPanel(new MigLayout("", "[100%]"));
@@ -37,11 +36,6 @@ public class BarraVerticalPanel extends JPanel {
 		main.add(lblTituloTopicos, "wrap 8, center");
 		
 		add(main);
-=======
-
-	public BarraVerticalPanel() {
-
->>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
 	public void setUsuariosMaisAtivos(String[] usuariosMaisAtivos) {
@@ -53,7 +47,7 @@ public class BarraVerticalPanel extends JPanel {
 	}
 
 	public void setTopicosMaisCurtidos(String[] topicosMaisCurtidas) {
-		this.topicosMaisCurtidas = topicosMaisCurtidas;
+		this.topicosMaisCurtidos = topicosMaisCurtidas;
 	}
 
 	public void setLblTituloUsuarios(String titulo) {
