@@ -21,6 +21,10 @@ public class PanelFiltros extends JPanel {
 	    filtroData.setOrderDate(dataAscendente);
 	    return filtroData;
     }
+	
+    public JLabel getLblFiltrarData() {
+	    return lblFiltrarData;
+    }
     
     public JButton getBtnCriarTopico() {
 	    return btnCriarTopico;
