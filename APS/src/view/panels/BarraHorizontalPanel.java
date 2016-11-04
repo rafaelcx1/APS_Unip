@@ -13,7 +13,7 @@ public class BarraHorizontalPanel {
 	private JLabel lblData;
 
 	public void PanelBarraHorizontal(UsuarioModel usuario) {
-
+		// Completar
 	}
 
 	public JButton getBtnInicio() {
