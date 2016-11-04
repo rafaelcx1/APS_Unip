@@ -126,14 +126,11 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			TopicoModel topico = principalView.getCriarTopicoPanel().getTopicoModel();
-			PostagemModel postagemInicial = principalView.getCriarTopicoPanel().getPostagemModel();
-			if(principalModel.postarTopico(topico)) {
-				if(principalModel.postarPostagem(topico.getIdTopico(), postagemInicial)) {
-					principalView.displayMsg("Tópico postado com sucesso!");
-				} else {
-					principalView.displayMsg(principalModel.getMsgErro());
-				}
+			PostagemModel postagem = principalView.getCriarTopicoPanel().getPostagemModel();
+			postagem.setUsuario(MainController.getUsuarioConectado());
+			postagem.getTopico().setUsuario(MainController.getUsuarioConectado());
+			if(principalModel.postarTopico(postagem)) {
+				principalView.displayMsg("TÃ³pico postado com sucesso!");
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -147,7 +144,8 @@ public class PrincipalController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
-			if(principalModel.postarPostagem(postagem.getTopico().getIdTopico(), postagem)) {
+			int idTopico = principalView.getResponderTopicoPanel().getIdTopico();
+			if(principalModel.postarPostagem(idTopico, postagem)) {
 				principalView.displayMsg("Postagem feita com sucesso!");
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
