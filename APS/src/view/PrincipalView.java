@@ -1,10 +1,17 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
+import net.miginfocom.swing.MigLayout;
 import view.panels.BarraHorizontalPanel;
 import view.panels.BarraVerticalPanel;
 import view.panels.CriarTopicoPanel;
@@ -22,22 +29,41 @@ public class PrincipalView {
 	private VisualizarTopicoPanel visualizarTopicoPanel;
 
 	PrincipalView(UsuarioModel usuario) {
-
+		JPanel main = new JPanel(new BorderLayout());
+		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
+		barraHorizontal = new BarraHorizontalPanel(usuario);
+		barraVertical = new BarraVerticalPanel();
+		perfilPanel = new PerfilPanel(usuario);
+		
+		barraHorizontal.setBackground(new Color(0x212121));
+		
+		JScrollPane mainPage = new JScrollPane(perfilPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		mainContent.add(mainPage, "grow, height 100%, split");
+		mainContent.add(sideBar, "width 20%, height 100%");
+		
+		main.add(barraHorizontal, "North");
+		main.add(mainContent, "Center");
+		
+		getContentPane().add(main);
+		pack();
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	}
 
-	public view.panels.PerfilPanel getPerfilPanel() {
+	public PerfilPanel getPerfilPanel() {
 		return null;
 	}
 
-	public view.panels.CriarTopicoPanel getCriarTopicoPanel() {
+	public CriarTopicoPanel getCriarTopicoPanel() {
 		return null;
 	}
 
-	public view.panels.PrincipalForumPanel getPrincipalForumPanel() {
+	public PrincipalForumPanel getPrincipalForumPanel() {
 		return null;
 	}
 
-	public view.panels.VisualizarTopicoPanel getVisualizarTopicoPanel() {
+	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
 		return null;
 	}
 

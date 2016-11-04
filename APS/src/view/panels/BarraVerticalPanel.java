@@ -1,12 +1,16 @@
 package view.panels;
 
+import java.awt.Font;
+
 import javax.swing.*;
 
-public class BarraVerticalPanel {
+import net.miginfocom.swing.MigLayout;
 
-	private JLabel lblTitulosUsuarios;
+public class BarraVerticalPanel extends JPanel {
+
+	private JLabel lblTituloUsuarios;
 	private JLabel lblTituloTags;
-	private JLabel lblTitulosTopicos;
+	private JLabel lblTituloTopicos;
 	private JLabel[] lblUsuarios;
 	private JLabel[] lblTags;
 	private JLabel[] lblTopicos;
@@ -14,8 +18,24 @@ public class BarraVerticalPanel {
 	private String[] tagsMaisUsadas;
 	private String[] topicosMaisCurtidos;
 	
-	BarraVerticalPanel() {
-
+	public BarraVerticalPanel() {
+		JPanel main = new JPanel(new MigLayout("", "[100%]"));
+		
+		Font titulo = new Font("Open Sans", Font.BOLD , 16);
+		
+		lblTituloUsuarios = new JLabel("Usuários mais ativos");
+		lblTituloTags = new JLabel("Tags mais usadas");
+		lblTituloTopicos = new JLabel("Tópicos mais curtidos");
+		
+		lblTituloUsuarios.setFont(titulo);
+		lblTituloTags.setFont(titulo);
+		lblTituloTopicos.setFont(titulo);
+		
+		main.add(lblTituloUsuarios, "wrap 8, center");
+		main.add(lblTituloTags, "wrap 8, center");
+		main.add(lblTituloTopicos, "wrap 8, center");
+		
+		add(main);
 	}
 
 	public void setUsuariosMaisAtivos(String[] usuariosMaisAtivos) {
