@@ -35,7 +35,6 @@ public class PerfilPanel extends JPanel {
 	private JPasswordField txNovaSenha;
 	private JButton btnSalvar;
 	private JButton btnEnviarFoto;
-	private JButton btnVoltar;
 	private UsuarioModel usuario;
 	private File arquivoFoto;
 
@@ -69,10 +68,6 @@ public class PerfilPanel extends JPanel {
 	}
 
 	public JButton getBtnSalvar() {
-		return null;
-	}
-
-	public JButton getBtnVoltar() {
 		return null;
 	}
 

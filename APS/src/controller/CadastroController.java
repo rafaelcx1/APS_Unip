@@ -48,10 +48,10 @@ public class CadastroController {
 			usuarioModel.setRespostaSecret(respostaSecreta);
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
-				cadastroView.displayMsg("Usu·rio cadastrado com sucesso!");
+				cadastroView.displayMsg("Usu√°rio cadastrado com sucesso!");
 				MainController.abrirTelaLogin();
 			} else {
-				cadastroView.displayMsg("Ocorreu um erro ao cadastrar usu·rio!\nErro: " + cadastroModel.getMsgErro());
+				cadastroView.displayMsg(cadastroModel.getMsgErro());
 			}
 		}
 	}

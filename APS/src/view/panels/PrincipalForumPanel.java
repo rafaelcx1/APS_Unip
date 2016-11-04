@@ -1,14 +1,17 @@
 package view.panels;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
+import model.models.FiltroModel;
 import model.tables.TopicoModel;
+import view.BotaoTopicoPanel;
 
 public class PrincipalForumPanel {
 
 	private PanelFiltros panelFiltros;
-	private TopicoModel[] topicoModel;
-	private PanelTopicosPrincipal[] topicos;
+	private TopicoModel[] topicoModel = new TopicoModel[5];
+	private PanelTopicosPrincipal[] topicosPanel;
 	private JLabel lblPag;
 	private JButton btnNext;
 	private JButton btnPrevious;
@@ -16,59 +19,51 @@ public class PrincipalForumPanel {
 	private int paginaAtual;
 
 	public void PanelPrincipalForum() {
-
+		// Completar
 	}
 
 	public void next() {
-
+		paginaAtual++;
 	}
 
 	public void prev() {
-
+		if(paginaAtual > 0) {
+			paginaAtual--;
+		}
 	}
 
+	public PanelFiltros getPanelFiltros() {
+		return panelFiltros;
+	}
+	
 	public int getPagina() {
-		return 0;
-	}
-
-	public JLabel getFiltrarData() {
-		return null;
-	}
-
-	public JButton getBtnCriarTopico() {
-		return null;
+		return paginaAtual;
 	}
 
 	public JButton getBtnNext() {
-		return null;
+		return btnNext;
 	}
 
 	public JButton getBtnPrevious() {
-		return null;
+		return btnPrevious;
+	}
+	
+	//Posição botao = posição do array de botoes dos tópicos
+	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
+		return topicosPanel[posicaoBotao].getBtnCurtir();
 	}
 
-	public JButton getBtnFiltar() {
-		return null;
+	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
+		return topicosPanel[posicaoBotao].getBtnResponderTopico();
 	}
 
-	public BotaoTopicoPanel[] getBtnCurtir() {
-		return null;
+	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {
+		return topicosPanel[posicaoBotao].getBtnVisualizar();
 	}
 
-	public BotaoTopicoPanel getBtnResponder() {
-		return null;
-	}
-
-	public BotaoTopicoPanel getBtnVisualizar() {
-		return null;
-	}
-
-	public FiltroModel[] getFiltro() {
-		return null;
-	}
-
-	public void setTopicos(topicoModel[] topicos) {
-
+	public void setTopicos(TopicoModel[] topicos) {
+		topicoModel = topicos;
+		//Completar
 	}
 
 }

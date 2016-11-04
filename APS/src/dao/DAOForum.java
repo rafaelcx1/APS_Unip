@@ -11,7 +11,6 @@ import model.models.TagsMaisAtivasModel;
 import model.models.UsuarioAtivoModel;
 import model.models.UsuarioLoginModel;
 import model.tables.PostagemModel;
-import model.tables.TagsModel;
 import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
 
@@ -19,7 +18,7 @@ import model.tables.UsuarioModel;
 public class DAOForum {
 
 	private static String msgErro;
-	private static EntityManagerFactory factory;
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("forum");
 	private static EntityManager manager;
 
 
@@ -31,253 +30,308 @@ public class DAOForum {
 
 	public static UsuarioModel conferirUsuario(UsuarioLoginModel usuario){
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario.getUsuario());
-			closeConexao();
+			UsuarioModel usuarioEncontrado = null;
+			if(factory != null & manager != null)
+				usuarioEncontrado = manager.find(UsuarioModel.class, usuario.getUsuario());
+
 			return usuarioEncontrado;
 		} catch (Exception e){
-			manager.getTransaction().rollback();
+			if(factory != null & manager != null)
+				manager.getTransaction().rollback();
+
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao conferir usu�rio.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao conferir usuário.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static UsuarioModel conferirUsuario(String usuario){
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			UsuarioModel usuarioEncontrado = manager.find(UsuarioModel.class, usuario);
-			closeConexao();
+			UsuarioModel usuarioEncontrado = null;
+			if(factory != null & manager != null)
+				usuarioEncontrado = manager.find(UsuarioModel.class, usuario);
+
 			return usuarioEncontrado;
 		} catch (Exception e){
-			manager.getTransaction().rollback();
+			if(factory != null & manager != null)
+				manager.getTransaction().rollback();
+
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao conferir usu�rio.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao conferir usuário.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static boolean cadastrarUsuario(UsuarioModel usuario){
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
-			manager = factory.createEntityManager();
-			manager.getTransaction().begin();
-			manager.persist(usuario);
-			manager.getTransaction().commit();
-			closeConexao();
-			return true;
+			UsuarioModel temp = conferirUsuario(usuario.getUsuario());
+			if(temp == null){
+				manager = factory.createEntityManager();
+				if(factory != null & manager != null) {
+					manager.getTransaction().begin();
+					manager.persist(usuario);
+					manager.getTransaction().commit();
+				}
+				return true;
+			} else {
+				msgErro = "Usuário já existe";
+				return false;
+			}
 		} catch(Exception e){
-			manager.getTransaction().rollback();
-			msgErro = "Ocorreu um erro ao cadastrar usu�rio.\nMensagem do erro: " + e.getMessage();
+			if(factory != null & manager != null)
+				manager.getTransaction().rollback();
+
+			msgErro = "Ocorreu um erro ao cadastrar usuário.\nMensagem do erro: " + e.getMessage();
 			e.printStackTrace();
 			return false;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static boolean trocarSenha(UsuarioModel usuario){
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			manager.getTransaction().begin();
-			manager.merge(usuario);
-			manager.getTransaction().commit();
+			if(factory != null & manager != null) {
+				manager.getTransaction().begin();
+				manager.merge(usuario);
+				manager.getTransaction().commit();
+			}
 			return true;
 		} catch(Exception e){
-			manager.getTransaction().rollback();
+			if(factory != null & manager != null)
+				manager.getTransaction().rollback();
+
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao trocar a senha.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static List<TopicoModel> getTopicos(FiltroModel filtro) {
-		String filtros = "";
+		String filtros = "where";
+		short contaFiltros = 0;
 
 		if(filtro.getUsuario() != null & !filtro.getUsuario().equals("")) {
-			filtros += " usuario = " + filtro.getUsuario() + ",";
+			filtros += " t.usuario = " + filtro.getUsuario() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getData() != null & !filtro.getData().equals("")) {
-			filtros += " data = " + filtro.getData() + ",";
+			filtros += " t.data = " + filtro.getData() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getTag() != null & !filtro.getTag().equals("")) {
-			filtros += " tag = " + filtro.getTag() + ",";
+			filtros += " t.tag = " + filtro.getTag() + ",";
+			contaFiltros++;
 		}
 
 		if(filtro.getTitulo() != null & !filtro.getTitulo().equals("")) {
-			filtros += " titulo = " + filtro.getTitulo() + ",";
+			filtros += " t.titulo = " + filtro.getTitulo() + ",";
+			contaFiltros++;
 		}
 
-		filtros.substring(0, filtros.length() - 1);
+		if(contaFiltros > 0)
+			filtros.substring(0, filtros.length() - 1);
+		else
+			filtros = "";
 
 		if(filtro.getOrderDate() == FiltroModel.DESCENDENTE) {
-			filtros += " order by data DESC";
+			filtros += " order by t.dtCriacao DESC";
 		} else {
-			filtros += " order by data ASC";
+			filtros += " order by t.dtCriacao ASC";
 		}
 
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<TopicoModel> topicos = manager.createQuery("select * from topicos where" + filtros, TopicoModel.class).getResultList();
+			List<TopicoModel> topicos = null;
+			if(factory != null & manager != null)
+				topicos = manager.createQuery("from TopicoModel t " + filtros, TopicoModel.class).getResultList();
+
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao solicitar os t�picos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao solicitar os tópicos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 
 	}
 
 	public static List<PostagemModel> getPostagens(int idTopico) {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<PostagemModel> postagens = manager.createQuery("select * from postagens where idTopico = " + idTopico + " order by data DESC", PostagemModel.class).getResultList();
+			List<PostagemModel> postagens = null;
+			if(factory != null & manager != null)
+				postagens = manager.createQuery("from PostagemModel p where p.idTopico = " + idTopico + " order by p.dataPost", PostagemModel.class).getResultList();
+
 			return postagens;
 		} catch(Exception e) {
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao consultar as postagens.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
-	}
-
-	public static List<TagsModel> getTags() {
-		try{
-			factory = Persistence.createEntityManagerFactory("forum");
-			manager = factory.createEntityManager();
-			List<TagsModel> tags = manager.createQuery("select * from tags", TagsModel.class).getResultList();
-			return tags;
-		} catch(Exception e) {
-			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao consultar as tags.\nMensagem do erro: " + e.getMessage();
-			return null;
-		} finally {
-			closeConexao();
-		}
-
 	}
 
 	public static List<TopicoModel> getTopicosMaisCurtidos() {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<TopicoModel> topicos = manager.createQuery("select * from topicos where qtdCurtidas > 0 order by qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
+			List<TopicoModel> topicos = null;
+
+			if(factory != null & manager != null)
+				topicos = manager.createQuery("from TopicoModel t where t.qtdCurtidas > 0 order by t.qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
+
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao consultar os t�picos mais curtidos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao consultar os tópicos mais curtidos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static List<UsuarioAtivoModel> getUsuariosMaisAtivos() {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<UsuarioAtivoModel> usuariosAtivos = manager.createQuery("select new UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from postagens group by usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+			List<UsuarioAtivoModel> usuariosAtivos = null;
+			if(factory != null & manager != null)
+				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from PostagemModel p group by p.usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+
 			return usuariosAtivos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao consultar os usu�rios mais ativos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao consultar os usuários mais ativos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static List<TagsMaisAtivasModel> getTagsMaisAtivas() {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			List<TagsMaisAtivasModel> tags = manager.createQuery("select new TagsMaisAtivasModel(tag, count(*) as qtdPublicacoes) from topicos group by tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
+			List<TagsMaisAtivasModel> tags = null;
+			if(factory != null & manager != null)
+				tags = manager.createQuery("select new model.models.TagsMaisAtivasModel(t.tag, count(t.idTopico) as qtdPublicacoes) from TopicoModel t group by t.tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
+
 			return tags;
 		} catch(Exception e) {
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao consultar as tags mais ativas.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static boolean curtirTopico(int idTopico, boolean curtir){
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
 			int rows = 0;
-
-			if(curtir)
-				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas + 1 where idTopico = " + idTopico).executeUpdate();
-			else
-				rows = manager.createQuery("update topicos set qtdCurtidas = qtdCurtidas - 1 where idTopico = " + idTopico).executeUpdate();
-
+			manager.getTransaction().begin();
+			if(factory != null & manager != null) {
+				if(curtir)
+					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas + 1 where t.idTopico = " + idTopico).executeUpdate();
+				else
+					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas - 1 where t.idTopico = " + idTopico).executeUpdate();
+			}
+			manager.getTransaction().commit();
 			System.out.println(rows + " linhas afetadas");
 			return true;
 		} catch(Exception e) {
+			if(manager != null)
+				manager.getTransaction().rollback();
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao curtir/descurtir o t�pico.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao curtir/descurtir o tópico.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
-	public static boolean postarPostagem(PostagemModel postagem) {
+	public static boolean postarPostagem(PostagemModel postagem, int idTopico) {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			manager.getTransaction().begin();
-			manager.persist(postagem);
-			manager.getTransaction().commit();
+			postagem.setTopico(manager.getReference(TopicoModel.class, idTopico));
+			if(factory != null & manager != null) {
+				manager.getTransaction().begin();
+				manager.merge(postagem);
+				manager.createQuery("update TopicoModel t set t.qtdRespostas = t.qtdRespostas + 1 where t.idTopico = " + idTopico).executeUpdate();
+				manager.getTransaction().commit();
+			}
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
 			msgErro = "Ocorreu um erro ao postar a resposta.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
 		}
 	}
 
 	public static boolean postarTopico(TopicoModel topico) {
 		try {
-			factory = Persistence.createEntityManagerFactory("forum");
 			manager = factory.createEntityManager();
-			manager.getTransaction().begin();
-			manager.persist(topico);
-			manager.getTransaction().commit();
+			if(factory != null & manager != null) {
+				manager.getTransaction().begin();
+				manager.merge(topico);
+				manager.getTransaction().commit();
+			}
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao postar o t�pico.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
-			closeConexao();
+			closeConexaoEntity();
+		}
+	}
+	
+	//Para testar
+	public static boolean postarTopico(PostagemModel topico) {
+		try {
+			manager = factory.createEntityManager();
+			if(factory != null & manager != null) {
+				manager.getTransaction().begin();
+				manager.persist(topico);
+				manager.getTransaction().commit();
+			}
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexaoEntity();
 		}
 	}
 
-	private static void closeConexao() {
-		factory.close();
-		manager.close();
-		factory = null;
-		manager = null;
+
+	public static void closeConexaoFactory() {
+		if(factory != null) {
+			factory.close();
+			factory = null;
+		}
 	}
+
+	private static void closeConexaoEntity() {
+		if(factory != null & manager != null) {
+			manager.close();
+			manager = null;
+		}
+	}
+
 }

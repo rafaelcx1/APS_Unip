@@ -1,9 +1,14 @@
 package model.tables;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import util.DataUtil;
 
 @Entity
 @Table(name="usuario")
@@ -28,9 +33,10 @@ public class UsuarioModel {
 	private String perguntaSecret;
 	@Column(name = "respostaSecret", nullable = false)
 	private String respostaSecret;
-
-
-
+	@Column(name = "dataCadastro")
+	private String dataCadastro;
+	@Column(name = "avatar")
+	private int avatar;
 
 	public String getNome() {
 		return nome;
@@ -88,8 +94,6 @@ public class UsuarioModel {
 		this.cidade = cidade;
 	}
 
-
-
 	public String getPerguntaSecret() {
 		return perguntaSecret;
 	}
@@ -106,7 +110,24 @@ public class UsuarioModel {
 		this.respostaSecret = respostaSecret;
 	}
 
+	public String getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(String dataCadastro) {
+		this.dataCadastro = dataCadastro;
+	}
+
+	public byte[] getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+
 	public UsuarioModel(){
+		dataCadastro = DataUtil.format(LocalDate.now());
 	}
 }
 

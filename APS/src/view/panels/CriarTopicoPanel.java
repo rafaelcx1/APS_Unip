@@ -1,5 +1,6 @@
 package view.panels;
 
+<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,20 +12,31 @@ import model.tables.PostagemModel;
 import net.miginfocom.swing.MigLayout;
 
 public class CriarTopicoPanel extends JPanel {
+=======
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import model.tables.PostagemModel;
+import model.tables.TopicoModel;
+
+public class CriarTopicoPanel extends JPanel{
+>>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 
 	private JLabel lblTitulo;
-	private JLabel lblTituloTopico;
-	private JLabel lblTags;
+	private JLabel lblTag;
 	private JLabel lblTextoPostagem;
 	private JTextField txTitulo;
-	private JTextField txTituloTopico;
-	private JComboBox cbTags;
+	private JComboBox<String> cbTag;
 	private JTextArea taTextoPostagem;
-	private JButton btnPostar;
+	private JButton btnPostarTopico;
 	private JButton btnVoltar;
 	private String tags[];
 
 	CriarTopicoPanel(String[] tags) {
+<<<<<<< HEAD
 		setLayout(new BorderLayout());
 		
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
@@ -76,18 +88,32 @@ public class CriarTopicoPanel extends JPanel {
 		add(panelHeader, "North");
 		add(main, "Center");
 		add(footer, "South");
+=======
+
+>>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
-	public JButton getBtnPostar() {
-		return null;
+	public JButton getBtnPostarTopico() {
+		return btnPostarTopico;
 	}
 
 	public JButton getBtnVoltar() {
-		return null;
+		return btnVoltar;
 	}
 
 	public PostagemModel getPostagemModel() {
-		return null;
+		PostagemModel postagem = new PostagemModel();
+		postagem.setTopico(getTopicoModel());
+		postagem.setTextoPost(taTextoPostagem.getText());
+		postagem.setDataPost(DataUtil.format(LocalDate.now()));
+		return postagem;
 	}
 
+	private TopicoModel getTopicoModel() {
+		TopicoModel topico = new TopicoModel();
+		topico.setTitulo(txTitulo.getText());
+		topico.setTag((String) cbTag.getSelectedItem());
+		topico.setDtCriacao(DataUtil.format(LocalDate.now()));
+		return topico;
+	}
 }

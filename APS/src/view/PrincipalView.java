@@ -1,8 +1,15 @@
 package view;
 
+<<<<<<< HEAD
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.*;
+=======
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+>>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,9 +24,10 @@ import view.panels.BarraVerticalPanel;
 import view.panels.CriarTopicoPanel;
 import view.panels.PerfilPanel;
 import view.panels.PrincipalForumPanel;
+import view.panels.ResponderTopicoPanel;
 import view.panels.VisualizarTopicoPanel;
 
-public class PrincipalView {
+public class PrincipalView extends JFrame implements IView{
 
 	private BarraHorizontalPanel barraHorizontal;
 	private BarraVerticalPanel barraVertical;
@@ -27,7 +35,9 @@ public class PrincipalView {
 	private PrincipalForumPanel principalForumPanel;
 	private CriarTopicoPanel criarTopicoPanel;
 	private VisualizarTopicoPanel visualizarTopicoPanel;
+	private ResponderTopicoPanel responderTopicoPanel;
 
+<<<<<<< HEAD
 	PrincipalView(UsuarioModel usuario) {
 		JPanel main = new JPanel(new BorderLayout());
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
@@ -65,90 +75,127 @@ public class PrincipalView {
 
 	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
 		return null;
+=======
+	public PrincipalView(UsuarioModel usuario) {
+		//Completar
 	}
 
-	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivos, String[] topicosMaisCurtidos) {
+	public PerfilPanel getPerfilPanel() {
+		return perfilPanel;
+	}
 
+	public CriarTopicoPanel getCriarTopicoPanel() {
+		return criarTopicoPanel;
+	}
+
+	public PrincipalForumPanel getPrincipalForumPanel() {
+		return principalForumPanel;
+	}
+
+	public VisualizarTopicoPanel getVisualizarTopicoPanel() {
+		return visualizarTopicoPanel;
+>>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
+	}
+
+	public ResponderTopicoPanel getResponderTopicoPanel() {
+		return responderTopicoPanel;
+	}
+
+	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivas, String[] topicosMaisCurtidos) {
+		barraVertical.setUsuariosMaisAtivos(usuariosMaisAtivos);
+		barraVertical.setTagsMaisAtivas(tagsMaisAtivas);
+		barraVertical.setTopicosMaisCurtidos(topicosMaisCurtidos);
 	}
 
 	public void setTopicos(TopicoModel[] topicos) {
-
+		principalForumPanel.setTopicos(topicos);
 	}
 
 	public void abrirPerfilPanel(UsuarioModel usuario) {
-
+		//Completar
 	}
 
 	public void abrirPrincipalForumPanel() {
-
+		//Completar
 	}
 
 	public void abrirCriarTopicoPanel(String[] tags) {
-
+		//Completar
 	}
 
 	public void abrirVisualizarTopicoPanel(PostagemModel[] posts) {
-
+		//Completar
 	}
 
 	public void setBtnInicioListener(ActionListener event) {
-
-	}
-
-	public void setBtnCriarTopicoListener(ActionListener event) {
-
+		barraHorizontal.getBtnInicio().addActionListener(event);
 	}
 
 	public void setBtnMeuPerfilListener(ActionListener event) {
-
+		barraHorizontal.getBtnPerfil().addActionListener(event);
 	}
 
 	public void setBtnMinhasPostagensListener(ActionListener event) {
-
+		barraHorizontal.getBtnPostagens().addActionListener(event);
 	}
 
 	public void setBtnSairListener(ActionListener event) {
-
+		barraHorizontal.getBtnSair().addActionListener(event);
 	}
 
 	public void setBtnNextListener(ActionListener event) {
-
+		principalForumPanel.getBtnNext().addActionListener(event);
 	}
 
 	public void setBtnPreviousListener(ActionListener event) {
-
+		principalForumPanel.getBtnPrevious().addActionListener(event);
 	}
 
 	public void setBtnFiltrarListener(ActionListener event) {
-
+		principalForumPanel.getPanelFiltros().getBtnFiltrar().addActionListener(event);
+	}
+	
+	public void setFiltrarDataTopicosListener(MouseListener event) {
+		principalForumPanel.getPanelFiltros().getLblFiltrarData().addMouseListener(event);
+	}
+	
+	public void setBtnCriarTopicoListener(ActionListener event) {
+		principalForumPanel.getPanelFiltros().getBtnCriarTopico().addActionListener(event);
 	}
 
 	public void setBtnCurtirListener(ActionListener event) {
-
-	}
-
-	public void setBtnResponderListener(ActionListener event) {
-
+		for(int contador = 0; contador < 5; contador++) {
+			principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+		}
 	}
 
 	public void setBtnVisualizarListener(ActionListener event) {
-
+		for(int contador = 0; contador < 5; contador++) {
+			principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+		}
+	}
+	
+	public void setBtnResponderTopicoListener(ActionListener event) {
+		for(int contador = 0; contador < 5; contador++) {
+			principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
+		}
+	}
+	
+	public void setBtnPostarRespostaListener(ActionListener event) {
+		responderTopicoPanel.getBtnPostarResposta().addActionListener(event);
 	}
 
-	public void setBtnPostarListener(ActionListener event) {
-
-	}
-
-	public void setBtnVoltarCriarTopicoListener(ActionListener event) {
-
+	public void setBtnPostarTopicoListener(ActionListener event) {
+		criarTopicoPanel.getBtnPostarTopico().addActionListener(event);
 	}
 
 	public void setBtnSalvarPerfilListener(ActionListener event) {
-
+		perfilPanel.getBtnSalvarPerfil().addActionListener(event);
 	}
 
-	public void setFiltrarDataTopicosListener(MouseListener event) {
-
+	@Override
+	public void displayMsg(String msg) {
+		//Completar
 	}
 
 }

@@ -11,13 +11,13 @@ import javax.swing.border.Border;
 public class BarraHorizontalPanel extends JPanel {
 
 	private JButton btnInicio;
-	private JButton btnMeuPerfil;
+	private JButton BtnPerfil;
 	private JButton btnPostagens;
 	private JButton btnSair;
 	private JLabel lblUsuario;
 	private JLabel lblData;
-	private UsuarioModel usuario;
 
+<<<<<<< HEAD
 	public BarraHorizontalPanel(UsuarioModel usuario) {
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
@@ -81,22 +81,26 @@ public class BarraHorizontalPanel extends JPanel {
 		add(img, "split 2");
 		add(buttons, "gapleft 32px");
 		add(user, "grow, pad 26px 0 0 0");
+=======
+	public void PanelBarraHorizontal(UsuarioModel usuario) {
+		// Completar
+>>>>>>> bbdadf8623180e8ebb81c8d0095086fb45d976fb
 	}
 
 	public JButton getBtnInicio() {
-		return null;
+		return btnInicio;
 	}
 
 	public JButton getBtnPerfil() {
-		return null;
+		return BtnPerfil;
 	}
 
-	public JButton getBtnPostagem() {
-		return null;
+	public JButton getBtnPostagens() {
+		return btnPostagens;
 	}
 
 	public JButton getBtnSair() {
-		return null;
+		return btnSair;
 	}
 
 }

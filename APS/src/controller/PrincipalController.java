@@ -6,20 +6,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.PrincipalModel;
-import model.tables.UsuarioModel;
+import model.models.FiltroModel;
+import model.tables.PostagemModel;
+import model.tables.TopicoModel;
 import view.PrincipalView;
 
 public class PrincipalController {
 	private PrincipalModel principalModel;
 	private PrincipalView principalView;
-	private UsuarioModel usuarioConectado;
 
-	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView, UsuarioModel usuario){
+	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView){
 		this.principalModel = principalModel;
 		this.principalView = principalView;
-		this.usuarioConectado = usuario;
 
-		// Inserir Código
 	}
 
 
@@ -123,11 +122,35 @@ public class PrincipalController {
 
 	}
 
-	private class BtnPostarListener implements ActionListener {
+	private class BtnPostarTopicoListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			PostagemModel postagem = principalView.getCriarTopicoPanel().getPostagemModel();
+			postagem.setUsuario(MainController.getUsuarioConectado());
+			postagem.getTopico().setUsuario(MainController.getUsuarioConectado());
+			if(principalModel.postarTopico(postagem)) {
+				principalView.displayMsg("TÃ³pico postado com sucesso!");
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
+
+		}
+
+	}
+
+	private class BtnPostarRespostaListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
+			postagem.setUsuario(MainController.getUsuarioConectado());
+			int idTopico = principalView.getResponderTopicoPanel().getIdTopico();
+			if(principalModel.postarPostagem(idTopico, postagem)) {
+				principalView.displayMsg("Postagem feita com sucesso!");
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 
 		}
 
@@ -173,46 +196,19 @@ public class PrincipalController {
 
 	}
 
-	private class LblFiltrarUsuarioTopicosListener implements MouseListener {
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
 	private class LblFiltrarDataTopicosListener implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			FiltroModel filtroData = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
+			boolean dataAscendente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
+			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
+			if(principalModel.atualizarTopicos(filtroData)) {
+				TopicoModel[] topicos = principalModel.getTopicos(0);
+				principalView.setTopicos(topicos);
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 		}
 
 		@Override
@@ -229,14 +225,13 @@ public class PrincipalController {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
+			principalView.getPrincipalForumPanel().getPanelFiltros().lblFiltrarDataEntered();
 
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.getPrincipalForumPanel().getPanelFiltros().lblFiltrarDataExited();
 		}
 
 	}
