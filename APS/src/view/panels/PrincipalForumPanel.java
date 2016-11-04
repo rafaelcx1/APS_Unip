@@ -10,8 +10,8 @@ import view.BotaoTopicoPanel;
 public class PrincipalForumPanel {
 
 	private PanelFiltros panelFiltros;
-	private TopicoModel[] topicoModel;
-	private PanelTopicosPrincipal[] topicos;
+	private TopicoModel[] topicoModel = new TopicoModel[5];
+	private PanelTopicosPrincipal[] topicosPanel;
 	private JLabel lblPag;
 	private JButton btnNext;
 	private JButton btnPrevious;
@@ -23,11 +23,13 @@ public class PrincipalForumPanel {
 	}
 
 	public void next() {
-
+		paginaAtual++;
 	}
 
 	public void prev() {
-
+		if(paginaAtual > 0) {
+			paginaAtual--;
+		}
 	}
 
 	public PanelFiltros getPanelFiltros() {
@@ -35,48 +37,33 @@ public class PrincipalForumPanel {
 	}
 	
 	public int getPagina() {
-		return 0;
-	}
-
-	public JLabel getFiltrarData() {
-		return null;
-	}
-
-	public JButton getBtnCriarTopico() {
-		return null;
+		return paginaAtual;
 	}
 
 	public JButton getBtnNext() {
-		return null;
+		return btnNext;
 	}
 
 	public JButton getBtnPrevious() {
-		return null;
-	}
-
-	public JButton getBtnFiltar() {
-		return null;
+		return btnPrevious;
 	}
 	
 	//Posição botao = posição do array de botoes dos tópicos
 	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
-		return null;
+		return topicosPanel[posicaoBotao].getBtnCurtir();
 	}
 
 	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
-		return null;
+		return topicosPanel[posicaoBotao].getBtnResponderTopico();
 	}
 
 	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {
-		return null;
-	}
-
-	public FiltroModel[] getFiltro() {
-		return null;
+		return topicosPanel[posicaoBotao].getBtnVisualizar();
 	}
 
 	public void setTopicos(TopicoModel[] topicos) {
-
+		topicoModel = topicos;
+		//Completar
 	}
 
 }
