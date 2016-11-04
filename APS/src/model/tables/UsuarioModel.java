@@ -36,8 +36,7 @@ public class UsuarioModel {
 	@Column(name = "dataCadastro")
 	private String dataCadastro;
 	@Column(name = "avatar")
-	@Lob
-	private byte[] avatar;
+	private int avatar;
 
 	public String getNome() {
 		return nome;
