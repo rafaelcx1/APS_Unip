@@ -19,7 +19,7 @@ public class PrincipalForumPanel {
 	private int paginaAtual;
 
 	public void PanelPrincipalForum() {
-
+		// Completar
 	}
 
 	public void next() {
