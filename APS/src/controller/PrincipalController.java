@@ -144,6 +144,7 @@ public class PrincipalController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
+			postagem.setUsuario(MainController.getUsuarioConectado());
 			int idTopico = principalView.getResponderTopicoPanel().getIdTopico();
 			if(principalModel.postarPostagem(idTopico, postagem)) {
 				principalView.displayMsg("Postagem feita com sucesso!");
