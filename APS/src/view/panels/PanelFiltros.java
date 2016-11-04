@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import model.models.FiltroModel;
 
 public class PanelFiltros extends JPanel {
+    private JButton btnFiltrar;
     private JButton btnCriarTopico;
     private JLabel lblFiltrarData;
     private boolean dataAscendente = false;
@@ -25,6 +26,9 @@ public class PanelFiltros extends JPanel {
 	    return btnCriarTopico;
     }
 	
+    public JButton getBtnFiltrar() {
+	    return btnFiltrar;
+    }
 	
     public void setDataAscendente(boolean dataAscendente) {
 	    this.dataAscendente = dataAscendente;
