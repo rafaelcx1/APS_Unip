@@ -27,7 +27,7 @@ public class PrincipalView extends JFrame implements IView{
 	private ResponderTopicoPanel responderTopicoPanel;
 
 	public PrincipalView(UsuarioModel usuario) {
-
+		//Completar
 	}
 
 	public PerfilPanel getPerfilPanel() {
@@ -61,19 +61,19 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public void abrirPerfilPanel(UsuarioModel usuario) {
-		
+		//Completar
 	}
 
 	public void abrirPrincipalForumPanel() {
-		
+		//Completar
 	}
 
 	public void abrirCriarTopicoPanel(String[] tags) {
-		
+		//Completar
 	}
 
 	public void abrirVisualizarTopicoPanel(PostagemModel[] posts) {
-		
+		//Completar
 	}
 
 	public void setBtnInicioListener(ActionListener event) {
@@ -144,6 +144,7 @@ public class PrincipalView extends JFrame implements IView{
 
 	@Override
 	public void displayMsg(String msg) {
+		//Completar
 	}
 
 }
