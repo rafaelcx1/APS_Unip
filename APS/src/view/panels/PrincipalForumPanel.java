@@ -57,16 +57,17 @@ public class PrincipalForumPanel {
 	public JButton getBtnFiltar() {
 		return null;
 	}
-
-	public BotaoTopicoPanel[] getBtnCurtir() {
+	
+	//Posição botao = posição do array de botoes dos tópicos
+	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
 		return null;
 	}
 
-	public BotaoTopicoPanel getBtnResponder() {
+	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
 		return null;
 	}
 
-	public BotaoTopicoPanel getBtnVisualizar() {
+	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {
 		return null;
 	}
 
