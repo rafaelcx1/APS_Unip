@@ -6,7 +6,7 @@ import javax.swing.*;
 public class BarraHorizontalPanel {
 
 	private JButton btnInicio;
-	private JButton btnMeuPerfil;
+	private JButton BtnPerfil;
 	private JButton btnPostagens;
 	private JButton btnSair;
 	private JLabel lblUsuario;
@@ -17,19 +17,19 @@ public class BarraHorizontalPanel {
 	}
 
 	public JButton getBtnInicio() {
-		return null;
+		return btnInicio;
 	}
 
 	public JButton getBtnPerfil() {
-		return null;
+		return BtnPerfil;
 	}
 
 	public JButton getBtnPostagem() {
-		return null;
+		return btnPostagens;
 	}
 
 	public JButton getBtnSair() {
-		return null;
+		return btnSair;
 	}
 
 }
