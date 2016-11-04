@@ -41,7 +41,7 @@ public class DAOForum {
 				manager.getTransaction().rollback();
 
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao conferir usu·rio.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao conferir usu√°rio.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -61,7 +61,7 @@ public class DAOForum {
 				manager.getTransaction().rollback();
 
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao conferir usu·rio.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao conferir usu√°rio.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -80,14 +80,14 @@ public class DAOForum {
 				}
 				return true;
 			} else {
-				msgErro = "Usu·rio j· existe";
+				msgErro = "Usu√°rio j√° existe";
 				return false;
 			}
 		} catch(Exception e){
 			if(factory != null & manager != null)
 				manager.getTransaction().rollback();
 
-			msgErro = "Ocorreu um erro ao cadastrar usu·rio.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao cadastrar usu√°rio.\nMensagem do erro: " + e.getMessage();
 			e.printStackTrace();
 			return false;
 		} finally {
@@ -160,7 +160,7 @@ public class DAOForum {
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao solicitar os tÛpicos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao solicitar os t√≥picos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -196,7 +196,7 @@ public class DAOForum {
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao consultar os tÛpicos mais curtidos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao consultar os t√≥picos mais curtidos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -213,7 +213,7 @@ public class DAOForum {
 			return usuariosAtivos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao consultar os usu·rios mais ativos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao consultar os usu√°rios mais ativos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -255,7 +255,7 @@ public class DAOForum {
 			if(manager != null)
 				manager.getTransaction().rollback();
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao curtir/descurtir o tÛpico.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao curtir/descurtir o t√≥pico.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
 			closeConexaoEntity();
@@ -293,12 +293,32 @@ public class DAOForum {
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao postar o tÛpico.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao postar o t√≥pico.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
 			closeConexaoEntity();
 		}
 	}
+	
+	//Para testar
+	public static boolean postarTopico(PostagemModel topico) {
+		try {
+			manager = factory.createEntityManager();
+			if(factory != null & manager != null) {
+				manager.getTransaction().begin();
+				manager.persist(topico);
+				manager.getTransaction().commit();
+			}
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao postar o t√≥pico.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexaoEntity();
+		}
+	}
+
 
 	public static void closeConexaoFactory() {
 		if(factory != null) {
