@@ -63,13 +63,13 @@ public class MainController {
 	}
 
 	public static void abrirTelaPrincipalUsuario(UsuarioModel usuarioConectado){
-		MainController.usuarioModel = usuarioConectado;
+		MainController.usuarioConectado = usuarioConectado;
 		MainController.principalModel = new PrincipalModel();
-		MainController.principalView = new PrincipalView(MainController.usuarioModel);
+		MainController.principalView = new PrincipalView(MainController.usuarioConectado);
 		MainController.principalController = new PrincipalController(MainController.principalModel, MainController.principalView);
 		setJanelasNull();
 	}
-	
+
 	public static UsuarioModel getUsuarioConectado() {
 		return usuarioConectado;
 	}

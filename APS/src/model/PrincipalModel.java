@@ -73,7 +73,7 @@ public class PrincipalModel {
 	public String[] getTagsMaisAtivas() {
 		try {
 			List<TagsMaisAtivasModel> tagsMaisAtivasList = DAOForum.getTagsMaisAtivas();
-			String[] tagsMaisAtivas = new String[tagsMaisAtivas.size()];
+			String[] tagsMaisAtivas = new String[tagsMaisAtivasList.size()];
 			for(int contador = 0; contador < tagsMaisAtivas.length; contador++) {
 				tagsMaisAtivas[contador] = "Tag: " + tagsMaisAtivasList.get(contador).getNome() + " | Publicações: " + tagsMaisAtivasList.get(contador).getNumPublicacoes();
 			}
@@ -126,7 +126,7 @@ public class PrincipalModel {
 		}
 	}
 
-	public boolean postarTopico(TopicoModel topico) {
+	public boolean postarTopico(PostagemModel topico) {
 		try {
 			if(DAOForum.postarTopico(topico)){
 				return true;

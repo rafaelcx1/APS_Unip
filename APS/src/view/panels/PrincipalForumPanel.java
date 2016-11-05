@@ -35,7 +35,7 @@ public class PrincipalForumPanel {
 	public PanelFiltros getPanelFiltros() {
 		return panelFiltros;
 	}
-	
+
 	public int getPagina() {
 		return paginaAtual;
 	}
@@ -47,14 +47,14 @@ public class PrincipalForumPanel {
 	public JButton getBtnPrevious() {
 		return btnPrevious;
 	}
-	
+
 	//Posição botao = posição do array de botoes dos tópicos
 	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
 		return topicosPanel[posicaoBotao].getBtnCurtir();
 	}
 
 	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
-		return topicosPanel[posicaoBotao].getBtnResponderTopico();
+		return topicosPanel[posicaoBotao].getBtnResponder();
 	}
 
 	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {

@@ -118,11 +118,11 @@ public class UsuarioModel {
 		this.dataCadastro = dataCadastro;
 	}
 
-	public byte[] getAvatar() {
+	public int getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(byte[] avatar) {
+	public void setAvatar(int avatar) {
 		this.avatar = avatar;
 	}
 

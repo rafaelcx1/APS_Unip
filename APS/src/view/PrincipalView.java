@@ -31,24 +31,24 @@ public class PrincipalView extends JFrame implements IView{
 	private VisualizarTopicoPanel visualizarTopicoPanel;
 	private ResponderTopicoPanel responderTopicoPanel;
 
-	PrincipalView(UsuarioModel usuario) {
+	public PrincipalView(UsuarioModel usuario) {
 		JPanel main = new JPanel(new BorderLayout());
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
 		perfilPanel = new PerfilPanel(usuario);
-		
+
 		barraHorizontal.setBackground(new Color(0x212121));
-		
+
 		JScrollPane mainPage = new JScrollPane(perfilPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+
 		mainContent.add(mainPage, "grow, height 100%, split");
 		mainContent.add(sideBar, "width 20%, height 100%");
-		
+
 		main.add(barraHorizontal, "North");
 		main.add(mainContent, "Center");
-		
+
 		getContentPane().add(main);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -127,11 +127,11 @@ public class PrincipalView extends JFrame implements IView{
 	public void setBtnFiltrarListener(ActionListener event) {
 		principalForumPanel.getPanelFiltros().getBtnFiltrar().addActionListener(event);
 	}
-	
+
 	public void setFiltrarDataTopicosListener(MouseListener event) {
 		principalForumPanel.getPanelFiltros().getLblFiltrarData().addMouseListener(event);
 	}
-	
+
 	public void setBtnCriarTopicoListener(ActionListener event) {
 		principalForumPanel.getPanelFiltros().getBtnCriarTopico().addActionListener(event);
 	}
@@ -147,13 +147,13 @@ public class PrincipalView extends JFrame implements IView{
 			principalForumPanel.getBtnCurtir(contador).addActionListener(event);
 		}
 	}
-	
+
 	public void setBtnResponderTopicoListener(ActionListener event) {
 		for(int contador = 0; contador < 5; contador++) {
 			principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
 		}
 	}
-	
+
 	public void setBtnPostarRespostaListener(ActionListener event) {
 		responderTopicoPanel.getBtnPostarResposta().addActionListener(event);
 	}
