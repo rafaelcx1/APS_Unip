@@ -9,6 +9,8 @@ import model.PrincipalModel;
 import model.models.FiltroModel;
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
+import model.tables.UsuarioModel;
+import view.BotaoTopicoPanel;
 import view.PrincipalView;
 
 public class PrincipalController {
@@ -19,6 +21,24 @@ public class PrincipalController {
 		this.principalModel = principalModel;
 		this.principalView = principalView;
 
+		principalView.setBtnCriarTopicoListener(new BtnCriarTopicoListener());
+		principalView.setBtnCurtirListener(new BtnCurtirListener());
+		principalView.setBtnFiltrarListener(new BtnFiltrarListener());
+		principalView.setBtnInicioListener(new BtnInicioListener());
+		principalView.setBtnMeuPerfilListener(new BtnMeuPerfilListener());
+		principalView.setBtnMinhasPostagensListener(new BtnMinhasPostagensListener());
+		principalView.setBtnNextListener(new BtnNextListener());
+		principalView.setBtnPreviousListener(new BtnPreviousListener());
+		principalView.setBtnPostarRespostaListener(new BtnPostarRespostaListener());
+		principalView.setBtnPostarTopicoListener(new BtnPostarTopicoListener());
+		principalView.setBtnSairListener(new BtnSairListener());
+		principalView.setBtnSalvarPerfilListener(new BtnSalvarPerfilListener());
+		principalView.setBtnVisualizarListener(new BtnVisualizarListener());
+		principalView.setBtnFiltrarListener(new BtnFiltrarListener());
+		principalView.setFiltrarDataTopicosListener(new LblFiltrarDataTopicosListener());
+		principalView.setBtnResponderTopicoListener(new BtnResponderTopicoListener());
+		principalView.setBtnVoltarListener(new BtnVoltarListener());
+		principalView.setVisible(true);
 	}
 
 
@@ -26,8 +46,11 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
+			int idTopico = botaoTopicoPanel.getIdTopico();
+			boolean curtir = principalView.getPrincipalForumPanel().getTopicoPanel(idTopico).isCurtido();
+			principalView.getPrincipalForumPanel().curtir(idTopico);
+			principalModel.curtirTopico(idTopico, curtir);
 		}
 
 	}
@@ -36,7 +59,13 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			UsuarioModel usuarioModel = new UsuarioModel();
+			usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
+			if(principalModel.atualizarPerfil(usuarioModel)){
+				principalView.displayMsg("Usuário atualizado !");
+			}else{
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 
 		}
 
@@ -46,8 +75,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			MainController.sair();
 		}
 
 	}
@@ -56,8 +84,10 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			FiltroModel filtroModel = new FiltroModel();
+			filtroModel.setUsuario(MainController.getUsuarioConectado().getUsuario());
+			principalModel.atualizarTopicos(filtroModel);
+			principalView.setTopicos(principalModel.getTopicos(0));
 		}
 
 	}
@@ -66,8 +96,8 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.abrirPerfilPanel(MainController.getUsuarioConectado());
+			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
@@ -76,8 +106,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.abrirPrincipalForumPanel();
 		}
 
 	}
@@ -86,8 +115,10 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			FiltroModel filtroModel = new FiltroModel();
+			filtroModel = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
+			principalModel.atualizarTopicos(filtroModel);
+			principalView.setTopicos(principalModel.getTopicos(0));
 		}
 
 	}
@@ -96,8 +127,9 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			int pagina = principalView.getPrincipalForumPanel().getPagina();
+			principalView.getPrincipalForumPanel().next();
+			principalView.setTopicos(principalModel.getTopicos(pagina));
 		}
 
 	}
@@ -106,18 +138,18 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			int pagina = principalView.getPrincipalForumPanel().getPagina();
+			principalView.getPrincipalForumPanel().prev();
+			principalView.setTopicos(principalModel.getTopicos(pagina));
 		}
 
 	}
 
-	private class BtnVoltarCriarTopicoListener implements ActionListener {
+	private class BtnVoltarListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.abrirPrincipalForumPanel();
 		}
 
 	}
@@ -160,28 +192,9 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	private class BtnNextPagTopicoListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-	}
-
-	private class BtnPrevPagTopicoListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
+			principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botaoTopicoPanel.getIdTopico()));
+			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
@@ -190,8 +203,8 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			principalView.abrirCriarTopicoPanel(principalModel.getTags());
+			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
@@ -236,4 +249,14 @@ public class PrincipalController {
 
 	}
 
+	private class BtnResponderTopicoListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			BotaoTopicoPanel botao = (BotaoTopicoPanel) e.getSource();
+			principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botao.getIdTopico()));
+			principalView.getVisualizarTopicoPanel().abrirPanelResposta();
+		}
+
+	}
 }

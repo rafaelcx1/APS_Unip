@@ -21,6 +21,7 @@ import view.panels.PrincipalForumPanel;
 import view.panels.ResponderTopicoPanel;
 import view.panels.VisualizarTopicoPanel;
 
+@SuppressWarnings("serial")
 public class PrincipalView extends JFrame implements IView{
 
 	private BarraHorizontalPanel barraHorizontal;
@@ -164,6 +165,20 @@ public class PrincipalView extends JFrame implements IView{
 
 	public void setBtnSalvarPerfilListener(ActionListener event) {
 		perfilPanel.getBtnSalvar().addActionListener(event);
+	}
+
+	public void setBtnVoltarListener(ActionListener event) {
+		if(perfilPanel != null) {
+			perfilPanel.getBtnVoltar().addActionListener(event);
+		}
+
+		if(criarTopicoPanel != null) {
+			criarTopicoPanel.getBtnVoltar().addActionListener(event);
+		}
+
+		if(visualizarTopicoPanel != null) {
+			visualizarTopicoPanel.getBtnVoltar().addActionListener(event);
+		}
 	}
 
 	@Override

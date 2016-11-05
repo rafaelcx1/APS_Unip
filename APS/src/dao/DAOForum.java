@@ -28,6 +28,25 @@ public class DAOForum {
 		return msgErroTemp;
 	}
 
+	public static boolean atualizarPerfil(UsuarioModel usuario) {
+		try {
+			manager = factory.createEntityManager();
+			manager.getTransaction().begin();
+			manager.merge(usuario);
+			manager.getTransaction().commit();
+			return true;
+		} catch (Exception e){
+			if(manager != null)
+				manager.getTransaction().rollback();
+			e.printStackTrace();
+			msgErro = "Ocorreu um erro ao atualizar o perfil.\nMensagem do erro: " + e.getMessage();
+			return false;
+		} finally {
+			closeConexaoEntity();
+		}
+	}
+
+
 	public static UsuarioModel conferirUsuario(UsuarioLoginModel usuario){
 		try {
 			manager = factory.createEntityManager();
@@ -299,7 +318,7 @@ public class DAOForum {
 			closeConexaoEntity();
 		}
 	}
-	
+
 	//Para testar
 	public static boolean postarTopico(PostagemModel topico) {
 		try {
@@ -318,7 +337,6 @@ public class DAOForum {
 			closeConexaoEntity();
 		}
 	}
-
 
 	public static void closeConexaoFactory() {
 		if(factory != null) {

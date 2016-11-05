@@ -11,7 +11,7 @@ public class PrincipalForumPanel {
 
 	private PanelFiltros panelFiltros;
 	private TopicoModel[] topicoModel = new TopicoModel[5];
-	private PanelTopicosPrincipal[] topicosPanel;
+	private PanelTopicosPrincipal[] topicosPanel = new PanelTopicosPrincipal[5];
 	private JLabel lblPag;
 	private JButton btnNext;
 	private JButton btnPrevious;
@@ -64,6 +64,22 @@ public class PrincipalForumPanel {
 	public void setTopicos(TopicoModel[] topicos) {
 		topicoModel = topicos;
 		//Completar
+	}
+
+
+	public void curtir(int idTopico) {
+
+
+	}
+
+	public PanelTopicosPrincipal getTopicoPanel(int idTopico) {
+		PanelTopicosPrincipal panelTopicosPrincipal = null;
+		for(int contador = 0; contador < 5; contador++) {
+			if(topicosPanel[contador].getIdTopico() == idTopico){
+				panelTopicosPrincipal = topicosPanel[contador];
+			}
+		}
+		return panelTopicosPrincipal;
 	}
 
 }

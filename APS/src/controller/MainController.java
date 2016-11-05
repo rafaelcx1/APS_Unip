@@ -74,6 +74,10 @@ public class MainController {
 		return usuarioConectado;
 	}
 
+	public static void sair() {
+		System.exit(0);
+	}
+
 	public static void main(String[] args) {
 		MainController.abrirTelaLogin();
 	}

@@ -25,39 +25,43 @@ public class PerfilPanel extends JPanel {
 	private JLabel lblNovaSenha;
 	private JFileChooser fotoChooser;
 	private JTextField txnome;
-	private JComboBox cbGenero;
+	private JComboBox<String> cbGenero;
 	private JTextField dpDataNasc;
-	private JComboBox cbEstado;
-	private JComboBox cbCidade;
-	private JComboBox cbPerguntaSecret;
+	private JComboBox<String> cbEstado;
+	private JComboBox<String> cbCidade;
+	private JComboBox<String> cbPerguntaSecret;
 	private JTextField txRespostaSecret;
 	private JPasswordField txConfirmarSenha;
 	private JPasswordField txNovaSenha;
 	private JButton btnSalvar;
-	private JButton btnEnviarFoto;
+	private JButton btnVoltar;
 	private UsuarioModel usuario;
-	private File arquivoFoto;
+	private JComboBox<Integer> arquivoFoto;
 
 	public PerfilPanel(UsuarioModel usuario) {
 		setLayout(new BorderLayout());
-		
+
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
 		Font titulo2 = new Font("Open Sans", Font.BOLD , 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-		
+
 		JPanel main = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel footer = new JPanel(new MigLayout("fillx", "[center]"));
-		
+
 		lblTitulo = new JLabel("Perfil");
 		lblAvatar = new JLabel();
 		lblNome = new JLabel();
-		
+
 		add(main, "Center");
 		add(footer, "South");
 	}
 
+	public JButton getBtnVoltar() {
+		return btnVoltar;
+	}
+
 	public JButton getBtnSalvar() {
-		return null;
+		return btnSalvar;
 	}
 
 	public UsuarioModel getUsuarioModel() {

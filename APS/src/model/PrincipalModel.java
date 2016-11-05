@@ -8,6 +8,7 @@ import model.models.TagsMaisAtivasModel;
 import model.models.UsuarioAtivoModel;
 import model.tables.PostagemModel;
 import model.tables.TopicoModel;
+import model.tables.UsuarioModel;
 
 public class PrincipalModel {
 
@@ -37,6 +38,15 @@ public class PrincipalModel {
 			topicos = (TopicoModel[]) topicosList.toArray();
 			return true;
 		} catch(Exception e) {
+			msgErro = DAOForum.getMsgErro();
+			return false;
+		}
+	}
+
+	public boolean atualizarPerfil(UsuarioModel usuario) {
+		if(DAOForum.atualizarPerfil(usuario)){
+			return true;
+		} else {
 			msgErro = DAOForum.getMsgErro();
 			return false;
 		}
