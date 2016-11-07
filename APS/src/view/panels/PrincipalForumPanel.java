@@ -7,7 +7,7 @@ import model.models.FiltroModel;
 import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
-public class PrincipalForumPanel {
+public class PrincipalForumPanel extends JPanel {
 
 	private PanelFiltros panelFiltros;
 	private TopicoModel[] topicoModel = new TopicoModel[5];
