@@ -6,6 +6,13 @@ import view.BotaoTopicoPanel;
 
 public class PanelTopicosPrincipal extends JPanel {
 
+	private JLabel lblAvatar;
+	private JLabel lblDataCriacao;
+	private JLabel lblTituloTopico;
+	private JLabel lblTag;
+	private JLabel lblQtdCurtidas;
+	private JLabel lblQtdRespostas;
+	private TopicoModel topico;
 	private BotaoTopicoPanel btnCurtir;
 	private BotaoTopicoPanel btnResponder;
 	private BotaoTopicoPanel btnVisualizar;
