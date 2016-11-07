@@ -19,7 +19,10 @@ public class PanelTopicosPrincipal extends JPanel {
 	private int idTopico;
 	private boolean curtido;
 
-
+	public PanelTopicosPrincipal(String[] tags) {
+		this.tags = tags;
+	}
+	
 	public BotaoTopicoPanel getBtnCurtir() {
 		return btnCurtir;
 	}
