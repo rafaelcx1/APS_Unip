@@ -18,7 +18,7 @@ public class PrincipalForumPanel extends JPanel {
 	private JButton btnCriarTopico;
 	private int paginaAtual;
 
-	public void PanelPrincipalForum() {
+	public void PanelPrincipalForum(String[] tags) {
 		// Completar
 	}
 
