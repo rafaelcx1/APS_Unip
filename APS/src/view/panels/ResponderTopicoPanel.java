@@ -11,6 +11,8 @@ import model.tables.TopicoModel;
 import util.DataUtil;
 
 public class ResponderTopicoPanel extends JPanel {
+      private JLabel lblTitulo;
+      private JLabel lblTextoResposta;
       private JButton btnPostarResposta;
       private JTextArea taTextoPost;
       private int idTopico;
