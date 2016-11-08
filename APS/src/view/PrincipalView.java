@@ -63,7 +63,7 @@ public class PrincipalView extends JFrame implements IView{
 		return criarTopicoPanel;
 	}
 
-	public PrincipalForumPanel getPrincipalForumPanel(String[] tags) {
+	public PrincipalForumPanel getPrincipalForumPanel() {
 		return principalForumPanel;
 	}
 
@@ -89,7 +89,7 @@ public class PrincipalView extends JFrame implements IView{
 		//Completar
 	}
 
-	public void abrirPrincipalForumPanel() {
+	public void abrirPrincipalForumPanel(String[] tags) {
 		//Completar
 	}
 

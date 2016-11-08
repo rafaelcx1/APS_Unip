@@ -3,11 +3,11 @@ package view.panels;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import model.tables.PostagemModel;
-import model.tables.TopicoModel;
 import util.DataUtil;
 
 public class ResponderTopicoPanel extends JPanel {
@@ -25,7 +25,7 @@ public class ResponderTopicoPanel extends JPanel {
       public JButton getBtnPostarResposta() {
             return btnPostarResposta;
       }
-      
+
       public int getIdTopico() {
             return idTopico;
       }

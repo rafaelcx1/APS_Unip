@@ -106,7 +106,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel();
+			principalView.abrirPrincipalForumPanel(principalModel.getTags());
 		}
 
 	}
@@ -149,7 +149,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel();
+			principalView.abrirPrincipalForumPanel(principalModel.getTags());
 		}
 
 	}

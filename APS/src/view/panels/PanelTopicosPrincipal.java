@@ -1,7 +1,9 @@
 package view.panels;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
 public class PanelTopicosPrincipal extends JPanel {
@@ -20,9 +22,8 @@ public class PanelTopicosPrincipal extends JPanel {
 	private boolean curtido;
 
 	public PanelTopicosPrincipal(String[] tags) {
-		this.tags = tags;
 	}
-	
+
 	public BotaoTopicoPanel getBtnCurtir() {
 		return btnCurtir;
 	}

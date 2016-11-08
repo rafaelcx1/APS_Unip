@@ -6,8 +6,10 @@ import java.awt.font.TextAttribute;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import model.models.FiltroModel;
 
@@ -28,30 +30,30 @@ public class PanelFiltros extends JPanel {
 	private String[] tags;
 	private boolean dataAscendente = false;
 
-	public FiltroModel(String[] tags) {
+	public PanelFiltros(String[] tags) {
 		this.tags = tags;
 		// Completar
 	}
-	
-	
+
+
     public FiltroModel getFiltroData() {
 	    FiltroModel filtroData = new FiltroModel();
 	    filtroData.setOrderDate(dataAscendente);
 	    return filtroData;
     }
-	
+
     public JLabel getLblFiltrarData() {
 	    return lblFiltrarData;
     }
-    
+
     public JButton getBtnCriarTopico() {
 	    return btnCriarTopico;
     }
-	
+
     public JButton getBtnFiltrar() {
 	    return btnFiltrar;
     }
-	
+
     public void setDataAscendente(boolean dataAscendente) {
 	    this.dataAscendente = dataAscendente;
     }

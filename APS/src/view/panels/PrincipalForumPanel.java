@@ -2,8 +2,8 @@ package view.panels;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import model.models.FiltroModel;
 import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
