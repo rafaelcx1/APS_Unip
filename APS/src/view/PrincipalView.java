@@ -37,11 +37,11 @@ public class PrincipalView extends JFrame implements IView{
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
-		perfilPanel = new PerfilPanel(usuario);
+		criarTopicoPanel = new CriarTopicoPanel(new String[]{"um", "dois"});
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
-		JScrollPane mainPage = new JScrollPane(perfilPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane mainPage = new JScrollPane(criarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		mainContent.add(mainPage, "grow, height 100%, split");
@@ -53,6 +53,7 @@ public class PrincipalView extends JFrame implements IView{
 		getContentPane().add(main);
 		pack();
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setVisible(true);
 	}
 
 	public PerfilPanel getPerfilPanel() {
@@ -184,6 +185,10 @@ public class PrincipalView extends JFrame implements IView{
 	@Override
 	public void displayMsg(String msg) {
 		//Completar
+	}
+	
+	public static void main(String[] args){
+		PrincipalView p = new PrincipalView(null);
 	}
 
 }

@@ -19,7 +19,9 @@ public class PrincipalForumPanel {
 	private int paginaAtual;
 
 	public void PanelPrincipalForum() {
-		// Completar
+		btnNext = new JButton();
+		btnPrevious = new JButton();
+		btnCriarTopico = new JButton();
 	}
 
 	public void next() {

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 
 import net.miginfocom.swing.MigLayout;
@@ -42,6 +43,8 @@ public class SenhaView extends JFrame implements IView {
 	private JPanel panelBotoes;
 
 	public SenhaView(){
+		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
+		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		MatteBorder division = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xBDBDBD));
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		
@@ -79,9 +82,9 @@ public class SenhaView extends JFrame implements IView {
 		txNovaSenha.setEnabled(false);
 		txConferirSenha.setEnabled(false);
 		
-		btnConferirUsuario = new JButton("Conferir");
-		btnConferirResposta = new JButton("Conferir");
-		btnConcluir = new JButton("Concluir");
+		btnConferirUsuario = new JButton("Conferir", new ImageIcon("create.png"));
+		btnConferirResposta = new JButton("Conferir", new ImageIcon("create.png"));
+		btnConcluir = new JButton("Alterar senha", new ImageIcon("create.png"));
 		btnVoltar = new JButton("", new ImageIcon("back.png"));
 		
 		btnConferirResposta.setEnabled(false);
@@ -89,30 +92,34 @@ public class SenhaView extends JFrame implements IView {
 		
 		btnConferirUsuario.setBackground(Color.BLACK);
 		btnConferirUsuario.setForeground(Color.WHITE);
+		btnConferirUsuario.setBorder(defaultLayout);
 		btnConferirResposta.setBackground(Color.BLACK);
 		btnConferirResposta.setForeground(Color.WHITE);
+		btnConferirResposta.setBorder(defaultLayout);
 		btnConcluir.setBackground(Color.BLACK);
 		btnConcluir.setForeground(Color.WHITE);
+		btnConcluir.setBorder(defaultLayout);
 		btnVoltar.setBackground(Color.BLACK);
+		btnVoltar.setBorder(defaultLayout);
 		
 		panelHeader.add(btnVoltar);
 		panelHeader.add(lblTitulo);
 		
 		subFieldset.add(logo, "wrap 64, span, center");
 		subFieldset.add(lblUsuario);
-		subFieldset.add(txUsuario, "gapleft 16");
+		subFieldset.add(txUsuario, "gapleft 16, height 38px");
 		subFieldset.add(btnConferirUsuario, "gapleft 16, wrap 16");
-		subFieldset.add(lblStatusUsuario, "wrap 48, span, center");
+		subFieldset.add(lblStatusUsuario, "wrap 32, span, center");
 		subFieldset.add(div, "wrap 64, span, grow");
 		subFieldset.add(lblResposta);
-		subFieldset.add(txResposta, "gapleft 16");
+		subFieldset.add(txResposta, "gapleft 16, height 38px");
 		subFieldset.add(btnConferirResposta, "gapleft 16, wrap 16");
-		subFieldset.add(lblStatusResposta, "wrap 48, span, center");
+		subFieldset.add(lblStatusResposta, "wrap 32, span, center");
 		subFieldset.add(div1, "wrap 64, span, grow");
 		subFieldset.add(lblNovaSenha);
-		subFieldset.add(txNovaSenha, "gapleft 16, wrap 16");
+		subFieldset.add(txNovaSenha, "gapleft 16, wrap 16, height 38px");
 		subFieldset.add(lblConfirmaSenha);
-		subFieldset.add(txConferirSenha, "gapleft 16");
+		subFieldset.add(txConferirSenha, "gapleft 16, height 38px");
 		
 		fieldset.add(subFieldset);
 		

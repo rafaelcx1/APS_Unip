@@ -33,10 +33,10 @@ public class BarraHorizontalPanel extends JPanel {
 		user.setBackground(new Color(0x212121));
 		userIn.setBackground(new Color(0x212121));
 		
-		btnInicio = new JButton("Teste");
-		btnPerfil = new JButton("Teste");
-		btnPostagens = new JButton("Teste");
-		btnSair = new JButton("Teste");
+		btnInicio = new JButton("Início");
+		btnPerfil = new JButton("Perfil");
+		btnPostagens = new JButton("Postagens");
+		btnSair = new JButton("Sair");
 		
 		btnInicio.setBackground(null);
 		btnInicio.setForeground(Color.WHITE);

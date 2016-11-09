@@ -57,9 +57,11 @@ public class CriarTopicoPanel extends JPanel{
 		
 		txTitulo = new JTextField(48);
 		
-		cbTag = new JComboBox();
+		cbTag = new JComboBox(tags);
 		
-		taTextoPostagem = new JTextArea();
+		taTextoPostagem = new JTextArea(8, 0);
+		
+		taTextoPostagem.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		
 		btnPostarTopico = new JButton("Criar");
 		btnVoltar = new JButton("", new ImageIcon("back.png"));
@@ -74,7 +76,9 @@ public class CriarTopicoPanel extends JPanel{
 		
 		main.add(lblTitulo, "wrap 16");
 		main.add(lblTag, "wrap 8");
+		main.add(cbTag, "wrap 8");
 		main.add(lblTextoPostagem, "wrap 8");
+		main.add(taTextoPostagem, "grow");
 		
 		footer.add(btnPostarTopico);
 		
