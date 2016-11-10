@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -48,6 +49,8 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JPanel panelBotoes;
 
 	public CadastroView(){
+		super("JSolve - Fórum: Cadastro");
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
@@ -121,9 +124,9 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
-		
+
 		cbEstado.setSelectedIndex(24);
-		
+
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
 
@@ -221,8 +224,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 
 	@Override
 	public void displayMsg(String msg) {
-		// TODO Auto-generated method stub
-
+		JOptionPane.showMessageDialog(this, msg);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -231,7 +233,10 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		}
 	}
 
-	public static void main(String[] args){
-		new CadastroView();
+	@Override
+	public void fechar() {
+		this.dispose();
+
 	}
+
 }

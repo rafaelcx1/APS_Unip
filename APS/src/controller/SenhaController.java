@@ -18,6 +18,7 @@ public class SenhaController {
 		senhaView.setConferirRespostaListener(new ConferirRespostaListener());
 		senhaView.setConcluirListener(new ConcluirListener());
 		senhaView.setVoltarListener(new VoltarListener());
+		senhaView.setVisible(true);
 	}
 
 
@@ -32,6 +33,7 @@ public class SenhaController {
 				if(senha.equals(repetirSenha)) {
 					senhaModel.trocarSenha(senha);
 					senhaView.displayMsg("Senha trocada com sucesso !");
+					senhaView.fechar();
 					MainController.abrirTelaLogin();
 				} else {
 					senhaView.displayMsg("Verfique corretamente os campos ! ");
@@ -49,7 +51,7 @@ public class SenhaController {
 		public void actionPerformed(ActionEvent e) {
 
 			try {
-
+				senhaView.fechar();
 				MainController.abrirTelaLogin();
 
 			} catch (Exception e2) {
@@ -68,9 +70,9 @@ public class SenhaController {
 			try {
 				String resposta = senhaView.getResposta();
 				if(senhaModel.conferirResposta(resposta)){
-					senhaView.setRegiaoNovaSenhaEnable(true);
 					senhaView.setLblStatusResposta("Conferido !");
 					senhaView.setRegiaoPerguntaEnable(false);
+					senhaView.setRegiaoNovaSenhaEnable(true);
 				} else {
 					senhaView.setLblStatusResposta("Resposta incorreta!");
 				}

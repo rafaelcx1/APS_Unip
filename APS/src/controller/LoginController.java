@@ -60,6 +60,7 @@ public class LoginController {
 				String msg = loginModel.getMsgErro();
 				loginView.displayMsg(msg);
 			} else {
+				loginView.fechar();
 				MainController.abrirTelaPrincipalUsuario(loginModel.getUsuarioLogado());
 			}
 		}
@@ -70,6 +71,7 @@ public class LoginController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			loginView.fechar();
 			MainController.abrirTelaSenha();
 		}
 
@@ -107,6 +109,7 @@ public class LoginController {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
+			loginView.fechar();
 			MainController.abrirTelaCadastro();
 		}
 
@@ -130,7 +133,4 @@ public class LoginController {
 
 	}
 
-	public static void main(String[] args){
-		new LoginController(new LoginModel(), new LoginView());
-	}
 }

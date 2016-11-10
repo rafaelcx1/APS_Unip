@@ -7,9 +7,9 @@
 	   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 	   <!-- entidade mapeada -->
-	   <class>model.PostagemModel</class>
-	   <class>model.TopicoModel</class>
-	   <class>model.UsuarioModel</class>
+	   <class>model.tables.PostagemModel</class>
+	   <class>model.tables.TopicoModel</class>
+	   <class>model.tables.UsuarioModel</class>
 
 	   <properties>
 

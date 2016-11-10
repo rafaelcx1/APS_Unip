@@ -1,5 +1,6 @@
 package controller;
 
+import dao.DAOForum;
 import model.CadastroModel;
 import model.LoginModel;
 import model.PrincipalModel;
@@ -11,6 +12,7 @@ import view.PrincipalView;
 import view.SenhaView;
 
 public class MainController {
+
 
 	private static LoginController loginController;
 	private static LoginView loginView;
@@ -79,6 +81,7 @@ public class MainController {
 	}
 
 	public static void main(String[] args) {
+		DAOForum.iniciarFactory();
 		MainController.abrirTelaLogin();
 	}
 

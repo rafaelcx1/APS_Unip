@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -33,11 +34,11 @@ public class PrincipalView extends JFrame implements IView{
 	private ResponderTopicoPanel responderTopicoPanel;
 
 	public PrincipalView(UsuarioModel usuario) {
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		JPanel main = new JPanel(new BorderLayout());
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
-		perfilPanel = new PerfilPanel(usuario);
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
@@ -102,69 +103,87 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public void setBtnInicioListener(ActionListener event) {
-		barraHorizontal.getBtnInicio().addActionListener(event);
+		if(barraHorizontal != null)
+			barraHorizontal.getBtnInicio().addActionListener(event);
 	}
 
 	public void setBtnMeuPerfilListener(ActionListener event) {
-		barraHorizontal.getBtnPerfil().addActionListener(event);
+		if(barraHorizontal != null)
+			barraHorizontal.getBtnPerfil().addActionListener(event);
 	}
 
 	public void setBtnMinhasPostagensListener(ActionListener event) {
-		barraHorizontal.getBtnPostagens().addActionListener(event);
+		if(barraHorizontal != null)
+			barraHorizontal.getBtnPostagens().addActionListener(event);
 	}
 
 	public void setBtnSairListener(ActionListener event) {
-		barraHorizontal.getBtnSair().addActionListener(event);
+		if(barraHorizontal != null)
+			barraHorizontal.getBtnSair().addActionListener(event);
 	}
 
 	public void setBtnNextListener(ActionListener event) {
-		principalForumPanel.getBtnNext().addActionListener(event);
+		if(principalForumPanel != null)
+			principalForumPanel.getBtnNext().addActionListener(event);
 	}
 
 	public void setBtnPreviousListener(ActionListener event) {
-		principalForumPanel.getBtnPrevious().addActionListener(event);
+		if(principalForumPanel != null)
+			principalForumPanel.getBtnPrevious().addActionListener(event);
 	}
 
 	public void setBtnFiltrarListener(ActionListener event) {
-		principalForumPanel.getPanelFiltros().getBtnFiltrar().addActionListener(event);
+		if(principalForumPanel != null)
+			principalForumPanel.getPanelFiltros().getBtnFiltrar().addActionListener(event);
 	}
 
 	public void setFiltrarDataTopicosListener(MouseListener event) {
-		principalForumPanel.getPanelFiltros().getLblFiltrarData().addMouseListener(event);
+		if(principalForumPanel != null)
+			principalForumPanel.getPanelFiltros().getLblFiltrarData().addMouseListener(event);
 	}
 
 	public void setBtnCriarTopicoListener(ActionListener event) {
-		principalForumPanel.getPanelFiltros().getBtnCriarTopico().addActionListener(event);
+		if(principalForumPanel != null)
+			principalForumPanel.getPanelFiltros().getBtnCriarTopico().addActionListener(event);
 	}
 
 	public void setBtnCurtirListener(ActionListener event) {
-		for(int contador = 0; contador < 5; contador++) {
-			principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+		if(principalForumPanel != null) {
+			for(int contador = 0; contador < 5; contador++) {
+				principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+			}
 		}
 	}
 
 	public void setBtnVisualizarListener(ActionListener event) {
-		for(int contador = 0; contador < 5; contador++) {
-			principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+		if(principalForumPanel != null) {
+			for(int contador = 0; contador < 5; contador++) {
+				principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+			}
 		}
 	}
 
 	public void setBtnResponderTopicoListener(ActionListener event) {
-		for(int contador = 0; contador < 5; contador++) {
-			principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
+		if(principalForumPanel != null) {
+			for(int contador = 0; contador < 5; contador++) {
+				principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
+			}
 		}
 	}
 
 	public void setBtnPostarRespostaListener(ActionListener event) {
-		responderTopicoPanel.getBtnPostarResposta().addActionListener(event);
+		if(responderTopicoPanel != null)
+			responderTopicoPanel.getBtnPostarResposta().addActionListener(event);
 	}
 
 	public void setBtnPostarTopicoListener(ActionListener event) {
-		criarTopicoPanel.getBtnPostarTopico().addActionListener(event);
+		if(criarTopicoPanel != null)
+			criarTopicoPanel.getBtnPostarTopico().addActionListener(event);
 	}
 
 	public void setBtnSalvarPerfilListener(ActionListener event) {
-		perfilPanel.getBtnSalvar().addActionListener(event);
+		if(perfilPanel != null)
+			perfilPanel.getBtnSalvar().addActionListener(event);
 	}
 
 	public void setBtnVoltarListener(ActionListener event) {
@@ -183,7 +202,12 @@ public class PrincipalView extends JFrame implements IView{
 
 	@Override
 	public void displayMsg(String msg) {
-		//Completar
+		JOptionPane.showMessageDialog(this, msg);
+	}
+
+	@Override
+	public void fechar() {
+		this.dispose();
 	}
 
 }
