@@ -1,11 +1,20 @@
 package view.panels;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
 public class PanelTopicosPrincipal extends JPanel {
 
+	private JLabel lblAvatar;
+	private JLabel lblDataCriacao;
+	private JLabel lblTituloTopico;
+	private JLabel lblTag;
+	private JLabel lblQtdCurtidas;
+	private JLabel lblQtdRespostas;
+	private TopicoModel topico;
 	private BotaoTopicoPanel btnCurtir;
 	private BotaoTopicoPanel btnResponder;
 	private BotaoTopicoPanel btnVisualizar;
@@ -18,6 +27,8 @@ public class PanelTopicosPrincipal extends JPanel {
 		btnVisualizar = new BotaoTopicoPanel();
 	}
 
+	public PanelTopicosPrincipal(String[] tags) {
+	}
 
 	public BotaoTopicoPanel getBtnCurtir() {
 		return btnCurtir;

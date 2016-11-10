@@ -38,8 +38,13 @@ public class LoginView extends JFrame implements IView{
 
 	public LoginView(){
 		super("JSolve - Fórum");
+<<<<<<< HEAD
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		Color background = new Color(0xE0E0E0); 
+=======
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		Color background = new Color(0xE0E0E0);
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		ImageIcon logo = new ImageIcon("logo.png");
 		

@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import util.DataUtil;
@@ -127,7 +126,6 @@ public class UsuarioModel {
 	}
 
 	public UsuarioModel(){
-		dataCadastro = DataUtil.format(LocalDate.now());
 	}
 }
 

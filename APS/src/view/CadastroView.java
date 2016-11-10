@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -50,8 +51,13 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JPanel panelBotoes;
 
 	public CadastroView(){
+<<<<<<< HEAD
 		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
+=======
+		super("JSolve - Fórum: Cadastro");
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		
 		JPanel panelHeader = new JPanel(new MigLayout());
@@ -124,17 +130,22 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		
 		String[] generos = {"Masculino", "Feminino"};
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+<<<<<<< HEAD
 		String[] perguntas  = {"Teste", "Teste 1"};
 		
+=======
+		String[] perguntas  = {"Qual o nome do primeiro cachorro?", "Qual o nome do primeiro(a) professor(a)?", "Em qual cidade você nasceu?", "Qual sua comida favorita?", "Qual cidade você mais gostou?", "Para onde foi sua primeira viagem?"};
+
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbGenero = new JComboBox<String>(generos);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
-		
+
 		cbEstado.setSelectedIndex(24);
-		
+
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
 		
@@ -234,8 +245,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 
 	@Override
 	public void displayMsg(String msg) {
-		// TODO Auto-generated method stub
-
+		JOptionPane.showMessageDialog(this, msg);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -243,4 +253,14 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 			resetarCampos();
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	@Override
+	public void fechar() {
+		this.dispose();
+
+	}
+
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 }

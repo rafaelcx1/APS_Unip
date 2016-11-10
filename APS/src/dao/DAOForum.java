@@ -18,9 +18,12 @@ import model.tables.UsuarioModel;
 public class DAOForum {
 
 	private static String msgErro;
-	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("forum");
+	private static EntityManagerFactory factory = null;
 	private static EntityManager manager;
 
+	public static void iniciarFactory() {
+		factory = Persistence.createEntityManagerFactory("forum");
+	}
 
 	public static String getMsgErro() {
 		String msgErroTemp = msgErro;

@@ -49,6 +49,7 @@ public class CadastroController {
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
 				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
+				cadastroView.fechar();
 				MainController.abrirTelaLogin();
 			} else {
 				cadastroView.displayMsg(cadastroModel.getMsgErro());
@@ -61,6 +62,7 @@ public class CadastroController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
+				cadastroView.fechar();
 				MainController.abrirTelaLogin();
 			} catch (Exception e2) {
 				cadastroView.displayMsg("Ocorreu um erro ao voltar!" + e2.getMessage());

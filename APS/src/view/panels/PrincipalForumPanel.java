@@ -7,9 +7,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+<<<<<<< HEAD
 import javax.swing.border.Border;
+=======
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 
-import model.models.FiltroModel;
 import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
@@ -24,6 +26,7 @@ public class PrincipalForumPanel extends JPanel {
 	private JButton btnCriarTopico;
 	private int paginaAtual;
 
+<<<<<<< HEAD
 	public PrincipalForumPanel() {
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		
@@ -41,6 +44,10 @@ public class PrincipalForumPanel extends JPanel {
 		add(btnPrevious);
 		add(btnNext);
 		add(btnCriarTopico);
+=======
+	public void PanelPrincipalForum(String[] tags) {
+		// Completar
+>>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 	}
 
 	public void next() {
