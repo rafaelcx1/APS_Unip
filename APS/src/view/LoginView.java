@@ -177,4 +177,8 @@ public class LoginView extends JFrame implements IView{
 	public void displayMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}
+	
+	public static void main(String[] args){
+		new LoginView();
+	}
 }

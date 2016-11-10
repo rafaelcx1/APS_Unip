@@ -38,10 +38,11 @@ public class PrincipalView extends JFrame implements IView{
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
 		criarTopicoPanel = new CriarTopicoPanel(new String[]{"um", "dois"});
+		principalForumPanel = new PrincipalForumPanel();
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
-		JScrollPane mainPage = new JScrollPane(criarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane mainPage = new JScrollPane(principalForumPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		mainContent.add(mainPage, "grow, height 100%, split");

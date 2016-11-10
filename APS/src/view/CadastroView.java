@@ -38,7 +38,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	private JComboBox<String> cbDiaNasc;
 	private JComboBox<String> cbMesNasc;
 	private JComboBox<Integer> cbAnoNasc;
-	private JTextField txGenero;
+	private JComboBox<String> cbGenero;
 	private JComboBox<String> cbEstado;
 	private JTextField txCidade;
 	private JComboBox<String> cbPerguntaSecret;
@@ -122,6 +122,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 			anos[a] = i;
 		}
 		
+		String[] generos = {"Masculino", "Feminino"};
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 		String[] perguntas  = {"Teste", "Teste 1"};
 		
@@ -129,6 +130,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		cbMesNasc = new JComboBox<String>(meses);
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
+		cbGenero = new JComboBox<String>(generos);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
 		
 		cbEstado.setSelectedIndex(24);
@@ -150,6 +152,8 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		subFieldset.add(cbDiaNasc, "split 3, width 25%, gapleft 16");
 		subFieldset.add(cbMesNasc, "split 3, width 26%");
 		subFieldset.add(cbAnoNasc, "split 3, wrap 16, width 25%");
+		subFieldset.add(lblGenero);
+		subFieldset.add(cbGenero, "wrap 16, grow, gapleft 16");
 		subFieldset.add(lblEstado);
 		subFieldset.add(cbEstado, "wrap 16, grow, gapleft 16");
 		subFieldset.add(lblCidade);
@@ -189,7 +193,7 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	}
 
 	public String getGenero(){
-		return txGenero.getText();
+		return (String) cbGenero.getSelectedItem();
 	}
 
 	public String getEstado(){
@@ -238,9 +242,5 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		if(e.getSource() == btnLimpar){
 			resetarCampos();
 		}
-	}
-
-	public static void main(String[] args){
-		new CadastroView();
 	}
 }

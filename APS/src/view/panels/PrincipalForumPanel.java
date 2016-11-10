@@ -1,13 +1,19 @@
 package view.panels;
 
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import model.models.FiltroModel;
 import model.tables.TopicoModel;
 import view.BotaoTopicoPanel;
 
-public class PrincipalForumPanel {
+public class PrincipalForumPanel extends JPanel {
 
 	private PanelFiltros panelFiltros;
 	private TopicoModel[] topicoModel = new TopicoModel[5];
@@ -18,10 +24,23 @@ public class PrincipalForumPanel {
 	private JButton btnCriarTopico;
 	private int paginaAtual;
 
-	public void PanelPrincipalForum() {
-		btnNext = new JButton();
-		btnPrevious = new JButton();
-		btnCriarTopico = new JButton();
+	public PrincipalForumPanel() {
+		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
+		
+		btnNext = new JButton("", new ImageIcon("next.png"));
+		btnPrevious = new JButton("", new ImageIcon("prev.png"));
+		btnCriarTopico = new JButton("", new ImageIcon("create.png"));
+		
+		btnNext.setBorder(defaultLayout);
+		btnNext.setBackground(Color.BLACK);
+		btnPrevious.setBorder(defaultLayout);
+		btnPrevious.setBackground(Color.BLACK);
+		btnCriarTopico.setBorder(defaultLayout);
+		btnCriarTopico.setBackground(Color.BLACK);
+		
+		add(btnPrevious);
+		add(btnNext);
+		add(btnCriarTopico);
 	}
 
 	public void next() {

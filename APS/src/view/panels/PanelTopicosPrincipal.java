@@ -11,6 +11,12 @@ public class PanelTopicosPrincipal extends JPanel {
 	private BotaoTopicoPanel btnVisualizar;
 	private int idTopico;
 	private boolean curtido;
+	
+	public PanelTopicosPrincipal(){
+		btnCurtir = new BotaoTopicoPanel();
+		btnResponder = new BotaoTopicoPanel();
+		btnVisualizar = new BotaoTopicoPanel();
+	}
 
 
 	public BotaoTopicoPanel getBtnCurtir() {
