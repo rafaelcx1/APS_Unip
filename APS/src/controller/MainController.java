@@ -13,63 +13,24 @@ import view.SenhaView;
 
 public class MainController {
 
-
-	private static LoginController loginController;
-	private static LoginView loginView;
-	private static LoginModel loginModel;
-	private static SenhaController senhaController;
-	private static SenhaView senhaView;
-	private static SenhaModel senhaModel;
-	private static CadastroController cadastroController;
-	private static CadastroView cadastroView;
-	private static CadastroModel cadastroModel;
-	private static PrincipalController principalController;
-	private static PrincipalView principalView;
-	private static PrincipalModel principalModel;
 	private static UsuarioModel usuarioConectado;
 
-	public static void setJanelasNull(){
-		MainController.loginController = null;
-		MainController.loginView = null;
-		MainController.loginModel = null;
-		MainController.senhaController = null;
-		MainController.senhaModel = null;
-		MainController.senhaView = null;
-		MainController.cadastroController = null;
-		MainController.cadastroModel = null;
-		MainController.cadastroView = null;
-		MainController.principalController = null;
-		MainController.principalModel = null;
-		MainController.principalView = null;
-	}
 
 	public static void abrirTelaLogin(){
-		MainController.loginModel = new LoginModel();
-		MainController.loginView = new LoginView();
-		MainController.loginController = new LoginController(MainController.loginModel, MainController.loginView);
-		setJanelasNull();
+		new LoginController(new LoginModel(),  new LoginView());
 	}
 
 	public static void abrirTelaCadastro(){
-		MainController.cadastroModel = new CadastroModel();
-		MainController.cadastroView = new CadastroView();
-		MainController.cadastroController = new CadastroController(MainController.cadastroModel, MainController.cadastroView);
-		setJanelasNull();
+		new CadastroController(new CadastroModel(), new CadastroView());
 	}
 
 	public static void abrirTelaSenha(){
-		MainController.senhaModel = new SenhaModel();
-		MainController.senhaView = new SenhaView();
-		MainController.senhaController = new SenhaController(MainController.senhaModel, MainController.senhaView);
-		setJanelasNull();
+		new SenhaController(new SenhaModel(), new SenhaView());
 	}
 
 	public static void abrirTelaPrincipalUsuario(UsuarioModel usuarioConectado){
 		MainController.usuarioConectado = usuarioConectado;
-		MainController.principalModel = new PrincipalModel();
-		MainController.principalView = new PrincipalView(MainController.usuarioConectado);
-		MainController.principalController = new PrincipalController(MainController.principalModel, MainController.principalView);
-		setJanelasNull();
+		new PrincipalController(new PrincipalModel(), new PrincipalView(usuarioConectado));
 	}
 
 	public static UsuarioModel getUsuarioConectado() {
@@ -81,7 +42,11 @@ public class MainController {
 	}
 
 	public static void main(String[] args) {
-		DAOForum.iniciarFactory();
+		new Thread() {
+			public void run(){
+				DAOForum.iniciarFactory();
+			}
+		}.start();
 		MainController.abrirTelaLogin();
 	}
 
