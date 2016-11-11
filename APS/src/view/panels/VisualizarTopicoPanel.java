@@ -25,6 +25,6 @@ public class VisualizarTopicoPanel extends JPanel {
 	}
 
 	public void abrirPanelResposta() {
-
+		int idTopico = posts[0].getTopico().getIdTopico();
 	}
 }
