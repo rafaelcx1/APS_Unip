@@ -74,19 +74,14 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public void prev() {
-<<<<<<< HEAD
-		if (paginaAtual > 0) {
-			paginaAtual--;
-=======
 		if(paginaAtual > 0) {
 			setPaginaAtual(paginaAtual--);
->>>>>>> 147f8c6a0b1ca9e42267d5a834888a9652d4fc62
 		}
 	}
 	
 	public void setPaginaAtual(int paginaAtual) {
 		this.paginaAtual = paginaAtual;
-		lblPag.setText(paginaAtual);
+		btnPag.setText(paginaAtual);
 	}
 
 	public PanelFiltros getPanelFiltros() {

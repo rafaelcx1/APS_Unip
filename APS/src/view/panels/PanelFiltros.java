@@ -60,7 +60,7 @@ public class PanelFiltros extends JPanel {
 		txTitulo = new JTextField(16);
 		txUsuario = new JTextField(16);
 		
-		jcTags = new JComboBox(new String[] {"hey", "Hey"});
+		jcTags = new JComboBox(tags);
 		
 		btnFiltrar = new JButton("Filtrar");
 		btnCriarTopico = new JButton("", new ImageIcon("create.png"));

@@ -84,8 +84,8 @@ public class PrincipalView extends JFrame implements IView{
 		barraVertical.setUsuariosMaisAtivos(usuariosMaisAtivos);
 		barraVertical.setTagsMaisUsadas(tagsMaisAtivas);
 		barraVertical.setTopicosMaisCurtidos(topicosMaisCurtidos);
-	}e
-		if(principalForumPanel != null)
+	}
+	if(principalForumPanel != null){
 			principalForumPanel.getBtnNext().addActionListener(event);
 	}
 

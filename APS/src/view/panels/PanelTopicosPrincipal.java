@@ -22,7 +22,6 @@ public class PanelTopicosPrincipal extends JPanel {
 	
 	public PanelTopicosPrincipal(){
 		btnCurtir = new BotaoTopicoPanel();
-		btnResponder = new BotaoTopicoPanel();
 		btnVisualizar = new BotaoTopicoPanel();
 	}
 
