@@ -19,6 +19,7 @@ public class SenhaController {
 		senhaView.setConcluirListener(new ConcluirListener());
 		senhaView.setVoltarListener(new VoltarListener());
 		senhaView.setVisible(true);
+		senhaView.focus();
 	}
 
 
@@ -33,8 +34,8 @@ public class SenhaController {
 				if(senha.equals(repetirSenha)) {
 					senhaModel.trocarSenha(senha);
 					senhaView.displayMsg("Senha trocada com sucesso !");
-					senhaView.fechar();
 					MainController.abrirTelaLogin();
+					senhaView.fechar();
 				} else {
 					senhaView.displayMsg("Verfique corretamente os campos ! ");
 				}
@@ -51,11 +52,9 @@ public class SenhaController {
 		public void actionPerformed(ActionEvent e) {
 
 			try {
-				senhaView.fechar();
 				MainController.abrirTelaLogin();
-
+				senhaView.fechar();
 			} catch (Exception e2) {
-
 				senhaView.displayMsg("Ocorreu um erro ao voltar !" + e2.getMessage());
 			}
 

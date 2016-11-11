@@ -2,9 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +22,7 @@ import javax.swing.JTextField;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public class CadastroView extends JFrame implements IView, ActionListener{
+public class CadastroView extends JFrame implements IView, ActionListener, KeyListener{
 
 	private JLabel lblTitulo;
 	private JLabel lblNome;
@@ -107,6 +110,22 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		btnLimpar.setForeground(Color.WHITE);
 		btnVoltar.setBackground(Color.BLACK);
 
+		txCidade.addKeyListener(this);
+		txGenero.addKeyListener(this);
+		txNome.addKeyListener(this);
+		txRespostaSecret.addKeyListener(this);
+		txUsuario.addKeyListener(this);
+		ptxSenha.addKeyListener(this);
+		cbAnoNasc.addKeyListener(this);
+		cbDiaNasc.addKeyListener(this);
+		cbEstado.addKeyListener(this);
+		cbMesNasc.addKeyListener(this);
+		cbPerguntaSecret.addKeyListener(this);
+
+		btnCadastrar.setFocusPainted(false);
+		btnLimpar.setFocusPainted(false);
+		btnVoltar.setFocusPainted(false);
+
 		setBtnLimparListener(this);
 
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
@@ -162,8 +181,13 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		panelPrincipal.add(panelBotoes, "South");
 
 		getContentPane().add(panelPrincipal);
-		pack();
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(800,600));
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setLocationRelativeTo(null);
+	}
+
+	public void focus() {
+		txNome.grabFocus();
 	}
 
 	public String getNome(){
@@ -236,6 +260,26 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 	@Override
 	public void fechar() {
 		this.dispose();
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			btnVoltar.doClick();
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 
 	}
 

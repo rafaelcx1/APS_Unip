@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.MatteBorder;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -91,13 +93,19 @@ public class LoginView extends JFrame implements IView{
 
 		fieldset.setBackground(background);
 
+		btnSair.setFocusPainted(false);
+		btnLogar.setFocusable(false);
+
 		panelPrincipal.add(fieldset, "span");
 
 		panelPrincipal.setBackground(background);
+		panelPrincipal.setBorder(new MatteBorder(4,4,4,4, new Color(0,0,0)));
 
 		getContentPane().add(panelPrincipal);
-		pack();
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setSize(new Dimension(600,500));
+		setUndecorated(true);
+		setLocationRelativeTo(null);
+		txUsuario.grabFocus();
 	}
 
 	public String getUsuario(){

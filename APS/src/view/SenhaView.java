@@ -2,8 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -19,7 +22,7 @@ import javax.swing.border.MatteBorder;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public class SenhaView extends JFrame implements IView {
+public class SenhaView extends JFrame implements IView, KeyListener {
 
 	private JLabel lblTitulo;
 	private JLabel lblUsuario;
@@ -96,6 +99,16 @@ public class SenhaView extends JFrame implements IView {
 		btnConcluir.setForeground(Color.WHITE);
 		btnVoltar.setBackground(Color.BLACK);
 
+		txUsuario.addKeyListener(this);
+		txConferirSenha.addKeyListener(this);
+		txNovaSenha.addKeyListener(this);
+		txResposta.addKeyListener(this);
+
+		btnConferirUsuario.setFocusPainted(false);
+		btnConcluir.setFocusPainted(false);
+		btnConferirResposta.setFocusPainted(false);
+		btnVoltar.setFocusPainted(false);
+
 		panelHeader.add(btnVoltar);
 		panelHeader.add(lblTitulo);
 
@@ -126,8 +139,13 @@ public class SenhaView extends JFrame implements IView {
 		panelPrincipal.add(panelBotoes, "South");
 
 		getContentPane().add(panelPrincipal);
-		pack();
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(800,600));
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setLocationRelativeTo(null);
+	}
+
+	public void focus() {
+		txUsuario.grabFocus();
 	}
 
 	public String getUsuario() {
@@ -196,6 +214,7 @@ public class SenhaView extends JFrame implements IView {
 			txResposta.setEditable(true);
 			btnConferirResposta.setEnabled(true);
 			btnConcluir.setEnabled(false);
+			txResposta.grabFocus();
 		} else {
 			lblStatusResposta.setEnabled(false);
 			lblTituloPergunta.setEnabled(false);
@@ -215,6 +234,7 @@ public class SenhaView extends JFrame implements IView {
 			txConferirSenha.setEditable(true);
 			btnConcluir.setEnabled(true);
 			lblNovaSenhaTitulo.setText("Digite a Nova Senha:");
+			txNovaSenha.grabFocus();
 		} else {
 			lblConfirmaSenha.setEnabled(false);
 			lblNovaSenha.setEnabled(false);
@@ -237,6 +257,38 @@ public class SenhaView extends JFrame implements IView {
 	@Override
 	public void fechar() {
 		this.dispose();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getSource().equals(txUsuario) & e.getKeyCode() == KeyEvent.VK_ENTER) {
+			btnConferirUsuario.doClick();
+		}
+
+		if(e.getSource().equals(txResposta) & e.getKeyCode() == KeyEvent.VK_ENTER) {
+			btnConferirResposta.doClick();
+		}
+
+		if((e.getSource().equals(txNovaSenha) | e.getSource().equals(txConferirSenha)) & e.getKeyCode() == KeyEvent.VK_ENTER) {
+			btnConcluir.doClick();
+		}
+
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			btnVoltar.doClick();
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

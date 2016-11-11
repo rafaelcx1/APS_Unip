@@ -49,7 +49,6 @@ public class DAOForum {
 		}
 	}
 
-
 	public static UsuarioModel conferirUsuario(UsuarioLoginModel usuario){
 		try {
 			manager = factory.createEntityManager();
