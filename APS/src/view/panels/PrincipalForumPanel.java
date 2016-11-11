@@ -23,12 +23,12 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public void next() {
-		paginaAtual++;
+		setPaginaAtual(paginaAtual++);
 	}
 
 	public void prev() {
 		if(paginaAtual > 0) {
-			paginaAtual--;
+			setPaginaAtual(paginaAtual--);
 		}
 	}
 	
