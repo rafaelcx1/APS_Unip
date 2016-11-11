@@ -31,10 +31,10 @@ public class PrincipalForumPanel extends JPanel {
 			setPaginaAtual(paginaAtual--);
 		}
 	}
-	
+
 	public void setPaginaAtual(int paginaAtual) {
 		this.paginaAtual = paginaAtual;
-		lblPag.setText(paginaAtual);
+		lblPag.setText(String.valueOf(paginaAtual));
 	}
 
 	public PanelFiltros getPanelFiltros() {
@@ -66,7 +66,6 @@ public class PrincipalForumPanel extends JPanel {
 		topicoModel = topicos;
 		//Completar
 	}
-
 
 	public void curtir(int idTopico) {
 

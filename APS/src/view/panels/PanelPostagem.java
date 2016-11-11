@@ -18,4 +18,8 @@ public class PanelPostagem extends JPanel{
 		this.postagem = postagem;
 		//Continuar
 	}
+
+	public PostagemModel getPostagem() {
+		return postagem;
+	}
 }

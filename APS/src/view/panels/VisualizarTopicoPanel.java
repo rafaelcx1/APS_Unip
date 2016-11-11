@@ -15,9 +15,9 @@ public class VisualizarTopicoPanel extends JPanel {
 	public void PainelVisualizarTopicos(PostagemModel[] posts) {
 
 	}
-	
+
 	public int getIdTopico() {
-		return posts[0].getTopico().getIdTopico();
+		return posts[0].getPostagem().getTopico().getIdTopico();
 	}
 
 	public JButton getBtnResponder() {
