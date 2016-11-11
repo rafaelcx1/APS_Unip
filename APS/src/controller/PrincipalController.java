@@ -49,8 +49,11 @@ public class PrincipalController {
 			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
 			int idTopico = botaoTopicoPanel.getIdTopico();
 			boolean curtir = principalView.getPrincipalForumPanel().getTopicoPanel(idTopico).isCurtido();
-			principalView.getPrincipalForumPanel().curtir(idTopico);
-			principalModel.curtirTopico(idTopico, curtir);
+			if(principalModel.curtirTopico(idTopico, curtir)) {
+				principalView.getPrincipalForumPanel().curtir(idTopico);
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 		}
 
 	}
@@ -62,7 +65,7 @@ public class PrincipalController {
 			UsuarioModel usuarioModel = new UsuarioModel();
 			usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
 			if(principalModel.atualizarPerfil(usuarioModel)){
-				principalView.displayMsg("Usuário atualizado !");
+				principalView.displayMsg("Perfil atualizado !");
 			}else{
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -86,8 +89,13 @@ public class PrincipalController {
 		public void actionPerformed(ActionEvent e) {
 			FiltroModel filtroModel = new FiltroModel();
 			filtroModel.setUsuario(MainController.getUsuarioConectado().getUsuario());
-			principalModel.atualizarTopicos(filtroModel);
-			principalView.setTopicos(principalModel.getTopicos(0));
+			if(principalModel.atualizarTopicos(filtroModel)) {
+				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setPaginaAtual(1);
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
+			
 		}
 
 	}
@@ -117,8 +125,12 @@ public class PrincipalController {
 		public void actionPerformed(ActionEvent e) {
 			FiltroModel filtroModel = new FiltroModel();
 			filtroModel = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
-			principalModel.atualizarTopicos(filtroModel);
-			principalView.setTopicos(principalModel.getTopicos(0));
+			if(principalModel.atualizarTopicos(filtroModel)) {
+				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setPaginaAtual(1);
+			} else {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 		}
 
 	}
@@ -127,9 +139,9 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int pagina = principalView.getPrincipalForumPanel().getPagina();
 			principalView.getPrincipalForumPanel().next();
-			principalView.setTopicos(principalModel.getTopicos(pagina));
+			int pagina = principalView.getPrincipalForumPanel().getPagina();
+			principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(pagina));
 		}
 
 	}
@@ -138,9 +150,9 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			int pagina = principalView.getPrincipalForumPanel().getPagina();
 			principalView.getPrincipalForumPanel().prev();
-			principalView.setTopicos(principalModel.getTopicos(pagina));
+			int pagina = principalView.getPrincipalForumPanel().getPagina();
+			principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(pagina));
 		}
 
 	}
@@ -193,7 +205,11 @@ public class PrincipalController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
-			principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botaoTopicoPanel.getIdTopico()));
+			try {
+				principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botaoTopicoPanel.getIdTopico()));
+			} catch(Exception e) {
+				principalView.displayMsg(principalModel.getMsgErro());
+			}
 			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
@@ -217,8 +233,8 @@ public class PrincipalController {
 			boolean dataAscendente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
 			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
 			if(principalModel.atualizarTopicos(filtroData)) {
-				TopicoModel[] topicos = principalModel.getTopicos(0);
-				principalView.setTopicos(topicos);
+				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setPaginaAtual(1);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -253,8 +269,6 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			BotaoTopicoPanel botao = (BotaoTopicoPanel) e.getSource();
-			principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botao.getIdTopico()));
 			principalView.getVisualizarTopicoPanel().abrirPanelResposta();
 		}
 
