@@ -16,7 +16,6 @@ public class PanelTopicosPrincipal extends JPanel {
 	private JLabel lblQtdRespostas;
 	private TopicoModel topico;
 	private BotaoTopicoPanel btnCurtir;
-	private BotaoTopicoPanel btnResponder;
 	private BotaoTopicoPanel btnVisualizar;
 	private int idTopico;
 	private boolean curtido;
@@ -36,14 +35,6 @@ public class PanelTopicosPrincipal extends JPanel {
 
 	public void setBtnCurtir(BotaoTopicoPanel btnCurtir) {
 		this.btnCurtir = btnCurtir;
-	}
-
-	public BotaoTopicoPanel getBtnResponder() {
-		return btnResponder;
-	}
-
-	public void setBtnResponder(BotaoTopicoPanel btnResponder) {
-		this.btnResponder = btnResponder;
 	}
 
 	public BotaoTopicoPanel getBtnVisualizar() {

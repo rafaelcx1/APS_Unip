@@ -84,49 +84,7 @@ public class PrincipalView extends JFrame implements IView{
 		barraVertical.setUsuariosMaisAtivos(usuariosMaisAtivos);
 		barraVertical.setTagsMaisUsadas(tagsMaisAtivas);
 		barraVertical.setTopicosMaisCurtidos(topicosMaisCurtidos);
-	}
-
-	public void setTopicos(TopicoModel[] topicos) {
-		principalForumPanel.setTopicos(topicos);
-	}
-
-	public void abrirPerfilPanel(UsuarioModel usuario) {
-		//Completar
-	}
-
-	public void abrirPrincipalForumPanel(String[] tags) {
-		//Completar
-	}
-
-	public void abrirCriarTopicoPanel(String[] tags) {
-		//Completar
-	}
-
-	public void abrirVisualizarTopicoPanel(PostagemModel[] posts) {
-		//Completar
-	}
-
-	public void setBtnInicioListener(ActionListener event) {
-		if(barraHorizontal != null)
-			barraHorizontal.getBtnInicio().addActionListener(event);
-	}
-
-	public void setBtnMeuPerfilListener(ActionListener event) {
-		if(barraHorizontal != null)
-			barraHorizontal.getBtnPerfil().addActionListener(event);
-	}
-
-	public void setBtnMinhasPostagensListener(ActionListener event) {
-		if(barraHorizontal != null)
-			barraHorizontal.getBtnPostagens().addActionListener(event);
-	}
-
-	public void setBtnSairListener(ActionListener event) {
-		if(barraHorizontal != null)
-			barraHorizontal.getBtnSair().addActionListener(event);
-	}
-
-	public void setBtnNextListener(ActionListener event) {
+	}e
 		if(principalForumPanel != null)
 			principalForumPanel.getBtnNext().addActionListener(event);
 	}
@@ -168,10 +126,8 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public void setBtnResponderTopicoListener(ActionListener event) {
-		if(principalForumPanel != null) {
-			for(int contador = 0; contador < 5; contador++) {
-				principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
-			}
+		if(visualizarTopicoPanel != null) {
+			visualizarTopicoPanel.getBtnResponderTopico().addActionListener(event);
 		}
 	}
 
