@@ -23,13 +23,18 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public void next() {
-		paginaAtual++;
+		setPaginaAtual(paginaAtual++);
 	}
 
 	public void prev() {
 		if(paginaAtual > 0) {
-			paginaAtual--;
+			setPaginaAtual(paginaAtual--);
 		}
+	}
+	
+	public void setPaginaAtual(int paginaAtual) {
+		this.paginaAtual = paginaAtual;
+		lblPag.setText(paginaAtual);
 	}
 
 	public PanelFiltros getPanelFiltros() {
@@ -51,10 +56,6 @@ public class PrincipalForumPanel extends JPanel {
 	//Posição botao = posição do array de botoes dos tópicos
 	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
 		return topicosPanel[posicaoBotao].getBtnCurtir();
-	}
-
-	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
-		return topicosPanel[posicaoBotao].getBtnResponder();
 	}
 
 	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {

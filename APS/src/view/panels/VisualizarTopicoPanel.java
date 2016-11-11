@@ -15,6 +15,10 @@ public class VisualizarTopicoPanel extends JPanel {
 	public void PainelVisualizarTopicos(PostagemModel[] posts) {
 
 	}
+	
+	public int getIdTopico() {
+		return posts[0].getTopico().getIdTopico();
+	}
 
 	public JButton getBtnResponder() {
 		return null;
@@ -25,6 +29,6 @@ public class VisualizarTopicoPanel extends JPanel {
 	}
 
 	public void abrirPanelResposta() {
-
+		int idTopico = getIdTopico();
 	}
 }
