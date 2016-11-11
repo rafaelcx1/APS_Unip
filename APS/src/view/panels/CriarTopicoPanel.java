@@ -23,6 +23,7 @@ import util.DataUtil;
 public class CriarTopicoPanel extends JPanel{
 
 	private JLabel lblTitulo;
+	private JLabel lblTituloTopico;
 	private JLabel lblTag;
 	private JLabel lblTextoPostagem;
 	private JTextField txTitulo;
@@ -30,7 +31,6 @@ public class CriarTopicoPanel extends JPanel{
 	private JTextArea taTextoPostagem;
 	private JButton btnPostarTopico;
 	private JButton btnVoltar;
-	private String tags[];
 
 	public CriarTopicoPanel(String[] tags) {
 		setLayout(new BorderLayout());
@@ -40,18 +40,19 @@ public class CriarTopicoPanel extends JPanel{
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		
 		JPanel panelHeader = new JPanel(new MigLayout());
-		JPanel main = new JPanel(new MigLayout("fillx", "[center]"));
+		JPanel main = new JPanel(new MigLayout("fillx, insets 12%", "[center]"));
 		JPanel footer = new JPanel(new MigLayout("fillx", "[center]"));
 		
 		panelHeader.setBackground(new Color(0x212121));
 		
 		lblTitulo = new JLabel("Criar tópico");
+		lblTituloTopico = new JLabel("Titulo");
 		lblTag = new JLabel("Tags");
 		lblTextoPostagem = new JLabel("Texto");
 		
 		lblTitulo.setFont(titulo1);
 		lblTitulo.setHorizontalAlignment(JLabel.CENTER);
-		lblTitulo.setFont(titulo2);
+		lblTituloTopico.setFont(titulo2);
 		lblTag.setFont(titulo2);
 		lblTextoPostagem.setFont(titulo2);
 		
@@ -75,9 +76,11 @@ public class CriarTopicoPanel extends JPanel{
 		panelHeader.add(btnVoltar);
 		
 		main.add(lblTitulo, "wrap 16");
-		main.add(lblTag, "wrap 8");
-		main.add(cbTag, "wrap 8");
-		main.add(lblTextoPostagem, "wrap 8");
+		main.add(lblTituloTopico, "wrap");
+		main.add(txTitulo, "wrap 16, grow, height 32px");
+		main.add(lblTag, "wrap 16");
+		main.add(cbTag, "wrap 16");
+		main.add(lblTextoPostagem, "wrap 16");
 		main.add(taTextoPostagem, "grow");
 		
 		footer.add(btnPostarTopico);

@@ -43,13 +43,10 @@ public class SenhaView extends JFrame implements IView {
 	private JPanel panelBotoes;
 
 	public SenhaView(){
-<<<<<<< HEAD
-		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
-		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-=======
 		super("JSolve - Fórum: Esqueci a Senha");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
+		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
+		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		MatteBorder division = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xBDBDBD));
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
@@ -85,17 +82,9 @@ public class SenhaView extends JFrame implements IView {
 		txResposta.setEnabled(false);
 		txNovaSenha.setEnabled(false);
 		txConferirSenha.setEnabled(false);
-<<<<<<< HEAD
-		
 		btnConferirUsuario = new JButton("Conferir", new ImageIcon("create.png"));
 		btnConferirResposta = new JButton("Conferir", new ImageIcon("create.png"));
 		btnConcluir = new JButton("Alterar senha", new ImageIcon("create.png"));
-=======
-
-		btnConferirUsuario = new JButton("Conferir");
-		btnConferirResposta = new JButton("Conferir");
-		btnConcluir = new JButton("Concluir");
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		btnVoltar = new JButton("", new ImageIcon("back.png"));
 
 		btnConferirResposta.setEnabled(false);
@@ -111,12 +100,7 @@ public class SenhaView extends JFrame implements IView {
 		btnConcluir.setForeground(Color.WHITE);
 		btnConcluir.setBorder(defaultLayout);
 		btnVoltar.setBackground(Color.BLACK);
-<<<<<<< HEAD
 		btnVoltar.setBorder(defaultLayout);
-		
-=======
-
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		panelHeader.add(btnVoltar);
 		panelHeader.add(lblTitulo);
 
@@ -124,35 +108,19 @@ public class SenhaView extends JFrame implements IView {
 		subFieldset.add(lblUsuario);
 		subFieldset.add(txUsuario, "gapleft 16, height 38px");
 		subFieldset.add(btnConferirUsuario, "gapleft 16, wrap 16");
-<<<<<<< HEAD
-		subFieldset.add(lblStatusUsuario, "wrap 32, span, center");
-		subFieldset.add(div, "wrap 64, span, grow");
-=======
 		subFieldset.add(lblStatusUsuario, "wrap 48, span, center");
 		subFieldset.add(div, "wrap 32, span, grow");
 		subFieldset.add(lblTituloPergunta, "wrap 16, span, center");
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		subFieldset.add(lblResposta);
 		subFieldset.add(txResposta, "gapleft 16, height 38px");
 		subFieldset.add(btnConferirResposta, "gapleft 16, wrap 16");
-<<<<<<< HEAD
-		subFieldset.add(lblStatusResposta, "wrap 32, span, center");
-		subFieldset.add(div1, "wrap 64, span, grow");
-=======
 		subFieldset.add(lblStatusResposta, "wrap 48, span, center");
 		subFieldset.add(div1, "wrap 32, span, grow");
 		subFieldset.add(lblNovaSenhaTitulo, "wrap 16, span, center");
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		subFieldset.add(lblNovaSenha);
 		subFieldset.add(txNovaSenha, "gapleft 16, wrap 16, height 38px");
 		subFieldset.add(lblConfirmaSenha);
-<<<<<<< HEAD
 		subFieldset.add(txConferirSenha, "gapleft 16, height 38px");
-		
-=======
-		subFieldset.add(txConferirSenha, "gapleft 16");
-
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
 		fieldset.add(subFieldset);
 
 		panelBotoes.add(btnConcluir);

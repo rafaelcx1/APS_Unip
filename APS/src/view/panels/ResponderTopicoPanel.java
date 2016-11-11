@@ -19,7 +19,13 @@ public class ResponderTopicoPanel extends JPanel {
 
       public ResponderTopicoPanel(int idTopico) {
             this.idTopico = idTopico;
-            //Completar
+            
+            lblTitulo = new JLabel("Resposta");
+            lblTextoResposta = new JLabel("Texto");
+            
+            taTextoPost = new JTextArea();
+            
+            btnPostarResposta = new JButton();
       }
 
       public JButton getBtnPostarResposta() {

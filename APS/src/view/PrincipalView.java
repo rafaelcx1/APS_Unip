@@ -39,11 +39,9 @@ public class PrincipalView extends JFrame implements IView{
 		JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
-<<<<<<< HEAD
-		criarTopicoPanel = new CriarTopicoPanel(new String[]{"um", "dois"});
+		criarTopicoPanel = new CriarTopicoPanel(new String[]{"um", "dois", "um", "dois"});
 		principalForumPanel = new PrincipalForumPanel();
-=======
->>>>>>> b6b6b1c3ec601421db5e4140bac8391999995a28
+		perfilPanel = new PerfilPanel(null);
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
