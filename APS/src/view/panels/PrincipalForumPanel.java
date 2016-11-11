@@ -58,10 +58,6 @@ public class PrincipalForumPanel extends JPanel {
 		return topicosPanel[posicaoBotao].getBtnCurtir();
 	}
 
-	public BotaoTopicoPanel getBtnResponderTopico(int posicaoBotao) {
-		return topicosPanel[posicaoBotao].getBtnResponder();
-	}
-
 	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {
 		return topicosPanel[posicaoBotao].getBtnVisualizar();
 	}
