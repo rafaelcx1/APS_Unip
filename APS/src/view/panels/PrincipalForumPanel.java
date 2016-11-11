@@ -31,6 +31,11 @@ public class PrincipalForumPanel extends JPanel {
 			paginaAtual--;
 		}
 	}
+	
+	public void setPaginaAtual(int paginaAtual) {
+		this.paginaAtual = paginaAtual;
+		lblPag.setText(paginaAtual);
+	}
 
 	public PanelFiltros getPanelFiltros() {
 		return panelFiltros;
