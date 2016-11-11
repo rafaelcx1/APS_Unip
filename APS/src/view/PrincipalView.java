@@ -122,10 +122,8 @@ public class PrincipalView extends JFrame implements IView{
 	}
 
 	public void setBtnResponderTopicoListener(ActionListener event) {
-		if(principalForumPanel != null) {
-			for(int contador = 0; contador < 5; contador++) {
-				principalForumPanel.getBtnResponderTopico(contador).addActionListener(event);
-			}
+		if(visualizarTopicoPanel != null) {
+			visualizarTopicoPanel.getBtnResponderTopico().addActionListener(event);
 		}
 	}
 
