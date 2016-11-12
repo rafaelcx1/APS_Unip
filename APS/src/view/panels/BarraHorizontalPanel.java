@@ -67,7 +67,7 @@ public class BarraHorizontalPanel extends JPanel {
 		lblUsuario = new JLabel("Olá " + usuario.getUsuario(), iconAvatar(usuario.getAvatar()), 0);
 		String data = LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonthValue() + "/" + LocalDate.now().getYear();
 		lblData = new JLabel(data);
-		JLabel logo = new JLabel(new ImageIcon("logo1.png"));
+		JLabel logo = new JLabel(new ImageIcon("images/logo1.png"));
 
 		lblUsuario.setForeground(Color.WHITE);
 		lblData.setForeground(Color.WHITE);
