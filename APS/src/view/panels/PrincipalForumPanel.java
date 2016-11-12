@@ -29,7 +29,7 @@ public class PrincipalForumPanel extends JPanel {
 		setLayout(new BorderLayout());
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
-		panelFiltros = new PanelFiltros(null);
+		panelFiltros = new PanelFiltros(new String[]{"hey", "hey"});
 
 		panelFiltros.setBackground(new Color(0x212121));
 
@@ -63,6 +63,11 @@ public class PrincipalForumPanel extends JPanel {
 		footer.add(btnNext);
 		footer.add(btnCriarTopico);
 
+		main.add(new PanelTopicosPrincipal(), "wrap 16, grow");
+		main.add(new PanelTopicosPrincipal(), "wrap 16, grow");
+		main.add(new PanelTopicosPrincipal(), "wrap 16, grow");
+		main.add(new PanelTopicosPrincipal(), "wrap 16, grow");
+		main.add(new PanelTopicosPrincipal(), "wrap 16, grow");
 		main.add(footer);
 
 		add(header, "North");
@@ -78,10 +83,10 @@ public class PrincipalForumPanel extends JPanel {
 			setPaginaAtual(paginaAtual--);
 		}
 	}
-	
+
 	public void setPaginaAtual(int paginaAtual) {
 		this.paginaAtual = paginaAtual;
-		btnPag.setText(paginaAtual);
+		btnPag.setText(String.valueOf(paginaAtual));
 	}
 
 	public PanelFiltros getPanelFiltros() {

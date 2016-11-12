@@ -15,7 +15,6 @@ public class MainController {
 
 	private static UsuarioModel usuarioConectado;
 
-
 	public static void abrirTelaLogin(){
 		new LoginController(new LoginModel(),  new LoginView());
 	}

@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 import model.PrincipalModel;
 import model.models.FiltroModel;
 import model.tables.PostagemModel;
-import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
 import view.BotaoTopicoPanel;
 import view.PrincipalView;
@@ -90,12 +89,12 @@ public class PrincipalController {
 			FiltroModel filtroModel = new FiltroModel();
 			filtroModel.setUsuario(MainController.getUsuarioConectado().getUsuario());
 			if(principalModel.atualizarTopicos(filtroModel)) {
-				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
 				principalView.getPrincipalForumPanel().setPaginaAtual(1);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
-			
+
 		}
 
 	}
@@ -126,7 +125,7 @@ public class PrincipalController {
 			FiltroModel filtroModel = new FiltroModel();
 			filtroModel = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
 			if(principalModel.atualizarTopicos(filtroModel)) {
-				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
 				principalView.getPrincipalForumPanel().setPaginaAtual(1);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
@@ -207,7 +206,7 @@ public class PrincipalController {
 			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
 			try {
 				principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botaoTopicoPanel.getIdTopico()));
-			} catch(Exception e) {
+			} catch(Exception e1) {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
 			principalView.setBtnVoltarListener(new BtnVoltarListener());
@@ -233,7 +232,7 @@ public class PrincipalController {
 			boolean dataAscendente = principalView.getPrincipalForumPanel().getPanelFiltros().getDataAscendente();
 			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
 			if(principalModel.atualizarTopicos(filtroData)) {
-				principalView.setTopicos(principalModel.getTopicos(0));
+				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
 				principalView.getPrincipalForumPanel().setPaginaAtual(1);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());

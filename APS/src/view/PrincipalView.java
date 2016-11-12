@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.tables.PostagemModel;
-import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
 import net.miginfocom.swing.MigLayout;
 import view.panels.BarraHorizontalPanel;
@@ -42,10 +41,11 @@ public class PrincipalView extends JFrame implements IView{
 		criarTopicoPanel = new CriarTopicoPanel(new String[]{"um", "dois", "um", "dois"});
 		principalForumPanel = new PrincipalForumPanel();
 		perfilPanel = new PerfilPanel(null);
+		visualizarTopicoPanel = new VisualizarTopicoPanel(null);
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
-		JScrollPane mainPage = new JScrollPane(principalForumPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane mainPage = new JScrollPane(visualizarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		mainContent.add(mainPage, "grow, height 100%, split");
@@ -80,13 +80,31 @@ public class PrincipalView extends JFrame implements IView{
 		return responderTopicoPanel;
 	}
 
+	public void abrirVisualizarTopicoPanel(PostagemModel[] postagens) {
+		// Completar
+
+	}
+
+	public void abrirCriarTopicoPanel(String[] tags) {
+		// Completar
+
+	}
+
+	public void abrirPrincipalForumPanel(String[] tags) {
+		// Completar
+
+	}
+
+	public void abrirPerfilPanel(UsuarioModel usuarioConectado) {
+		// Completar
+
+	}
+
+
 	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivas, String[] topicosMaisCurtidos) {
 		barraVertical.setUsuariosMaisAtivos(usuariosMaisAtivos);
 		barraVertical.setTagsMaisUsadas(tagsMaisAtivas);
 		barraVertical.setTopicosMaisCurtidos(topicosMaisCurtidos);
-	}
-	if(principalForumPanel != null){
-			principalForumPanel.getBtnNext().addActionListener(event);
 	}
 
 	public void setBtnPreviousListener(ActionListener event) {
@@ -127,7 +145,7 @@ public class PrincipalView extends JFrame implements IView{
 
 	public void setBtnResponderTopicoListener(ActionListener event) {
 		if(visualizarTopicoPanel != null) {
-			visualizarTopicoPanel.getBtnResponderTopico().addActionListener(event);
+			visualizarTopicoPanel.getBtnResponder().addActionListener(event);
 		}
 	}
 
@@ -158,6 +176,31 @@ public class PrincipalView extends JFrame implements IView{
 		if(visualizarTopicoPanel != null) {
 			visualizarTopicoPanel.getBtnVoltar().addActionListener(event);
 		}
+	}
+
+	public void setBtnInicioListener(ActionListener event) {
+		barraHorizontal.getBtnInicio().addActionListener(event);
+
+	}
+
+	public void setBtnMeuPerfilListener(ActionListener event) {
+		barraHorizontal.getBtnPerfil().addActionListener(event);
+
+	}
+
+	public void setBtnMinhasPostagensListener(ActionListener event) {
+		barraHorizontal.getBtnPostagens().addActionListener(event);
+	}
+
+	public void setBtnNextListener(ActionListener event) {
+		if(principalForumPanel != null)
+			principalForumPanel.getBtnNext().addActionListener(event);
+
+	}
+
+	public void setBtnSairListener(ActionListener event) {
+		barraHorizontal.getBtnSair().addActionListener(event);
+
 	}
 
 	@Override

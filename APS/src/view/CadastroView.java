@@ -2,9 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -21,7 +24,7 @@ import javax.swing.border.Border;
 import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
-public class CadastroView extends JFrame implements IView, ActionListener{
+public class CadastroView extends JFrame implements IView, ActionListener, KeyListener{
 
 	private JLabel lblTitulo;
 	private JLabel lblNome;
@@ -114,6 +117,22 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		btnLimpar.setBorder(defaultLayout);
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(btnLayout);
+
+		txCidade.addKeyListener(this);
+		cbGenero.addKeyListener(this);
+		txNome.addKeyListener(this);
+		txRespostaSecret.addKeyListener(this);
+		txUsuario.addKeyListener(this);
+		ptxSenha.addKeyListener(this);
+		cbAnoNasc.addKeyListener(this);
+		cbDiaNasc.addKeyListener(this);
+		cbEstado.addKeyListener(this);
+		cbMesNasc.addKeyListener(this);
+		cbPerguntaSecret.addKeyListener(this);
+
+		btnCadastrar.setFocusPainted(false);
+		btnLimpar.setFocusPainted(false);
+		btnVoltar.setFocusPainted(false);
 		
 		setBtnLimparListener(this);
 		
@@ -174,8 +193,13 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		panelPrincipal.add(panelBotoes, "South");
 		
 		getContentPane().add(panelPrincipal);
-		pack();
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(800,600));
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setLocationRelativeTo(null);
+	}
+
+	public void focus() {
+		txNome.grabFocus();
 	}
 
 	public String getNome(){
@@ -250,4 +274,25 @@ public class CadastroView extends JFrame implements IView, ActionListener{
 		this.dispose();
 
 	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			btnVoltar.doClick();
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

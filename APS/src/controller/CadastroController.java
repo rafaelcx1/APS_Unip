@@ -18,8 +18,8 @@ public class CadastroController {
 		cadastroView.setBtnCadastroListener(new BtnCadastroListener());
 		cadastroView.setBtnVoltarListener(new BtnVoltarListener());
 		cadastroView.setVisible(true);
+		cadastroView.focus();
 	}
-
 
 	private class BtnCadastroListener implements ActionListener {
 
@@ -49,8 +49,8 @@ public class CadastroController {
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
 				cadastroView.displayMsg("Usuário cadastrado com sucesso!");
-				cadastroView.fechar();
 				MainController.abrirTelaLogin();
+				cadastroView.fechar();
 			} else {
 				cadastroView.displayMsg(cadastroModel.getMsgErro());
 			}
@@ -62,8 +62,8 @@ public class CadastroController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				cadastroView.fechar();
 				MainController.abrirTelaLogin();
+				cadastroView.fechar();
 			} catch (Exception e2) {
 				cadastroView.displayMsg("Ocorreu um erro ao voltar!" + e2.getMessage());
 			}

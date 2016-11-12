@@ -1,13 +1,9 @@
 package model.tables;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import util.DataUtil;
 
 @Entity
 @Table(name="usuario")
