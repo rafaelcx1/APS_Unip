@@ -62,7 +62,7 @@ public class SenhaView extends JFrame implements IView, KeyListener {
 		div.setBorder(division);
 		div1.setBorder(division);
 
-		JLabel logo = new JLabel(new ImageIcon("logo.png"));
+		JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 		lblTitulo = new JLabel("Esqueci a senha");
 		lblUsuario = new JLabel("Usuário");
 		lblStatusUsuario = new JLabel("Status: Não conferido");
