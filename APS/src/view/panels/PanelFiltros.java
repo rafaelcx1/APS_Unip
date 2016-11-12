@@ -18,6 +18,7 @@ import javax.swing.border.Border;
 import model.models.FiltroModel;
 import net.miginfocom.swing.MigLayout;
 
+@SuppressWarnings("serial")
 public class PanelFiltros extends JPanel {
 	private JLabel lblTag;
 	private JLabel lblData;
@@ -29,23 +30,20 @@ public class PanelFiltros extends JPanel {
 	private JTextField txUsuario;
 	private JButton btnFiltrar;
 	private JButton btnCriarTopico;
-	private String[] tags;
 	private boolean dataAscendente = false;
 
-	public PanelFiltros(String[] tags) {
-		this.tags = tags;
-		
+	public PanelFiltros() {
 		setLayout(new MigLayout());
-		
+
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-		
+
 		lblTag = new JLabel("Tag");
 		lblData = new JLabel("Data");
 		lblUsuario = new JLabel("Usuário");
 		lblTitulo = new JLabel("Título");
 		lblFiltrarData = new JLabel("Recentes");
-		
+
 		lblTag.setForeground(Color.WHITE);
 		lblTag.setFont(word);
 		lblData.setForeground(Color.WHITE);
@@ -56,22 +54,22 @@ public class PanelFiltros extends JPanel {
 		lblTitulo.setFont(word);
 		lblFiltrarData.setForeground(Color.WHITE);
 		lblFiltrarData.setFont(word);
-		
+
 		txTitulo = new JTextField(16);
 		txUsuario = new JTextField(16);
-		
-		jcTags = new JComboBox(tags);
-		
+
+		jcTags = new JComboBox<>();
+
 		btnFiltrar = new JButton("Filtrar");
-		btnCriarTopico = new JButton("", new ImageIcon("create.png"));
-		
+		btnCriarTopico = new JButton("", new ImageIcon("images/create.png"));
+
 		btnFiltrar.setBackground(Color.BLACK);
 		btnFiltrar.setForeground(Color.WHITE);
 		btnFiltrar.setBorder(defaultLayout);
 		btnCriarTopico.setBackground(Color.BLACK);
 		btnCriarTopico.setForeground(Color.WHITE);
 		btnCriarTopico.setBorder(defaultLayout);
-		
+
 		add(lblTag);
 		add(jcTags);
 		add(lblData, "gapleft 16px");
@@ -84,6 +82,12 @@ public class PanelFiltros extends JPanel {
 		add(btnCriarTopico, "gapleft 32px");
 	}
 
+
+	public void setTags(String[] tags) {
+		for(int contador = 0; contador < tags.length; contador++) {
+			jcTags.addItem(tags[contador]);
+		}
+	}
 
     public FiltroModel getFiltroData() {
 	    FiltroModel filtroData = new FiltroModel();

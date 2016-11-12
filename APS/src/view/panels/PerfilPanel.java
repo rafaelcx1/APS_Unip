@@ -3,14 +3,25 @@ package view.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.io.File;
-import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import model.tables.UsuarioModel;
 import net.miginfocom.swing.MigLayout;
 
-public class PerfilPanel extends JPanel {
+@SuppressWarnings("serial")
+public class PerfilPanel extends JPanel implements ItemListener{
 
 	private JLabel lblTitulo;
 	private JLabel lblAvatar;
@@ -23,7 +34,7 @@ public class PerfilPanel extends JPanel {
 	private JLabel lblRespostaSecret;
 	private JLabel lblConfirmarSenha;
 	private JLabel lblNovaSenha;
-	private JTextField txnome;
+	private JTextField txNome;
 	private JComboBox<String> cbFoto;
 	private JComboBox<String> cbGenero;
 	private JComboBox<String> cbDiaNasc;
@@ -38,13 +49,12 @@ public class PerfilPanel extends JPanel {
 	private JButton btnSalvar;
 	private JButton btnVoltar;
 	private UsuarioModel usuario;
-	private JComboBox<Integer> arquivoFoto;
 
 	public PerfilPanel(UsuarioModel usuario) {
+		this.usuario = usuario;
 		setLayout(new BorderLayout());
 
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
-		Font titulo2 = new Font("Open Sans", Font.BOLD , 16);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
@@ -54,7 +64,7 @@ public class PerfilPanel extends JPanel {
 		JPanel profile = new JPanel(new MigLayout("", "[center]"));
 
 		lblTitulo = new JLabel("Perfil");
-		lblAvatar = new JLabel(new ImageIcon("default.png"));
+		lblAvatar = new JLabel(iconAvatar(usuario.getAvatar()));
 		lblNome = new JLabel("Nome");
 		lblGenero = new JLabel("Gênero");
 		lblDataNasc = new JLabel("Data de nascimento");
@@ -64,7 +74,7 @@ public class PerfilPanel extends JPanel {
 		lblRespostaSecret = new JLabel("Resposta secreta");
 		lblConfirmarSenha = new JLabel("Confirmar senha");
 		lblNovaSenha = new JLabel("Nova senha");
-		
+
 		lblTitulo.setFont(titulo1);
 		lblNome.setFont(word);
 		lblGenero.setFont(word);
@@ -75,48 +85,66 @@ public class PerfilPanel extends JPanel {
 		lblRespostaSecret.setFont(word);
 		lblConfirmarSenha.setFont(word);
 		lblNovaSenha.setFont(word);
-		
-		txnome = new JTextField(48);
+
+		txNome = new JTextField(48);
 		txCidade = new JTextField(48);
 		txRespostaSecret = new JTextField(48);
-		
-		txnome.setFont(word);
+
+		txNome.setFont(word);
 		txCidade.setFont(word);
 		txRespostaSecret.setFont(word);
-		
+
 		txConfirmarSenha = new JPasswordField(48);
 		txNovaSenha = new JPasswordField(48);
-		
+
+		String[] perguntas  = {"Qual o nome do primeiro cachorro?", "Qual o nome do primeiro(a) professor(a)?", "Em qual cidade você nasceu?", "Qual sua comida favorita?", "Qual cidade você mais gostou?", "Para onde foi sua primeira viagem?"};
+		String[] fotos = {"Avatar Padrão", "Avatar 1", "Avatar 2", "Avatar 3", "Avatar 4", "Avatar 5", "Avatar 6", "Avatar 7", "Avatar 8", "Avatar 9", "Avatar 10", "Avatar 11", "Avatar 12", "Avatar 13", "Avatar 14", "Avatar 15", "Avatar 16", "Mago", "Ninja", "Pirata", "Preguiça", "Rainha", "Robô", "Urso", "Zumbi"};
 		String[] generos = {"Masculino", "Feminino"};
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		String[] meses = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
 		Integer[] anos = new Integer[117];
-		
+
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
 			anos[a] = i;
 		}
-		
-		cbFoto = new JComboBox<String>(new String[]{"Padrão", "Abelha", "Alien", "Âncora", "Arqueiro", "Avatar 1", "Avatar 2", "Avatar 3", "Avatar 4", "Avatar 5", "Avatar 6", "Avatar 7", "Avatar 8", "Avatar 9", "Avatar 10", "Avatar 11", "Avatar 12", "Avatar 13", "Avatar 14", "Avatar 15", "Avatar 16", "Avião", "Balão", "Baleia", "Bola", "Bomba", "Cão", "Caveira", "Cupcake", "Dinossauro", "Dragão", "Espada", "Fênix", "Fusca", "Galo", "Gato", "Girassol", "Hamburguer", "Japonesa", "Leite", "Lhama", "Mago", "Mapa", "Nave", "Ninja", "Pirata", "Preguiça", "Rainha", "Raposa", "Robô", "Robô 1", "Soldado", "Taco", "Tesouro", "Tubarão", "Urso", "Urso 1", "Veneno", "Zumbi"});
+
+		cbFoto = new JComboBox<String>(fotos);
 		cbGenero = new JComboBox<String>(generos);
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
 		cbAnoNasc = new JComboBox<Integer>(anos);
 		cbEstado = new JComboBox<String>(estados);
-		cbPerguntaSecret = new JComboBox<String>(generos);
-		
+		cbPerguntaSecret = new JComboBox<String>(perguntas);
+
 		btnSalvar = new JButton("Salvar");
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
+		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setForeground(Color.WHITE);
 		btnSalvar.setBorder(defaultLayout);
-		
+
+		txCidade.setText(usuario.getCidade());
+		txNome.setText(usuario.getNome());
+		txRespostaSecret.setText(usuario.getRespostaSecret());
+
+		String[] dataNasc = usuario.getDataNasc().split("/");
+		cbAnoNasc.setSelectedItem(Integer.parseInt(dataNasc[2]));
+		cbMesNasc.setSelectedItem(Integer.parseInt(dataNasc[1]));
+		cbDiaNasc.setSelectedItem(Integer.parseInt(dataNasc[0]));
+
+		cbEstado.setSelectedItem(usuario.getEstado());
+		cbGenero.setSelectedItem(usuario.getGenero());
+		cbPerguntaSecret.setSelectedItem(usuario.getPerguntaSecret());
+		cbFoto.setSelectedIndex(usuario.getAvatar());
+
+		cbFoto.addItemListener(this);
+
 		profile.add(lblAvatar, "wrap 16");
 		profile.add(cbFoto);
-		
+
 		fieldset.add(lblNome);
-		fieldset.add(txnome, "wrap 16, gapleft 16, grow");
+		fieldset.add(txNome, "wrap 16, gapleft 16, grow");
 		fieldset.add(lblGenero);
 		fieldset.add(cbGenero, "wrap 16, gapleft 16, grow");
 		fieldset.add(lblDataNasc);
@@ -135,11 +163,11 @@ public class PerfilPanel extends JPanel {
 		fieldset.add(txNovaSenha, "wrap 16, gapleft 16, grow");
 		fieldset.add(lblConfirmarSenha);
 		fieldset.add(txConfirmarSenha, "wrap 16, gapleft 16, grow");
-		
+
 		main.add(lblTitulo, "span, wrap 16");
 		main.add(profile);
 		main.add(fieldset);
-		
+
 		footer.add(btnSalvar);
 
 		add(main, "Center");
@@ -154,8 +182,175 @@ public class PerfilPanel extends JPanel {
 		return btnSalvar;
 	}
 
-	public UsuarioModel getUsuarioModel() {
-		return null;
+	public boolean trocarSenha() {
+		if(String.valueOf(txNovaSenha.getPassword()).equals("") & String.valueOf(txConfirmarSenha.getPassword()).equals("")) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
+	public boolean validarSenha() {
+		if(txNovaSenha.getPassword().equals(txConfirmarSenha.getPassword())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public UsuarioModel getUsuarioModel() {
+		UsuarioModel usuarioAtt = usuario;
+		usuarioAtt.setAvatar(cbFoto.getSelectedIndex());
+		usuarioAtt.setCidade(txCidade.getText());
+		usuarioAtt.setEstado((String) cbEstado.getSelectedItem());
+		usuarioAtt.setNome(txNome.getText());
+		usuarioAtt.setGenero((String) cbGenero.getSelectedItem());
+		usuarioAtt.setPerguntaSecret((String) cbPerguntaSecret.getSelectedItem());
+		usuarioAtt.setRespostaSecret(txRespostaSecret.getText());
+		usuarioAtt.setDataNasc((String) cbDiaNasc.getSelectedItem() + "/" + (String) cbMesNasc.getSelectedItem() + "/" + (String) cbAnoNasc.getSelectedItem());
+		if(trocarSenha() == true) {
+			usuarioAtt.setSenha(String.valueOf(txNovaSenha.getPassword()));
+		}
+		return usuarioAtt;
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		Integer fotoSelecionada = (Integer) e.getSource();
+		lblAvatar = new JLabel(iconAvatar(fotoSelecionada));
+	}
+
+	public Icon iconAvatar(int avatarInt) {
+		int foto = 0;
+		for(int contador = 0; contador < 7; contador++) {
+			if(avatarInt == Integer.parseInt(cbFoto.getItemAt(contador))) {
+				foto = contador;
+				break;
+			}
+		}
+
+		Icon avatar = new ImageIcon();
+		switch (foto) {
+			case 0: {
+				avatar = new ImageIcon("avatar/default.png");
+				break;
+			}
+			case 1: {
+				avatar = new ImageIcon("avatar/avatar1.png");
+				break;
+			}
+			case 2: {
+				avatar = new ImageIcon("avatar/avatar2.png");
+				break;
+			}
+			case 3: {
+				avatar = new ImageIcon("avatar/avatar3.png");
+				break;
+			}
+			case 4: {
+				avatar = new ImageIcon("avatar/avatar4.png");
+				break;
+			}
+			case 5: {
+				avatar = new ImageIcon("avatar/avatar5.png");
+				break;
+			}
+			case 6: {
+				avatar = new ImageIcon("avatar/avatar6.png");
+				break;
+			}
+
+			case 7: {
+				avatar = new ImageIcon("avatar/avatar7.png");
+				break;
+			}
+
+			case 8: {
+				avatar = new ImageIcon("avatar/avatar8.png");
+				break;
+			}
+
+			case 9: {
+				avatar = new ImageIcon("avatar/avatar9.png");
+				break;
+			}
+
+			case 10: {
+				avatar = new ImageIcon("avatar/avatar10.png");
+				break;
+			}
+
+			case 11: {
+				avatar = new ImageIcon("avatar/avatar11.png");
+				break;
+			}
+
+			case 12: {
+				avatar = new ImageIcon("avatar/avatar12.png");
+				break;
+			}
+
+			case 13: {
+				avatar = new ImageIcon("avatar/avatar13.png");
+				break;
+			}
+
+			case 14: {
+				avatar = new ImageIcon("avatar/avatar14.png");
+				break;
+			}
+
+			case 15: {
+				avatar = new ImageIcon("avatar/avatar15.png");
+				break;
+			}
+
+			case 16: {
+				avatar = new ImageIcon("avatar/avatar16.png");
+				break;
+			}
+
+			case 17: {
+				avatar = new ImageIcon("avatar/mago.png");
+				break;
+			}
+
+			case 18: {
+				avatar = new ImageIcon("avatar/ninja.png");
+				break;
+			}
+
+			case 19: {
+				avatar = new ImageIcon("avatar/pirata.png");
+				break;
+			}
+
+			case 20: {
+				avatar = new ImageIcon("avatar/preguiça.png");
+				break;
+			}
+
+			case 21: {
+				avatar = new ImageIcon("avatar/rainha.png");
+				break;
+			}
+
+			case 22: {
+				avatar = new ImageIcon("avatar/robo.png");
+				break;
+			}
+
+			case 23: {
+				avatar = new ImageIcon("avatar/urso.png");
+				break;
+			}
+
+			case 24: {
+				avatar = new ImageIcon("avatar/zumbi.png");
+				break;
+			}
+
+		}
+		return avatar;
+	}
 }

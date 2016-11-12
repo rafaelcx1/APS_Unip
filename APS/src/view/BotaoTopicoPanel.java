@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JButton;
 
+@SuppressWarnings("serial")
 public class BotaoTopicoPanel extends JButton {
 
 	private int idTopico;

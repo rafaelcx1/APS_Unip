@@ -15,6 +15,7 @@ import model.tables.PostagemModel;
 import net.miginfocom.swing.MigLayout;
 import util.DataUtil;
 
+@SuppressWarnings("serial")
 public class ResponderTopicoPanel extends JPanel {
       private JLabel lblTitulo;
       private JLabel lblTextoResposta;
@@ -23,29 +24,29 @@ public class ResponderTopicoPanel extends JPanel {
       private int idTopico;
 
       public ResponderTopicoPanel(int idTopico) {
-    	  
-    	  setLayout(new MigLayout("fillx"));
-    	  	
+
+    	  	setLayout(new MigLayout("fillx"));
+
     	  	Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
     	  	Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-    	  	
+
             this.idTopico = idTopico;
-            
+
             lblTitulo = new JLabel("Resposta");
             lblTextoResposta = new JLabel("Texto");
-            
+
             lblTitulo.setFont(titulo1);
-            
+
             taTextoPost = new JTextArea(8, 0);
-            
+
             taTextoPost.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            
+
             btnPostarResposta = new JButton("Responder");
-            
+
             btnPostarResposta.setBackground(Color.BLACK);
             btnPostarResposta.setForeground(Color.WHITE);
             btnPostarResposta.setBorder(defaultLayout);
-            
+
             add(lblTitulo, "wrap 16");
             add(lblTextoResposta, "wrap 16");
             add(taTextoPost, "wrap 16, grow");
@@ -61,9 +62,9 @@ public class ResponderTopicoPanel extends JPanel {
       }
 
       public PostagemModel getPostagemModel() {
-        PostagemModel postagem = new PostagemModel();
-        postagem.setTextoPost(taTextoPost.getText());
-        postagem.setDataPost(DataUtil.format(LocalDate.now()));
-    	  return postagem;
+    	  	PostagemModel postagem = new PostagemModel();
+        	postagem.setTextoPost(taTextoPost.getText());
+        	postagem.setDataPost(DataUtil.format(LocalDate.now()));
+    		return postagem;
       }
 }

@@ -229,7 +229,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<UsuarioAtivoModel> usuariosAtivos = null;
 			if(factory != null & manager != null)
-				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from PostagemModel p group by p.usuario order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from UsuarioModel order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
 
 			return usuariosAtivos;
 		} catch(Exception e) {
@@ -264,7 +264,7 @@ public class DAOForum {
 			int rows = 0;
 			manager.getTransaction().begin();
 			if(factory != null & manager != null) {
-				if(curtir)
+				if(!curtir)
 					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas + 1 where t.idTopico = " + idTopico).executeUpdate();
 				else
 					rows = manager.createQuery("update TopicoModel t set t.qtdCurtidas = t.qtdCurtidas - 1 where t.idTopico = " + idTopico).executeUpdate();
@@ -327,13 +327,14 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
-				manager.persist(topico);
+				manager.merge(topico);
+				manager.createQuery("update UsuarioModel u set u.qtdPostagem = u.qtdPostagem + 1 where u.usuario = " + topico.getUsuario().getUsuario()).executeUpdate();
 				manager.getTransaction().commit();
 			}
 			return true;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao postar o tÃ³pico.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
 			return false;
 		} finally {
 			closeConexaoEntity();

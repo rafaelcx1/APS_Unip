@@ -30,8 +30,10 @@ public class UsuarioModel {
 	private String respostaSecret;
 	@Column(name = "dataCadastro")
 	private String dataCadastro;
+	@Column(name = "qtdPostagens")
+	private int qtdPostagens;
 	@Column(name = "avatar")
-	private int avatar;
+ 	private int avatar;
 
 	public String getNome() {
 		return nome;
@@ -111,6 +113,14 @@ public class UsuarioModel {
 
 	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
+	}
+
+	public int getQtdPostagens() {
+		return qtdPostagens;
+	}
+
+	public void setQtdPostagens(int qtdPostagens) {
+		this.qtdPostagens = qtdPostagens;
 	}
 
 	public int getAvatar() {

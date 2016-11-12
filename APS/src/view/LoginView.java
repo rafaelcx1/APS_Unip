@@ -41,53 +41,53 @@ public class LoginView extends JFrame implements IView{
 	public LoginView(){
 		super("JSolve - Fórum");
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-		Color background = new Color(0xE0E0E0); 
+		Color background = new Color(0xE0E0E0);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
-		ImageIcon logo = new ImageIcon("logo.png");
-		
+		ImageIcon logo = new ImageIcon("images/logo.png");
+
 		panelPrincipal = new JPanel(new MigLayout("fillx, insets 25% 0% 0% 0%", "[center]rel[grow,fill]", ""));
 		JPanel fieldset = new JPanel(new MigLayout());
 		JPanel actions = new JPanel(new MigLayout());
 		JPanel others = new JPanel(new MigLayout());
-		
+
 		tituloPrincipal = new JLabel(logo);
 		lblUsuario = new JLabel("Usuário");
 		lblSenha = new JLabel("Senha");
 		lblEsqueciSenha = new JLabel("Esqueci minha senha");
 		lblCadastrar = new JLabel("Criar uma conta");
 		JLabel lblDivider = new JLabel(" | ");
-		
+
 		lblUsuario.setFont(word);
 		lblSenha.setFont(word);
-		
+
 		txUsuario = new JTextField(28);
 		txSenha = new JPasswordField(28);
-		
+
 		txUsuario.setFont(word);
 		txSenha.setFont(word);
-		
+
 		btnLogar = new JButton("Entrar");
 		btnSair = new JButton("Sair");
-		
+
 		btnLogar.setForeground(Color.white);
 		btnLogar.setBorder(defaultLayout);
 		btnLogar.setBackground(Color.BLACK);
 		btnSair.setForeground(Color.white);
 		btnSair.setBackground(Color.BLACK);
 		btnSair.setBorder(defaultLayout);
-		
+
 		actions.add(btnSair);
 		actions.add(btnLogar);
-		
+
 		actions.setBackground(background);
-		
+
 		others.add(lblEsqueciSenha);
 		others.add(lblDivider);
 		others.add(lblCadastrar);
-		
+
 		others.setBackground(background);
-		
+
 		fieldset.add(tituloPrincipal, "span, center, wrap 32");
 		fieldset.add(lblUsuario);
 		fieldset.add(txUsuario, "wrap 8");
@@ -95,13 +95,13 @@ public class LoginView extends JFrame implements IView{
 		fieldset.add(txSenha, " wrap 16");
 		fieldset.add(actions, "span, center, wrap 64");
 		fieldset.add(others, "span, center");
-		
+
 		fieldset.setBackground(background);
 
 		btnSair.setFocusPainted(false);
 		btnLogar.setFocusable(false);
 		panelPrincipal.add(fieldset, "span");
-		
+
 		panelPrincipal.setBackground(background);
 		panelPrincipal.setBorder(new MatteBorder(4,4,4,4, new Color(0,0,0)));
 
@@ -184,9 +184,5 @@ public class LoginView extends JFrame implements IView{
 	@Override
 	public void displayMsg(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
-	}
-	
-	public static void main(String[] args){
-		new LoginView();
 	}
 }

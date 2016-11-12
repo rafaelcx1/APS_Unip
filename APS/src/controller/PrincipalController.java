@@ -49,7 +49,7 @@ public class PrincipalController {
 			int idTopico = botaoTopicoPanel.getIdTopico();
 			boolean curtir = principalView.getPrincipalForumPanel().getTopicoPanel(idTopico).isCurtido();
 			if(principalModel.curtirTopico(idTopico, curtir)) {
-				principalView.getPrincipalForumPanel().curtir(idTopico);
+				principalView.getPrincipalForumPanel().getTopicoPanel(idTopico).curtir();
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -61,14 +61,17 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			UsuarioModel usuarioModel = new UsuarioModel();
-			usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
-			if(principalModel.atualizarPerfil(usuarioModel)){
-				principalView.displayMsg("Perfil atualizado !");
-			}else{
-				principalView.displayMsg(principalModel.getMsgErro());
+			if(principalView.getPerfilPanel().validarSenha()) {
+				UsuarioModel usuarioModel = new UsuarioModel();
+				usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
+				if(principalModel.atualizarPerfil(usuarioModel)){
+					principalView.displayMsg("Perfil atualizado !");
+				}else{
+					principalView.displayMsg(principalModel.getMsgErro());
+				}
+			} else {
+				principalView.displayMsg("Os campos de senha tem que conter valores iguais!");
 			}
-
 		}
 
 	}
@@ -113,7 +116,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel(principalModel.getTags());
+			principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
 		}
 
 	}
@@ -160,7 +163,7 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel(principalModel.getTags());
+			principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
 		}
 
 	}
@@ -186,9 +189,9 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			PostagemModel postagem = principalView.getResponderTopicoPanel().getPostagemModel();
+			PostagemModel postagem = principalView.getVisualizarTopicoPanel().getResponderTopicoPanel().getPostagemModel();
 			postagem.setUsuario(MainController.getUsuarioConectado());
-			int idTopico = principalView.getResponderTopicoPanel().getIdTopico();
+			int idTopico = principalView.getVisualizarTopicoPanel().getResponderTopicoPanel().getIdTopico();
 			if(principalModel.postarPostagem(idTopico, postagem)) {
 				principalView.displayMsg("Postagem feita com sucesso!");
 			} else {

@@ -12,39 +12,38 @@ import javax.swing.border.Border;
 import model.tables.PostagemModel;
 import net.miginfocom.swing.MigLayout;
 
+@SuppressWarnings("serial")
 public class VisualizarTopicoPanel extends JPanel {
 
 	private JButton btnResponder;
 	private JButton btnVoltar;
 	private PanelPostagem[] posts;
 	private ResponderTopicoPanel panelResposta;
+	private JPanel main;
 
-	public VisualizarTopicoPanel(PostagemModel[] posts) {
+	public VisualizarTopicoPanel() {
 		setLayout(new BorderLayout());
-		
+
 		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-		
+
 		JPanel header = new JPanel(new MigLayout());
-		JPanel main = new JPanel(new MigLayout("fillx"));
-	
+		main = new JPanel(new MigLayout("fillx"));
+
 		header.setBackground(new Color(0x212121));
-		
+
 		btnResponder = new JButton("Responder");
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
+		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+
 		btnResponder.setBackground(Color.BLACK);
 		btnResponder.setForeground(Color.WHITE);
 		btnResponder.setBorder(defaultLayout);
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(btnLayout);
-		
+
 		header.add(btnVoltar);
 		header.add(btnResponder, "gapleft 85%");
-		
-		main.add(new PanelPostagem(null), "grow, wrap 16");
-		main.add(new ResponderTopicoPanel(0), "grow, wrap 16");
-		
+
 		add(header, "North");
 		add(main, "Center");
 	}
@@ -63,5 +62,26 @@ public class VisualizarTopicoPanel extends JPanel {
 
 	public void abrirPanelResposta() {
 		int idTopico = getIdTopico();
+		panelResposta = new ResponderTopicoPanel(idTopico);
+		main.add(panelResposta, "grow, wrap 16");
+	}
+
+	public JButton getBtnPostarResposta() {
+		if(panelResposta != null) {
+			return panelResposta.getBtnPostarResposta();
+		} else {
+			return null;
+		}
+	}
+
+	public ResponderTopicoPanel getResponderTopicoPanel() {
+		return panelResposta;
+	}
+
+	public void setPostagens(PostagemModel[] postagens) {
+		for(int contador = 0; contador < postagens.length; contador++) {
+			posts[contador] = new PanelPostagem(postagens[contador]);
+			main.add(posts[contador], "grow, wrap 16");
+		}
 	}
 }

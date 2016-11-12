@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 import model.CadastroModel;
 import model.tables.UsuarioModel;
@@ -46,9 +47,12 @@ public class CadastroController {
 			usuarioModel.setCidade(cidade);
 			usuarioModel.setPerguntaSecret(perguntaSecreta);
 			usuarioModel.setRespostaSecret(respostaSecreta);
+			usuarioModel.setQtdPostagens(0);
+			usuarioModel.setDataCadastro(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonth() + "/" + LocalDate.now().getYear());
+			usuarioModel.setAvatar(0);
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {
-				cadastroView.displayMsg("Usu√°rio cadastrado com sucesso!");
+				cadastroView.displayMsg("Usu·rio cadastrado com sucesso!");
 				MainController.abrirTelaLogin();
 				cadastroView.fechar();
 			} else {

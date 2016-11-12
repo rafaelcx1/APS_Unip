@@ -20,6 +20,7 @@ import model.tables.TopicoModel;
 import net.miginfocom.swing.MigLayout;
 import util.DataUtil;
 
+@SuppressWarnings("serial")
 public class CriarTopicoPanel extends JPanel{
 
 	private JLabel lblTitulo;
@@ -34,47 +35,47 @@ public class CriarTopicoPanel extends JPanel{
 
 	public CriarTopicoPanel(String[] tags) {
 		setLayout(new BorderLayout());
-		
+
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
 		Font titulo2 = new Font("Open Sans", Font.BOLD , 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
-		
+
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel main = new JPanel(new MigLayout("fillx, insets 12%", "[center]"));
 		JPanel footer = new JPanel(new MigLayout("fillx", "[center]"));
-		
+
 		panelHeader.setBackground(new Color(0x212121));
-		
+
 		lblTitulo = new JLabel("Criar tópico");
 		lblTituloTopico = new JLabel("Titulo");
 		lblTag = new JLabel("Tags");
 		lblTextoPostagem = new JLabel("Texto");
-		
+
 		lblTitulo.setFont(titulo1);
 		lblTitulo.setHorizontalAlignment(JLabel.CENTER);
 		lblTituloTopico.setFont(titulo2);
 		lblTag.setFont(titulo2);
 		lblTextoPostagem.setFont(titulo2);
-		
+
 		txTitulo = new JTextField(48);
-		
-		cbTag = new JComboBox(tags);
-		
+
+		cbTag = new JComboBox<>(tags);
+
 		taTextoPostagem = new JTextArea(8, 0);
-		
+
 		taTextoPostagem.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
+
 		btnPostarTopico = new JButton("Criar");
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
+		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+
 		btnPostarTopico.setBorder(defaultLayout);
 		btnPostarTopico.setBackground(Color.BLACK);
 		btnPostarTopico.setForeground(Color.WHITE);
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(defaultLayout);
-		
+
 		panelHeader.add(btnVoltar);
-		
+
 		main.add(lblTitulo, "wrap 16");
 		main.add(lblTituloTopico, "wrap");
 		main.add(txTitulo, "wrap 16, grow, height 32px");
@@ -82,9 +83,9 @@ public class CriarTopicoPanel extends JPanel{
 		main.add(cbTag, "wrap 16");
 		main.add(lblTextoPostagem, "wrap 16");
 		main.add(taTextoPostagem, "grow");
-		
+
 		footer.add(btnPostarTopico);
-		
+
 		add(panelHeader, "North");
 		add(main, "Center");
 		add(footer, "South");

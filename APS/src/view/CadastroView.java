@@ -59,17 +59,17 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
-		
+
 		JPanel panelHeader = new JPanel(new MigLayout());
 		JPanel fieldset = new JPanel(new MigLayout("fillx", "[center]"));
 		JPanel subFieldset = new JPanel(new MigLayout());
 		JPanel subBotoes = new JPanel();
 		panelPrincipal = new JPanel(new BorderLayout());
 		panelBotoes = new JPanel(new MigLayout("fillx", "[center]"));
-		
+
 		panelHeader.setBackground(new Color(0x212121));
-		
-		JLabel logo = new JLabel(new ImageIcon("logo.png"));
+
+		JLabel logo = new JLabel(new ImageIcon("images/logo.png"));
 		lblTitulo = new JLabel("Criar uma conta");
 		lblNome = new JLabel("Nome");
 		lblUsuario = new JLabel("Usuário");
@@ -80,7 +80,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		lblCidade = new JLabel("Cidade");
 		lblPerguntaSecret = new JLabel("Pergunta secreta");
 		lblRespostaSecret = new JLabel("Resposta secreta");
-		
+
 		lblTitulo.setFont(new Font("Open Sans", Font.BOLD, 18));
 		lblTitulo.setForeground(Color.WHITE);
 		lblNome.setFont(word);
@@ -92,23 +92,23 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		lblCidade.setFont(word);
 		lblPerguntaSecret.setFont(word);
 		lblRespostaSecret.setFont(word);
-		
+
 		txNome = new JTextField(48);
 		txUsuario = new JTextField(48);
 		ptxSenha = new JPasswordField(48);
 		txCidade = new JTextField(48);
 		txRespostaSecret = new JTextField(48);
-		
+
 		txNome.setFont(word);
 		txUsuario.setFont(word);
 		ptxSenha.setFont(word);
 		txCidade.setFont(word);
 		txRespostaSecret.setFont(word);
-		
-		btnCadastrar = new JButton("Cadastrar", new ImageIcon("create.png"));
-		btnLimpar = new JButton("Limpar", new ImageIcon("clear.png"));
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
-		
+
+		btnCadastrar = new JButton("Cadastrar", new ImageIcon("images/create.png"));
+		btnLimpar = new JButton("Limpar", new ImageIcon("images/clear.png"));
+		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+
 		btnCadastrar.setBackground(Color.BLACK);
 		btnCadastrar.setForeground(Color.WHITE);
 		btnCadastrar.setBorder(defaultLayout);
@@ -133,17 +133,17 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		btnCadastrar.setFocusPainted(false);
 		btnLimpar.setFocusPainted(false);
 		btnVoltar.setFocusPainted(false);
-		
+
 		setBtnLimparListener(this);
-		
+
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		String[] meses = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
 		Integer[] anos = new Integer[117];
-		
+
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
 			anos[a] = i;
 		}
-		
+
 		String[] generos = {"Masculino", "Feminino"};
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 		String[] perguntas  = {"Qual o nome do primeiro cachorro?", "Qual o nome do primeiro(a) professor(a)?", "Em qual cidade você nasceu?", "Qual sua comida favorita?", "Qual cidade você mais gostou?", "Para onde foi sua primeira viagem?"};
@@ -158,10 +158,10 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 
 		subBotoes.add(btnLimpar);
 		subBotoes.add(btnCadastrar);
-		
+
 		panelHeader.add(btnVoltar);
 		panelHeader.add(lblTitulo);
-		
+
 		subFieldset.add(logo, "wrap 64, span, center");
 		subFieldset.add(lblNome);
 		subFieldset.add(txNome, "wrap 16, gapleft 16");
@@ -183,15 +183,15 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		subFieldset.add(cbPerguntaSecret, "wrap 16, grow, gapleft 16");
 		subFieldset.add(lblRespostaSecret);
 		subFieldset.add(txRespostaSecret, "gapleft 16");
-		
+
 		fieldset.add(subFieldset);
-		
+
 		panelBotoes.add(subBotoes);
-		
+
 		panelPrincipal.add(panelHeader, "North");
 		panelPrincipal.add(fieldset, "Center");
 		panelPrincipal.add(panelBotoes, "South");
-		
+
 		getContentPane().add(panelPrincipal);
 		setMinimumSize(new Dimension(800,600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -274,7 +274,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		this.dispose();
 
 	}
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub

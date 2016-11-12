@@ -48,7 +48,6 @@ public class SenhaView extends JFrame implements IView, KeyListener {
 	public SenhaView(){
 		super("JSolve - Fórum: Esqueci a Senha");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		MatteBorder division = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xBDBDBD));
 		JPanel panelHeader = new JPanel(new MigLayout());
@@ -85,10 +84,10 @@ public class SenhaView extends JFrame implements IView, KeyListener {
 		txResposta.setEnabled(false);
 		txNovaSenha.setEnabled(false);
 		txConferirSenha.setEnabled(false);
-		btnConferirUsuario = new JButton("Conferir", new ImageIcon("create.png"));
-		btnConferirResposta = new JButton("Conferir", new ImageIcon("create.png"));
-		btnConcluir = new JButton("Alterar senha", new ImageIcon("create.png"));
-		btnVoltar = new JButton("", new ImageIcon("back.png"));
+		btnConferirUsuario = new JButton("Conferir", new ImageIcon("images/create.png"));
+		btnConferirResposta = new JButton("Conferir", new ImageIcon("images/create.png"));
+		btnConcluir = new JButton("Alterar senha", new ImageIcon("images/create.png"));
+		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
 
 		btnConferirResposta.setEnabled(false);
 		btnConcluir.setEnabled(false);
