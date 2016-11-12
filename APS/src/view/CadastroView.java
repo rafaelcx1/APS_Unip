@@ -118,17 +118,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(btnLayout);
 
-		txCidade.addKeyListener(this);
-		cbGenero.addKeyListener(this);
-		txNome.addKeyListener(this);
-		txRespostaSecret.addKeyListener(this);
-		txUsuario.addKeyListener(this);
-		ptxSenha.addKeyListener(this);
-		cbAnoNasc.addKeyListener(this);
-		cbDiaNasc.addKeyListener(this);
-		cbEstado.addKeyListener(this);
-		cbMesNasc.addKeyListener(this);
-		cbPerguntaSecret.addKeyListener(this);
+		
 
 		btnCadastrar.setFocusPainted(false);
 		btnLimpar.setFocusPainted(false);
@@ -153,6 +143,17 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		cbEstado = new JComboBox<String>(estados);
 		cbGenero = new JComboBox<String>(generos);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
+		cbGenero.addKeyListener(this);
+		txCidade.addKeyListener(this);
+		txNome.addKeyListener(this);
+		txRespostaSecret.addKeyListener(this);
+		txUsuario.addKeyListener(this);
+		ptxSenha.addKeyListener(this);
+		cbAnoNasc.addKeyListener(this);
+		cbDiaNasc.addKeyListener(this);
+		cbEstado.addKeyListener(this);
+		cbMesNasc.addKeyListener(this);
+		cbPerguntaSecret.addKeyListener(this);
 
 		cbEstado.setSelectedIndex(24);
 
