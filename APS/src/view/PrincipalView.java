@@ -45,7 +45,7 @@ public class PrincipalView extends JFrame implements IView{
 
 		barraHorizontal.setBackground(new Color(0x212121));
 
-		JScrollPane mainPage = new JScrollPane(visualizarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane mainPage = new JScrollPane(perfilPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		mainContent.add(mainPage, "grow, height 100%, split");

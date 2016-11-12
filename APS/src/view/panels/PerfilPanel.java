@@ -97,7 +97,7 @@ public class PerfilPanel extends JPanel {
 			anos[a] = i;
 		}
 		
-		cbFoto = new JComboBox<String>(generos);
+		cbFoto = new JComboBox<String>(new String[]{"Padrão", "Abelha", "Alien", "Âncora", "Arqueiro", "Avatar 1", "Avatar 2", "Avatar 3", "Avatar 4", "Avatar 5", "Avatar 6", "Avatar 7", "Avatar 8", "Avatar 9", "Avatar 10", "Avatar 11", "Avatar 12", "Avatar 13", "Avatar 14", "Avatar 15", "Avatar 16", "Avião", "Balão", "Baleia", "Bola", "Bomba", "Cão", "Caveira", "Cupcake", "Dinossauro", "Dragão", "Espada", "Fênix", "Fusca", "Galo", "Gato", "Girassol", "Hamburguer", "Japonesa", "Leite", "Lhama", "Mago", "Mapa", "Nave", "Ninja", "Pirata", "Preguiça", "Rainha", "Raposa", "Robô", "Robô 1", "Soldado", "Taco", "Tesouro", "Tubarão", "Urso", "Urso 1", "Veneno", "Zumbi"});
 		cbGenero = new JComboBox<String>(generos);
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
