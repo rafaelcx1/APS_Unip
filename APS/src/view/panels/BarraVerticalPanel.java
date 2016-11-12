@@ -15,9 +15,6 @@ public class BarraVerticalPanel extends JPanel {
 	private JLabel lblUsuarios;
 	private JLabel lblTags;
 	private JLabel lblTopicos;
-	private String[] usuariosMaisAtivos;
-	private String[] tagsMaisUsadas;
-	private String[] topicosMaisCurtidos;
 
 	public BarraVerticalPanel() {
 		JPanel main = new JPanel(new MigLayout("", "[100%]"));
@@ -27,22 +24,9 @@ public class BarraVerticalPanel extends JPanel {
 		lblTituloUsuarios = new JLabel("Usuários mais ativos");
 		lblTituloTags = new JLabel("Tags mais usadas");
 		lblTituloTopicos = new JLabel("Tópicos mais curtidos");
-
-		String texto = null;
-		for(int contador = 0; contador < usuariosMaisAtivos.length; contador++) {
-			texto = usuariosMaisAtivos[contador] + "\n";
-		}
-		lblUsuarios.setText(texto);
-
-		for(int contador = 0; contador < tagsMaisUsadas.length; contador++) {
-			texto = tagsMaisUsadas[contador] + "\n";
-		}
-		lblTags.setText(texto);
-
-		for(int contador = 0; contador < topicosMaisCurtidos.length; contador++) {
-			texto = topicosMaisCurtidos[contador] + "\n";
-		}
-		lblTopicos.setText(texto);
+		lblUsuarios = new JLabel("");
+		lblTags = new JLabel("");
+		lblTopicos = new JLabel("");
 
 		lblTituloUsuarios.setFont(titulo);
 		lblTituloTags.setFont(titulo);
@@ -59,15 +43,27 @@ public class BarraVerticalPanel extends JPanel {
 	}
 
 	public void setUsuariosMaisAtivos(String[] usuariosMaisAtivos) {
-		this.usuariosMaisAtivos = usuariosMaisAtivos;
+		String texto = "";
+		for(int contador = 0; contador < usuariosMaisAtivos.length; contador++) {
+			texto = usuariosMaisAtivos[contador] + "\n";
+		}
+		lblUsuarios.setText(texto);
 	}
 
 	public void setTagsMaisUsadas(String[] tagsMaisUsadas) {
-		this.tagsMaisUsadas = tagsMaisUsadas;
+		String texto = "";
+		for(int contador = 0; contador < tagsMaisUsadas.length; contador++) {
+			texto = tagsMaisUsadas[contador] + "\n";
+		}
+		lblTags.setText(texto);
 	}
 
-	public void setTopicosMaisCurtidos(String[] topicosMaisCurtidas) {
-		this.topicosMaisCurtidos = topicosMaisCurtidas;
+	public void setTopicosMaisCurtidos(String[] topicosMaisCurtidos) {
+		String texto = "";
+		for(int contador = 0; contador < topicosMaisCurtidos.length; contador++) {
+			texto = topicosMaisCurtidos[contador] + "\n";
+		}
+		lblTopicos.setText(texto);
 	}
 
 	public void setLblTituloUsuarios(String titulo) {

@@ -74,10 +74,6 @@ public class PanelTopicosPrincipal extends JPanel {
 		add(buttons, "width 10%, gapleft 60%");
 
 	}
-
-	public PanelTopicosPrincipal(String[] tags) {
-	}
-
 	public BotaoTopicoPanel getBtnCurtir() {
 		return btnCurtir;
 	}

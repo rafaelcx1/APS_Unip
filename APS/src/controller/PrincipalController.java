@@ -19,6 +19,7 @@ public class PrincipalController {
 	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView){
 		this.principalModel = principalModel;
 		this.principalView = principalView;
+		principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
 
 		principalView.setBtnCriarTopicoListener(new BtnCriarTopicoListener());
 		principalView.setBtnCurtirListener(new BtnCurtirListener());

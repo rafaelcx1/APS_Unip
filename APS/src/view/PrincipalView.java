@@ -143,7 +143,8 @@ public class PrincipalView extends JFrame implements IView{
 	public void setBtnCurtirListener(ActionListener event) {
 		if(principalForumPanel != null) {
 			for(int contador = 0; contador < 5; contador++) {
-				principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+				if(principalForumPanel.getBtnCurtir(contador) != null)
+					principalForumPanel.getBtnCurtir(contador).addActionListener(event);
 			}
 		}
 	}
@@ -151,7 +152,8 @@ public class PrincipalView extends JFrame implements IView{
 	public void setBtnVisualizarListener(ActionListener event) {
 		if(principalForumPanel != null) {
 			for(int contador = 0; contador < 5; contador++) {
-				principalForumPanel.getBtnCurtir(contador).addActionListener(event);
+				if(principalForumPanel.getBtnVisualizar(contador) != null)
+					principalForumPanel.getBtnVisualizar(contador).addActionListener(event);
 			}
 		}
 	}

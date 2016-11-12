@@ -108,20 +108,30 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public BotaoTopicoPanel getBtnCurtir(int posicaoBotao) {
-		return topicosPanel[posicaoBotao].getBtnCurtir();
+		if(topicosPanel[posicaoBotao] != null) {
+			return topicosPanel[posicaoBotao].getBtnCurtir();
+		} else {
+			return null;
+		}
 	}
 
 	public BotaoTopicoPanel getBtnVisualizar(int posicaoBotao) {
-		return topicosPanel[posicaoBotao].getBtnVisualizar();
+		if(topicosPanel[posicaoBotao] != null) {
+			return topicosPanel[posicaoBotao].getBtnVisualizar();
+		} else {
+			return null;
+		}
 	}
 
 	public void setTopicos(TopicoModel[] topicos) {
-		for(int contador = 0; contador < topicos.length; contador++) {
-			if(topicos[contador] != null){
-				topicosPanel[contador] = new PanelTopicosPrincipal(topicos[contador]);
-				main.add(topicosPanel[contador], "wrap 16, grow");
-			} else {
-				break;
+		if(topicos != null) {
+			for(int contador = 0; contador < topicos.length; contador++) {
+				if(topicos[contador] != null & topicosPanel[contador] != null){
+					topicosPanel[contador] = new PanelTopicosPrincipal(topicos[contador]);
+					main.add(topicosPanel[contador], "wrap 16, grow");
+				} else {
+					break;
+				}
 			}
 		}
 	}
