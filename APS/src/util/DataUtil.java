@@ -1,6 +1,6 @@
 package util;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -9,16 +9,16 @@ public class DataUtil {
 	private static final String DATE_PATTERN = "dd.MM.yyyy | HH:mm:ss";
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
-	public static String format(LocalDate date) {
+	public static String format(LocalDateTime date) {
 		if(date == null) {
 			return null;
 		}
 		return DATE_FORMATTER.format(date);
 	}
 
-	public static LocalDate parse(String dateString) {
+	public static LocalDateTime parse(String dateString) {
 		try {
-			return DATE_FORMATTER.parse(dateString, LocalDate::from);
+			return DATE_FORMATTER.parse(dateString, LocalDateTime::from);
 		} catch (DateTimeParseException e) {
 			return null;
 		}

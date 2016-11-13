@@ -1,9 +1,8 @@
 package view.panels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -24,23 +23,24 @@ public class BarraHorizontalPanel extends JPanel {
 	private JButton btnPostagens;
 	private JButton btnSair;
 	private JLabel lblUsuario;
-	private JLabel lblData;
+	private JLabel lblAvatar;
 
 	public BarraHorizontalPanel(UsuarioModel usuario) {
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
+		//setLayout(new MigLayout("", "[100%]"));
+		setLayout(new MigLayout("", "[250][][][][][128.00,grow][][::150, grow]", "[grow]"));
+		setBackground(new Color(0x212121));
 
-		setLayout(new MigLayout("", "[100%]"));
+		//JPanel img = new JPanel(new MigLayout("insets 12px"));
+		//JPanel buttons = new JPanel();
+		//JPanel user = new JPanel(new BorderLayout());
+		//JPanel userIn = new JPanel(new MigLayout());
 
-		JPanel img = new JPanel(new MigLayout("insets 12px"));
-		JPanel buttons = new JPanel();
-		JPanel user = new JPanel(new BorderLayout());
-		JPanel userIn = new JPanel(new MigLayout());
-
-		img.setBackground(new Color(0x212121));
-		buttons.setBackground(new Color(0x212121));
-		user.setBackground(new Color(0x212121));
-		userIn.setBackground(new Color(0x212121));
+		//img.setBackground(new Color(0x212121));
+		//buttons.setBackground(new Color(0x212121));
+		//user.setBackground(new Color(0x212121));
+		//userIn.setBackground(new Color(0x212121));
 
 		btnInicio = new JButton("Início");
 		btnPerfil = new JButton("Perfil");
@@ -51,45 +51,60 @@ public class BarraHorizontalPanel extends JPanel {
 		btnInicio.setForeground(Color.WHITE);
 		btnInicio.setFont(new Font("Open Sans", Font.BOLD , 18));
 		btnInicio.setBorder(defaultLayout);
+		btnInicio.setFocusPainted(false);
 		btnPerfil.setBackground(null);
 		btnPerfil.setForeground(Color.WHITE);
 		btnPerfil.setFont(new Font("Open Sans", Font.BOLD , 18));
 		btnPerfil.setBorder(defaultLayout);
+		btnPerfil.setFocusPainted(false);
 		btnPostagens.setBackground(null);
 		btnPostagens.setForeground(Color.WHITE);
 		btnPostagens.setFont(new Font("Open Sans", Font.BOLD , 18));
 		btnPostagens.setBorder(defaultLayout);
+		btnPostagens.setFocusPainted(false);
 		btnSair.setBackground(null);
 		btnSair.setForeground(Color.WHITE);
 		btnSair.setFont(new Font("Open Sans", Font.BOLD , 18));
 		btnSair.setBorder(defaultLayout);
+		btnSair.setFocusPainted(false);
 
-		lblUsuario = new JLabel("Olá " + usuario.getUsuario(), iconAvatar(usuario.getAvatar()), 0);
-		String data = LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonthValue() + "/" + LocalDate.now().getYear();
-		lblData = new JLabel(data);
+		String data = LocalDateTime.now().getDayOfMonth() + "/" + LocalDateTime.now().getMonthValue() + "/" + LocalDateTime.now().getYear();
+		lblUsuario = new JLabel("<html>" + data + "<br> Olá " + usuario.getNome() + "</html>");
+		lblAvatar = new JLabel(iconAvatar(usuario.getAvatar()));
 		JLabel logo = new JLabel(new ImageIcon("images/logo1.png"));
 
 		lblUsuario.setForeground(Color.WHITE);
-		lblData.setForeground(Color.WHITE);
-
 		lblUsuario.setFont(word);
-		lblData.setFont(word);
 
-		img.add(logo);
+		add(logo, "cell 0 0,aligny center");
+		add(btnInicio, "cell 1 0,alignx center,aligny center");
+		add(btnPerfil, "cell 2 0,alignx center,aligny center");
+		add(btnPostagens, "cell 3 0,alignx center,aligny center");
+		add(btnSair, "cell 4 0,alignx center,aligny center");
+		add(lblUsuario, "cell 6 0,alignx right,aligny center");
+		add(lblAvatar, "cell 7 0,alignx right,aligny center");
 
-		buttons.add(btnInicio);
-		buttons.add(btnPerfil);
-		buttons.add(btnPostagens);
-		buttons.add(btnSair);
+		//img.add(logo);
 
-		userIn.add(lblData);
-		userIn.add(lblUsuario, "gapleft 32px");
+		//buttons.add(btnInicio);
+		//buttons.add(btnPerfil);
+		//buttons.add(btnPostagens);
+		//buttons.add(btnSair);
 
-		user.add(userIn, "East");
+		//userIn.add(lblData);
+		//userIn.add(lblUsuario, "gapleft 32px");
 
-		add(img, "split 2");
-		add(buttons, "gapleft 32px");
-		add(user, "grow, pad 26px 0 0 0");
+		//user.add(userIn, "East");
+
+		//add(img, "split 2");
+		//add(buttons, "gapleft 32px");
+		//add(user, "grow, pad 26px 0 0 0");
+	}
+
+	public void atualizarDadosUsuario(UsuarioModel usuario){
+		lblAvatar.setIcon(iconAvatar(usuario.getAvatar()));
+		String data = LocalDateTime.now().getDayOfMonth() + "/" + LocalDateTime.now().getMonthValue() + "/" + LocalDateTime.now().getYear();
+		lblUsuario.setText("<html>" + data + "<br> Olá " + usuario.getNome() + "</html>");
 	}
 
 	public JButton getBtnInicio() {
@@ -109,7 +124,7 @@ public class BarraHorizontalPanel extends JPanel {
 	}
 
 	private Icon iconAvatar(int avatarInt) {
-		Icon avatar = new ImageIcon();
+		ImageIcon avatar = new ImageIcon();
 		switch (avatarInt) {
 		case 0: {
 			avatar = new ImageIcon("avatar/default.png");

@@ -14,9 +14,10 @@ import view.SenhaView;
 public class MainController {
 
 	private static UsuarioModel usuarioConectado;
+	private static LoginController loginController;
 
 	public static void abrirTelaLogin(){
-		new LoginController(new LoginModel(),  new LoginView());
+		loginController = new LoginController(new LoginModel(),  new LoginView());
 	}
 
 	public static void abrirTelaCadastro(){
@@ -44,6 +45,7 @@ public class MainController {
 		new Thread() {
 			public void run(){
 				DAOForum.iniciarFactory();
+				loginController.setCamposEnabled();
 			}
 		}.start();
 		MainController.abrirTelaLogin();

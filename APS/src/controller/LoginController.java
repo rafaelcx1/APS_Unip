@@ -29,6 +29,10 @@ public class LoginController {
 		loginView.setVisible(true);
 	}
 
+	public void setCamposEnabled() {
+		loginView.setCamposEnabled();
+	}
+
 	private class TextFieldListener implements KeyListener {
 
 		@Override

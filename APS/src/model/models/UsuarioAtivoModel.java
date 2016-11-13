@@ -1,25 +1,23 @@
 package model.models;
 
-import model.tables.UsuarioModel;
-
 public class UsuarioAtivoModel {
 
-	private UsuarioModel usuario;
+	private String usuario;
 	private long numPublicacoes;
 
 	public UsuarioAtivoModel() {
 
 	}
 
-	public UsuarioAtivoModel(UsuarioModel usuario, long numPublicacoes) {
+	public UsuarioAtivoModel(String usuario, long numPublicacoes) {
 		this.usuario = usuario;
 		this.numPublicacoes = numPublicacoes;
 	}
 
-	public UsuarioModel getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(UsuarioModel usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 	public long getNumPublicacoes() {

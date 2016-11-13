@@ -1,6 +1,5 @@
 package view.panels;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
@@ -22,26 +21,22 @@ public class PrincipalForumPanel extends JPanel {
 	private JButton btnPag;
 	private JButton btnNext;
 	private JButton btnPrevious;
-	private JButton btnCriarTopico;
 	private int paginaAtual;
 
 	public PrincipalForumPanel() {
-		setLayout(new BorderLayout());
+		setLayout(new MigLayout("", "[grow]", "[::120][::70,grow][100:n][100:n][100:n][100:n][100:n]"));
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
 		panelFiltros = new PanelFiltros();
 
-		panelFiltros.setBackground(new Color(0x212121));
+		//JPanel header = new JPanel(new MigLayout("fillx"));
+		main = new JPanel();
+		//JPanel footer = new JPanel(new MigLayout());
 
-		JPanel header = new JPanel(new MigLayout("fillx"));
-		main = new JPanel(new MigLayout("fillx", "[center]"));
-		JPanel footer = new JPanel(new MigLayout());
-
-		header.setBackground(new Color(0x212121));
+		//header.setBackground(new Color(0x212121));
 
 		btnNext = new JButton("", new ImageIcon("images/next.png"));
 		btnPrevious = new JButton("", new ImageIcon("images/prev.png"));
-		btnCriarTopico = new JButton("", new ImageIcon("images/create.png"));
 		btnPag = new JButton("1");
 		paginaAtual = 0;
 
@@ -49,29 +44,33 @@ public class PrincipalForumPanel extends JPanel {
 		btnNext.setBackground(Color.BLACK);
 		btnPrevious.setBorder(defaultLayout);
 		btnPrevious.setBackground(Color.BLACK);
-		btnCriarTopico.setBorder(defaultLayout);
-		btnCriarTopico.setBackground(Color.BLACK);
 		btnPag.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
 		btnPag.setBackground(Color.BLACK);
 		btnPag.setForeground(Color.WHITE);
 
 		btnPag.setEnabled(false);
 
-		header.add(panelFiltros);
+		main.add(btnPrevious);
+		main.add(btnPag);
+		main.add(btnNext);
 
-		footer.add(btnPrevious);
-		footer.add(btnPag);
-		footer.add(btnNext);
-		footer.add(btnCriarTopico);
+		add(panelFiltros, "cell 0 0,grow");
+		add(main, "cell 0 1,growx,aligny top");
 
-		main.add(footer);
+		//header.add(panelFiltros);
 
-		add(header, "North");
-		add(main, "Center");
+		//footer.add(btnPrevious);
+		//footer.add(btnPag);
+		//footer.add(btnNext);
+
+		//main.add(footer);
+
+		//add(header, "North");
+		//add(main, "Center");
 	}
 
 	private void atualizarPagina() {
-		btnPag.setText(String.valueOf(paginaAtual));
+		btnPag.setText(String.valueOf(paginaAtual + 1));
 	}
 
 	public void next() {
@@ -126,11 +125,10 @@ public class PrincipalForumPanel extends JPanel {
 	public void setTopicos(TopicoModel[] topicos) {
 		if(topicos != null) {
 			for(int contador = 0; contador < topicos.length; contador++) {
-				if(topicos[contador] != null & topicosPanel[contador] != null){
+				if(topicos[contador] != null){
 					topicosPanel[contador] = new PanelTopicosPrincipal(topicos[contador]);
-					main.add(topicosPanel[contador], "wrap 16, grow");
-				} else {
-					break;
+					String miglayout =  "cell 0 " + (contador + 2) + ",growx,aligny top";
+					add(topicosPanel[contador], miglayout);
 				}
 			}
 		}

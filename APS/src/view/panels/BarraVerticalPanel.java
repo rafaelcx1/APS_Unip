@@ -17,7 +17,7 @@ public class BarraVerticalPanel extends JPanel {
 	private JLabel lblTopicos;
 
 	public BarraVerticalPanel() {
-		JPanel main = new JPanel(new MigLayout("", "[100%]"));
+		setLayout(new MigLayout("", "[grow]", "[30][][30][][30][][10px]"));
 
 		Font titulo = new Font("Open Sans", Font.BOLD , 16);
 
@@ -32,37 +32,47 @@ public class BarraVerticalPanel extends JPanel {
 		lblTituloTags.setFont(titulo);
 		lblTituloTopicos.setFont(titulo);
 
-		main.add(lblTituloUsuarios, "wrap 10, center");
-		main.add(lblUsuarios, "wrap 8, center");
-		main.add(lblTituloTags, "wrap 10, center");
-		main.add(lblTags, "wrap 8, center");
-		main.add(lblTituloTopicos, "wrap 10, center");
-		main.add(lblTopicos, "wrap 8, center");
-
-		add(main);
+		add(lblTituloUsuarios, "cell 0 0,alignx center,aligny center");
+		add(lblUsuarios, "cell 0 1,alignx left,aligny top, grow");
+		add(lblTituloTags, "cell 0 2,alignx center,aligny center");
+		add(lblTags, "cell 0 3,alignx left,aligny top, grow");
+		add(lblTituloTopicos, "cell 0 4,alignx center,aligny center");
+		add(lblTopicos, "cell 0 5,alignx left,aligny top, grow");
 	}
 
 	public void setUsuariosMaisAtivos(String[] usuariosMaisAtivos) {
-		String texto = "";
+		String texto = "<html>";
 		for(int contador = 0; contador < usuariosMaisAtivos.length; contador++) {
-			texto = usuariosMaisAtivos[contador] + "\n";
+			if(usuariosMaisAtivos[contador] == null)
+				texto += (contador + 1) + "- " + "" + "<br>";
+			else
+				texto += (contador + 1) + "- " + usuariosMaisAtivos[contador] + "<br>";
 		}
+		texto += "</html>";
 		lblUsuarios.setText(texto);
 	}
 
 	public void setTagsMaisUsadas(String[] tagsMaisUsadas) {
-		String texto = "";
+		String texto = "<html>";
 		for(int contador = 0; contador < tagsMaisUsadas.length; contador++) {
-			texto = tagsMaisUsadas[contador] + "\n";
+			if (tagsMaisUsadas[contador] == null)
+				texto += (contador + 1) + "- " + "" + "<br>";
+			else
+				texto += (contador + 1) + "- " + tagsMaisUsadas[contador] + "<br>";
 		}
+		texto += "</html>";
 		lblTags.setText(texto);
 	}
 
 	public void setTopicosMaisCurtidos(String[] topicosMaisCurtidos) {
-		String texto = "";
+		String texto = "<html>";
 		for(int contador = 0; contador < topicosMaisCurtidos.length; contador++) {
-			texto = topicosMaisCurtidos[contador] + "\n";
+			if(topicosMaisCurtidos[contador] == null)
+				texto += (contador + 1) + "- " + "" + "<br>";
+			else
+				texto += (contador + 1) + "- " + topicosMaisCurtidos[contador] + "<br>";
 		}
+		texto += "</html>";
 		lblTopicos.setText(texto);
 	}
 

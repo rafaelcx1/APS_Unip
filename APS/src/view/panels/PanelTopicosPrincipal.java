@@ -2,7 +2,7 @@ package view.panels;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -45,14 +45,16 @@ public class PanelTopicosPrincipal extends JPanel {
 		buttons.setBackground(background);
 
 		btnCurtir = new BotaoTopicoPanel();
+		btnCurtir.setText("Curtir!");
 		btnCurtir.setIdTopico(topico.getIdTopico());
 		btnVisualizar = new BotaoTopicoPanel();
+		btnVisualizar.setText("Visualizar");
 		btnVisualizar.setIdTopico(topico.getIdTopico());
 
 		lblAvatar = new JLabel(iconAvatar(topico.getUsuario().getAvatar()));
-		LocalDate data = DataUtil.parse(topico.getDtCriacao());
-		String dataCriacao = data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear();
-		lblDataCriacao = new JLabel("Data de Criação: " + dataCriacao);
+		LocalDateTime data = DataUtil.parse(topico.getDtCriacao());
+		String dataCriacao = data.getDayOfMonth() + "/" + data.getMonthValue() + "/" + data.getYear() + " às " + data.getHour() + ":" + data.getMinute();
+		lblDataCriacao = new JLabel("Data de Criação:" + dataCriacao);
 		lblTituloTopico = new JLabel(topico.getTitulo());
 		lblTag = new JLabel("Tag: " + topico.getTag());
 		lblQtdCurtidas = new JLabel(String.valueOf(topico.getQtdCurtidas()), new ImageIcon("images/like.png"), 0);
@@ -62,7 +64,7 @@ public class PanelTopicosPrincipal extends JPanel {
 
 		info.add(lblTituloTopico, "wrap 8");
 		info.add(lblTag);
-		info.add(lblDataCriacao, "wrap 16");
+		info.add(lblDataCriacao, "wrap 16, gapleft 16px");
 		info.add(lblQtdCurtidas);
 		info.add(lblQtdRespostas);
 
@@ -71,9 +73,10 @@ public class PanelTopicosPrincipal extends JPanel {
 
 		add(lblAvatar);
 		add(info, "width 30%");
-		add(buttons, "width 10%, gapleft 60%");
+		add(buttons, "width 10%, gapleft 50%");
 
 	}
+	
 	public BotaoTopicoPanel getBtnCurtir() {
 		return btnCurtir;
 	}

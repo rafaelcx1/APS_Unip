@@ -67,6 +67,11 @@ public class LoginView extends JFrame implements IView{
 		txUsuario.setFont(word);
 		txSenha.setFont(word);
 
+		txUsuario.setEnabled(false);
+		txSenha.setEnabled(false);
+		txUsuario.setText("Aguardando Conexão com o Servidor");
+		txSenha.setText("Aguardando Conexão com o Servidor");
+
 		btnLogar = new JButton("Entrar");
 		btnSair = new JButton("Sair");
 
@@ -109,6 +114,14 @@ public class LoginView extends JFrame implements IView{
 		setSize(new Dimension(600,500));
 		setUndecorated(true);
 		setLocationRelativeTo(null);
+		txUsuario.grabFocus();
+	}
+
+	public void setCamposEnabled() {
+		txUsuario.setText("");
+		txSenha.setText("");
+		txUsuario.setEnabled(true);
+		txSenha.setEnabled(true);
 		txUsuario.grabFocus();
 	}
 

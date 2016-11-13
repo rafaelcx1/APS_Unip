@@ -2,7 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import model.CadastroModel;
 import model.tables.UsuarioModel;
@@ -48,7 +48,7 @@ public class CadastroController {
 			usuarioModel.setPerguntaSecret(perguntaSecreta);
 			usuarioModel.setRespostaSecret(respostaSecreta);
 			usuarioModel.setQtdPostagens(0);
-			usuarioModel.setDataCadastro(LocalDate.now().getDayOfMonth() + "/" + LocalDate.now().getMonth() + "/" + LocalDate.now().getYear());
+			usuarioModel.setDataCadastro(LocalDateTime.now().getDayOfMonth() + "/" + LocalDateTime.now().getMonthValue() + "/" + LocalDateTime.now().getYear());
 			usuarioModel.setAvatar(0);
 
 			if(cadastroModel.cadastrarUsuario(usuarioModel)) {

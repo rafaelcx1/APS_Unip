@@ -1,7 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
@@ -30,18 +29,18 @@ public class PrincipalView extends JFrame implements IView{
 	private PrincipalForumPanel principalForumPanel;
 	private CriarTopicoPanel criarTopicoPanel;
 	private VisualizarTopicoPanel visualizarTopicoPanel;
-	private JPanel main = new JPanel(new BorderLayout());
-	private JPanel mainContent = new JPanel(new MigLayout("", "[100%]"));
+
+	private JPanel contentPane;
+	private JPanel mainContent;
 	private JScrollPane mainPage;
 
+
 	public PrincipalView(UsuarioModel usuario) {
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		/*this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
 
-		barraHorizontal.setBackground(new Color(0x212121));
-
-		mainPage = new JScrollPane(null, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPage = new JScrollPane();
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		mainContent.add(mainPage, "grow, height 100%, split");
@@ -51,9 +50,29 @@ public class PrincipalView extends JFrame implements IView{
 		main.add(mainContent, "Center");
 
 		getContentPane().add(main);
-		pack();
-		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		setVisible(true);
+		setResizable(false);
+		*/
+		super("JSolve - Fórum | Bem-Vindo!");
+		barraHorizontal = new BarraHorizontalPanel(usuario);
+		barraVertical = new BarraVerticalPanel();
+		mainPage = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setExtendedState(MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(1024, 768));
+		contentPane = new JPanel();
+		setContentPane(contentPane);
+		contentPane.setBorder(null);
+		contentPane.setLayout(new MigLayout("", "[grow]", "[grow]"));
+
+		mainContent = new JPanel();
+		contentPane.add(mainContent, "cell 0 0,grow");
+		mainContent.setLayout(new MigLayout("", "[grow][::400,grow]", "[::150,grow][grow,bottom]"));
+
+		mainContent.add(barraHorizontal, "cell 0 0 2 1,grow");
+		mainContent.add(sideBar, "cell 1 1, grow");
+		mainContent.add(mainPage, "cell 0 1, grow");
 	}
 
 	public PerfilPanel getPerfilPanel() {
@@ -76,17 +95,13 @@ public class PrincipalView extends JFrame implements IView{
 		janelasNull();
 		visualizarTopicoPanel = new VisualizarTopicoPanel();
 		visualizarTopicoPanel.setPostagens(postagens);
-		mainPage = new JScrollPane(visualizarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		mainContent.remove(mainPage);
-		mainContent.add(mainPage, "grow, height 100%, split");
+		mainPage.setViewportView(visualizarTopicoPanel);
 	}
 
 	public void abrirCriarTopicoPanel(String[] tags) {
 		janelasNull();
 		criarTopicoPanel = new CriarTopicoPanel(tags);
-		mainPage = new JScrollPane(criarTopicoPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		mainContent.remove(mainPage);
-		mainContent.add(mainPage, "grow, height 100%, split");
+		mainPage.setViewportView(criarTopicoPanel);
 	}
 
 	public void abrirPrincipalForumPanel(String[] tags, TopicoModel[] topicos) {
@@ -94,17 +109,13 @@ public class PrincipalView extends JFrame implements IView{
 		principalForumPanel = new PrincipalForumPanel();
 		principalForumPanel.setTopicos(topicos);
 		principalForumPanel.getPanelFiltros().setTags(tags);
-		mainPage = new JScrollPane(principalForumPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		mainContent.remove(mainPage);
-		mainContent.add(mainPage, "grow, height 100%, split");
+		mainPage.setViewportView(principalForumPanel);
 	}
 
 	public void abrirPerfilPanel(UsuarioModel usuarioConectado) {
 		janelasNull();
 		perfilPanel = new PerfilPanel(usuarioConectado);
-		mainPage = new JScrollPane(perfilPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		mainContent.remove(mainPage);
-		mainContent.add(mainPage, "grow, height 100%, split");
+		mainPage.setViewportView(perfilPanel);
 	}
 
 	private void janelasNull() {
@@ -112,6 +123,11 @@ public class PrincipalView extends JFrame implements IView{
 		principalForumPanel = null;
 		criarTopicoPanel = null;
 		visualizarTopicoPanel = null;
+	}
+
+	public void atualizar(UsuarioModel usuario, String[] usuariosMaisAtivos, String[] tagsMaisAtivas, String[] topicosMaisCurtidos) {
+		barraHorizontal.atualizarDadosUsuario(usuario);
+		setBarraVerticalDados(usuariosMaisAtivos, tagsMaisAtivas, topicosMaisCurtidos);
 	}
 
 	public void setBarraVerticalDados(String[] usuariosMaisAtivos, String[] tagsMaisAtivas, String[] topicosMaisCurtidos) {

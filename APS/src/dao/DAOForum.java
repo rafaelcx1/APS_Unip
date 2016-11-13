@@ -142,12 +142,12 @@ public class DAOForum {
 		short contaFiltros = 0;
 
 		if(filtro.getUsuario() != null & !filtro.getUsuario().equals("")) {
-			filtros += " t.usuario = " + filtro.getUsuario() + ",";
+			filtros += " t.usuario = '" + filtro.getUsuario() + "',";
 			contaFiltros++;
 		}
 
 		if(filtro.getData() != null & !filtro.getData().equals("")) {
-			filtros += " t.data = " + filtro.getData() + ",";
+			filtros += " t.dtCriacao = " + filtro.getData() + ",";
 			contaFiltros++;
 		}
 
@@ -162,7 +162,7 @@ public class DAOForum {
 		}
 
 		if(contaFiltros > 0)
-			filtros.substring(0, filtros.length() - 1);
+			filtros = filtros.substring(0, filtros.length() - 1);
 		else
 			filtros = "";
 
@@ -181,7 +181,7 @@ public class DAOForum {
 			return topicos;
 		} catch(Exception e) {
 			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao solicitar os tÃ³picos.\nMensagem do erro: " + e.getMessage();
+			msgErro = "Ocorreu um erro ao solicitar os tópicos.\nMensagem do erro: " + e.getMessage();
 			return null;
 		} finally {
 			closeConexaoEntity();
@@ -212,7 +212,7 @@ public class DAOForum {
 			List<TopicoModel> topicos = null;
 
 			if(factory != null & manager != null)
-				topicos = manager.createQuery("from TopicoModel t where t.qtdCurtidas > 0 order by t.qtdCurtidas DESC", TopicoModel.class).setMaxResults(10).getResultList();
+				topicos = manager.createQuery("from TopicoModel t where t.qtdCurtidas > 0 order by t.qtdCurtidas DESC", TopicoModel.class).setMaxResults(5).getResultList();
 
 			return topicos;
 		} catch(Exception e) {
@@ -229,7 +229,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<UsuarioAtivoModel> usuariosAtivos = null;
 			if(factory != null & manager != null)
-				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from UsuarioModel order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(10).getResultList();
+				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from UsuarioModel order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(5).getResultList();
 
 			return usuariosAtivos;
 		} catch(Exception e) {
@@ -246,7 +246,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<TagsMaisAtivasModel> tags = null;
 			if(factory != null & manager != null)
-				tags = manager.createQuery("select new model.models.TagsMaisAtivasModel(t.tag, count(t.idTopico) as qtdPublicacoes) from TopicoModel t group by t.tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(10).getResultList();
+				tags = manager.createQuery("select new model.models.TagsMaisAtivasModel(t.tag, count(t.idTopico) as qtdPublicacoes) from TopicoModel t group by t.tag order by qtdPublicacoes DESC", TagsMaisAtivasModel.class).setMaxResults(5).getResultList();
 
 			return tags;
 		} catch(Exception e) {
@@ -328,7 +328,7 @@ public class DAOForum {
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
 				manager.merge(topico);
-				manager.createQuery("update UsuarioModel u set u.qtdPostagem = u.qtdPostagem + 1 where u.usuario = " + topico.getUsuario().getUsuario()).executeUpdate();
+				manager.createQuery("update UsuarioModel u set u.qtdPostagens = u.qtdPostagens + 1 where u.usuario = '" + topico.getUsuario().getUsuario() + "'").executeUpdate();
 				manager.getTransaction().commit();
 			}
 			return true;

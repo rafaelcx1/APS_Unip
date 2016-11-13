@@ -41,7 +41,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 	private JPasswordField ptxSenha;
 	private JComboBox<String> cbDiaNasc;
 	private JComboBox<String> cbMesNasc;
-	private JComboBox<Integer> cbAnoNasc;
+	private JComboBox<String> cbAnoNasc;
 	private JComboBox<String> cbGenero;
 	private JComboBox<String> cbEstado;
 	private JTextField txCidade;
@@ -118,7 +118,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(btnLayout);
 
-		
+
 
 		btnCadastrar.setFocusPainted(false);
 		btnLimpar.setFocusPainted(false);
@@ -128,10 +128,10 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		String[] meses = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-		Integer[] anos = new Integer[117];
+		String[] anos = new String[117];
 
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
-			anos[a] = i;
+			anos[a] = String.valueOf(i);
 		}
 
 		String[] generos = {"Masculino", "Feminino"};
@@ -139,7 +139,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 		String[] perguntas  = {"Qual o nome do primeiro cachorro?", "Qual o nome do primeiro(a) professor(a)?", "Em qual cidade você nasceu?", "Qual sua comida favorita?", "Qual cidade você mais gostou?", "Para onde foi sua primeira viagem?"};
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
-		cbAnoNasc = new JComboBox<Integer>(anos);
+		cbAnoNasc = new JComboBox<String>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbGenero = new JComboBox<String>(generos);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
@@ -216,7 +216,7 @@ public class CadastroView extends JFrame implements IView, ActionListener, KeyLi
 	}
 
 	public String getDataNasc(){
-		return (String) cbDiaNasc.getSelectedItem() + cbMesNasc.getSelectedIndex() + cbAnoNasc.getSelectedIndex();
+		return (String) cbDiaNasc.getSelectedItem() + "/" + (String) cbMesNasc.getSelectedItem() + "/" + (String) cbAnoNasc.getSelectedItem();
 	}
 
 	public String getGenero(){

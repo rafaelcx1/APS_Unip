@@ -19,28 +19,46 @@ public class PrincipalController {
 	public PrincipalController(PrincipalModel principalModel, PrincipalView principalView){
 		this.principalModel = principalModel;
 		this.principalView = principalView;
-		principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
 
-		principalView.setBtnCriarTopicoListener(new BtnCriarTopicoListener());
-		principalView.setBtnCurtirListener(new BtnCurtirListener());
-		principalView.setBtnFiltrarListener(new BtnFiltrarListener());
 		principalView.setBtnInicioListener(new BtnInicioListener());
 		principalView.setBtnMeuPerfilListener(new BtnMeuPerfilListener());
 		principalView.setBtnMinhasPostagensListener(new BtnMinhasPostagensListener());
-		principalView.setBtnNextListener(new BtnNextListener());
-		principalView.setBtnPreviousListener(new BtnPreviousListener());
-		principalView.setBtnPostarRespostaListener(new BtnPostarRespostaListener());
-		principalView.setBtnPostarTopicoListener(new BtnPostarTopicoListener());
 		principalView.setBtnSairListener(new BtnSairListener());
-		principalView.setBtnSalvarPerfilListener(new BtnSalvarPerfilListener());
-		principalView.setBtnVisualizarListener(new BtnVisualizarListener());
-		principalView.setBtnFiltrarListener(new BtnFiltrarListener());
-		principalView.setFiltrarDataTopicosListener(new LblFiltrarDataTopicosListener());
-		principalView.setBtnResponderTopicoListener(new BtnResponderTopicoListener());
-		principalView.setBtnVoltarListener(new BtnVoltarListener());
+
 		principalView.setVisible(true);
+		abrirPrincipalForumPanel();
+
+
 	}
 
+	private void atualizar() {
+		String[] usuariosMaisAtivos = principalModel.getUsuariosMaisAtivos();
+		String[] tagsMaisAtivas = principalModel.getTagsMaisAtivas();
+		String[] topicosMaisCurtidos = principalModel.getTopicosMaisCurtidos();
+		principalView.atualizar(MainController.getUsuarioConectado(), usuariosMaisAtivos, tagsMaisAtivas, topicosMaisCurtidos);
+	}
+
+	private void abrirPrincipalForumPanel() {
+		String[] usuariosMaisAtivos = principalModel.getUsuariosMaisAtivos();
+		String[] tagsMaisAtivas = principalModel.getTagsMaisAtivas();
+		String[] topicosMaisCurtidos = principalModel.getTopicosMaisCurtidos();
+		if(usuariosMaisAtivos == null || tagsMaisAtivas== null || topicosMaisCurtidos == null) {
+			principalView.displayMsg("Ocorreu um erro ao buscar as dados da barra lateral. " + principalModel.getMsgErro());
+		}
+
+		principalView.setBarraVerticalDados(principalModel.getUsuariosMaisAtivos(), principalModel.getTagsMaisAtivas(), principalModel.getTopicosMaisCurtidos());
+		principalModel.atualizarTopicos(null);
+		principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
+
+		principalView.setBtnCriarTopicoListener(new BtnCriarTopicoListener());
+		principalView.setBtnNextListener(new BtnNextListener());
+		principalView.setBtnPreviousListener(new BtnPreviousListener());
+		principalView.setBtnFiltrarListener(new BtnFiltrarListener());
+		principalView.setFiltrarDataTopicosListener(new LblFiltrarDataTopicosListener());
+
+		principalView.setBtnCurtirListener(new BtnCurtirListener());
+		principalView.setBtnVisualizarListener(new BtnVisualizarListener());
+	}
 
 	private class BtnCurtirListener implements ActionListener {
 
@@ -58,15 +76,18 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnSalvarPerfilListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(principalView.getPerfilPanel().validarSenha()) {
+			if(principalView.getPerfilPanel().validarSenha() & !principalView.getPerfilPanel().trocarSenha()) {
 				UsuarioModel usuarioModel = new UsuarioModel();
 				usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
 				if(principalModel.atualizarPerfil(usuarioModel)){
 					principalView.displayMsg("Perfil atualizado !");
+					abrirPrincipalForumPanel();
+					atualizar();
 				}else{
 					principalView.displayMsg(principalModel.getMsgErro());
 				}
@@ -77,6 +98,7 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnSairListener implements ActionListener {
 
 		@Override
@@ -85,6 +107,7 @@ public class PrincipalController {
 		}
 
 	}
+
 
 	private class BtnMinhasPostagensListener implements ActionListener {
 
@@ -103,15 +126,18 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnMeuPerfilListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			principalView.abrirPerfilPanel(MainController.getUsuarioConectado());
+			principalView.setBtnSalvarPerfilListener(new BtnSalvarPerfilListener());
 			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
+
 
 	private class BtnInicioListener implements ActionListener {
 
@@ -121,6 +147,7 @@ public class PrincipalController {
 		}
 
 	}
+
 
 	private class BtnFiltrarListener implements ActionListener {
 
@@ -138,6 +165,7 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnNextListener implements ActionListener {
 
 		@Override
@@ -148,6 +176,7 @@ public class PrincipalController {
 		}
 
 	}
+
 
 	private class BtnPreviousListener implements ActionListener {
 
@@ -160,14 +189,17 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnVoltarListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
+			abrirPrincipalForumPanel();
+			atualizar();
 		}
 
 	}
+
 
 	private class BtnPostarTopicoListener implements ActionListener {
 
@@ -177,7 +209,7 @@ public class PrincipalController {
 			postagem.setUsuario(MainController.getUsuarioConectado());
 			postagem.getTopico().setUsuario(MainController.getUsuarioConectado());
 			if(principalModel.postarTopico(postagem)) {
-				principalView.displayMsg("TÃ³pico postado com sucesso!");
+				principalView.displayMsg("Tópico postado com sucesso!");
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -185,6 +217,7 @@ public class PrincipalController {
 		}
 
 	}
+
 
 	private class BtnPostarRespostaListener implements ActionListener {
 
@@ -203,6 +236,7 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnVisualizarListener implements ActionListener {
 
 		@Override
@@ -210,23 +244,27 @@ public class PrincipalController {
 			BotaoTopicoPanel botaoTopicoPanel = (BotaoTopicoPanel) e.getSource();
 			try {
 				principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(botaoTopicoPanel.getIdTopico()));
+				principalView.setBtnResponderTopicoListener(new BtnResponderTopicoListener());
+				principalView.setBtnVoltarListener(new BtnVoltarListener());
 			} catch(Exception e1) {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
-			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
+
 
 	private class BtnCriarTopicoListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			principalView.abrirCriarTopicoPanel(principalModel.getTags());
+			principalView.setBtnPostarTopicoListener(new BtnPostarTopicoListener());
 			principalView.setBtnVoltarListener(new BtnVoltarListener());
 		}
 
 	}
+
 
 	private class LblFiltrarDataTopicosListener implements MouseListener {
 
@@ -268,11 +306,13 @@ public class PrincipalController {
 
 	}
 
+
 	private class BtnResponderTopicoListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			principalView.getVisualizarTopicoPanel().abrirPanelResposta();
+			principalView.setBtnPostarRespostaListener(new BtnPostarRespostaListener());
 		}
 
 	}

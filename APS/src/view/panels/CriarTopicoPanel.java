@@ -3,7 +3,7 @@ package view.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -58,6 +58,7 @@ public class CriarTopicoPanel extends JPanel{
 		lblTextoPostagem.setFont(titulo2);
 
 		txTitulo = new JTextField(48);
+		txTitulo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
 		cbTag = new JComboBox<>(tags);
 
@@ -103,7 +104,7 @@ public class CriarTopicoPanel extends JPanel{
 		PostagemModel postagem = new PostagemModel();
 		postagem.setTopico(getTopicoModel());
 		postagem.setTextoPost(taTextoPostagem.getText());
-		postagem.setDataPost(DataUtil.format(LocalDate.now()));
+		postagem.setDataPost(DataUtil.format(LocalDateTime.now()));
 		return postagem;
 	}
 
@@ -111,7 +112,7 @@ public class CriarTopicoPanel extends JPanel{
 		TopicoModel topico = new TopicoModel();
 		topico.setTitulo(txTitulo.getText());
 		topico.setTag((String) cbTag.getSelectedItem());
-		topico.setDtCriacao(DataUtil.format(LocalDate.now()));
+		topico.setDtCriacao(DataUtil.format(LocalDateTime.now()));
 		return topico;
 	}
 }

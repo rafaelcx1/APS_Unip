@@ -2,7 +2,7 @@ package view.panels;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -64,7 +64,7 @@ public class ResponderTopicoPanel extends JPanel {
       public PostagemModel getPostagemModel() {
     	  	PostagemModel postagem = new PostagemModel();
         	postagem.setTextoPost(taTextoPost.getText());
-        	postagem.setDataPost(DataUtil.format(LocalDate.now()));
+        	postagem.setDataPost(DataUtil.format(LocalDateTime.now()));
     		return postagem;
       }
 }

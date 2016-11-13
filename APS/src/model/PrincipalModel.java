@@ -13,7 +13,7 @@ import model.tables.UsuarioModel;
 public class PrincipalModel {
 
 	private TopicoModel[] topicos;
-	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "EdiÃ§Ã£o de Ã�udio e VÃ­deo|TI", "ProgramaÃ§Ã£o|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e MangÃ¡s", "NotÃ­cias"};
+	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "Edição de Áudio e Vídeo|TI", "Programação|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e Mangás", "Notícias"};
 	private String msgErro;
 
 	public PrincipalModel() {
@@ -21,6 +21,11 @@ public class PrincipalModel {
 	}
 
 	public TopicoModel[] getTopicos(int numeroPag) {
+		TopicoModel[] topicos = new TopicoModel[5];
+		for(int contador = 0; contador < this.topicos.length; contador++){
+			if(this.topicos[contador] != null)
+				topicos[contador] = this.topicos[contador + (numeroPag * 5)];
+		}
 		return topicos;
 	}
 
@@ -35,10 +40,13 @@ public class PrincipalModel {
 			}
 			List<TopicoModel> topicosList = DAOForum.getTopicos(filtro);
 			topicos = new TopicoModel[topicosList.size()];
-			topicos = (TopicoModel[]) topicosList.toArray();
+			for(int contador = 0; contador < topicos.length; contador++){
+				topicos[contador] = topicosList.get(contador);
+			}
 			return true;
 		} catch(Exception e) {
 			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -55,13 +63,15 @@ public class PrincipalModel {
 	public String[] getTopicosMaisCurtidos() {
 		try {
 			List<TopicoModel> topicosMaisCurtidosList = DAOForum.getTopicosMaisCurtidos();
-			String[] topicosMaisCurtidos = new String[topicosMaisCurtidosList.size()];
-			for(int contador = 0; contador < topicosMaisCurtidos.length; contador++) {
-				topicosMaisCurtidos[contador] = "Título: " + topicosMaisCurtidosList.get(contador).getTitulo() + " | Curtidas: " + topicosMaisCurtidosList.get(contador).getQtdCurtidas() + " | Tag: " + topicosMaisCurtidosList.get(contador).getTag() + " | Usuário: " + topicosMaisCurtidosList.get(contador).getUsuario().getUsuario();
+			String[] topicosMaisCurtidos = new String[5];
+			for(int contador = 0; contador < topicosMaisCurtidosList.size(); contador++) {
+				if(topicosMaisCurtidosList.get(contador) != null)
+					topicosMaisCurtidos[contador] = "Título: " + topicosMaisCurtidosList.get(contador).getTitulo() + " | Curtidas: " + topicosMaisCurtidosList.get(contador).getQtdCurtidas() + " | Tag: " + topicosMaisCurtidosList.get(contador).getTag() + " | Usuário: " + topicosMaisCurtidosList.get(contador).getUsuario().getUsuario();
 			}
 			return topicosMaisCurtidos;
 		} catch (Exception e) {
 			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -69,13 +79,16 @@ public class PrincipalModel {
 	public String[] getUsuariosMaisAtivos() {
 		try {
 			List<UsuarioAtivoModel> usuariosMaisAtivosList = DAOForum.getUsuariosMaisAtivos();
-			String[] usuariosMaisAtivos = new String[usuariosMaisAtivosList.size()];
-			for(int contador = 0; contador < usuariosMaisAtivos.length; contador++) {
-				usuariosMaisAtivos[contador] = "Usuário: " + usuariosMaisAtivosList.get(contador).getUsuario().getNome() + " | Publicações: " + usuariosMaisAtivosList.get(contador).getNumPublicacoes();
+			String[] usuariosMaisAtivos = new String[5];
+			for(int contador = 0; contador < usuariosMaisAtivosList.size(); contador++) {
+				UsuarioAtivoModel usuarioAtivo = usuariosMaisAtivosList.get(contador);
+				if(usuarioAtivo != null)
+					usuariosMaisAtivos[contador] = "Usuário: " + usuariosMaisAtivosList.get(contador).getUsuario() + " | Publicações: " + usuariosMaisAtivosList.get(contador).getNumPublicacoes();
 			}
 			return usuariosMaisAtivos;
 		} catch(Exception e) {
 			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -83,13 +96,15 @@ public class PrincipalModel {
 	public String[] getTagsMaisAtivas() {
 		try {
 			List<TagsMaisAtivasModel> tagsMaisAtivasList = DAOForum.getTagsMaisAtivas();
-			String[] tagsMaisAtivas = new String[tagsMaisAtivasList.size()];
-			for(int contador = 0; contador < tagsMaisAtivas.length; contador++) {
-				tagsMaisAtivas[contador] = "Tag: " + tagsMaisAtivasList.get(contador).getNome() + " | Publicações: " + tagsMaisAtivasList.get(contador).getNumPublicacoes();
+			String[] tagsMaisAtivas = new String[5];
+			for(int contador = 0; contador < tagsMaisAtivasList.size(); contador++) {
+				if(tagsMaisAtivasList.get(contador) != null)
+					tagsMaisAtivas[contador] = "Tag: " + tagsMaisAtivasList.get(contador).getNome() + " | Publicações: " + tagsMaisAtivasList.get(contador).getNumPublicacoes();
 			}
 			return tagsMaisAtivas;
 		} catch(Exception e) {
 			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
 			return null;
 		}
 	}

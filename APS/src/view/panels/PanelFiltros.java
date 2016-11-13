@@ -21,7 +21,6 @@ import net.miginfocom.swing.MigLayout;
 @SuppressWarnings("serial")
 public class PanelFiltros extends JPanel {
 	private JLabel lblTag;
-	private JLabel lblData;
 	private JLabel lblUsuario;
 	private JLabel lblTitulo;
 	private JLabel lblFiltrarData;
@@ -34,20 +33,18 @@ public class PanelFiltros extends JPanel {
 
 	public PanelFiltros() {
 		setLayout(new MigLayout());
+		setBackground(new Color(0x212121));
 
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
 		lblTag = new JLabel("Tag");
-		lblData = new JLabel("Data");
 		lblUsuario = new JLabel("Usuário");
 		lblTitulo = new JLabel("Título");
-		lblFiltrarData = new JLabel("Recentes");
+		lblFiltrarData = new JLabel("Ordenar por tópicos mais recentes");
 
 		lblTag.setForeground(Color.WHITE);
 		lblTag.setFont(word);
-		lblData.setForeground(Color.WHITE);
-		lblData.setFont(word);
 		lblUsuario.setForeground(Color.WHITE);
 		lblUsuario.setFont(word);
 		lblTitulo.setForeground(Color.WHITE);
@@ -61,7 +58,7 @@ public class PanelFiltros extends JPanel {
 		jcTags = new JComboBox<>();
 
 		btnFiltrar = new JButton("Filtrar");
-		btnCriarTopico = new JButton("", new ImageIcon("images/create.png"));
+		btnCriarTopico = new JButton("Criar Tópico ", new ImageIcon("images/create.png"));
 
 		btnFiltrar.setBackground(Color.BLACK);
 		btnFiltrar.setForeground(Color.WHITE);
@@ -72,16 +69,14 @@ public class PanelFiltros extends JPanel {
 
 		add(lblTag);
 		add(jcTags);
-		add(lblData, "gapleft 16px");
-		add(lblFiltrarData);
 		add(lblUsuario, "gapleft 16px");
 		add(txUsuario);
 		add(lblTitulo, "gapleft 16px");
 		add(txTitulo);
 		add(btnFiltrar, "gapleft 16px");
-		add(btnCriarTopico, "gapleft 32px");
+		add(lblFiltrarData, "gapleft 16px, gapright 16px");
+		add(btnCriarTopico, "alignx right");
 	}
-
 
 	public void setTags(String[] tags) {
 		for(int contador = 0; contador < tags.length; contador++) {
@@ -109,6 +104,10 @@ public class PanelFiltros extends JPanel {
 
     public void setDataAscendente(boolean dataAscendente) {
 	    this.dataAscendente = dataAscendente;
+	    if(dataAscendente)
+	    	lblFiltrarData.setText("Ordenar por tópicos mais recentes");
+	    else
+	    	lblFiltrarData.setText("Ordenar por tópicos mais antigos");
     }
 
     public boolean getDataAscendente() {

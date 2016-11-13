@@ -17,7 +17,7 @@ public class TopicoModel {
 	private int idTopico;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario")
-	private UsuarioModel usuarioAutor;
+	private UsuarioModel usuario;
 	@Column(name = "titulo")
 	private String titulo;
 	@Column(name = "dtCriacao")
@@ -43,11 +43,11 @@ public class TopicoModel {
 	}
 
 	public UsuarioModel getUsuario() {
-		return usuarioAutor;
+		return usuario;
 	}
 
 	public void setUsuario(UsuarioModel usuario) {
-		this.usuarioAutor = usuario;
+		this.usuario = usuario;
 	}
 
 	public String getTitulo() {

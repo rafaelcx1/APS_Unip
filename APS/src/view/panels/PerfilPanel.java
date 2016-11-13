@@ -39,7 +39,7 @@ public class PerfilPanel extends JPanel implements ItemListener{
 	private JComboBox<String> cbGenero;
 	private JComboBox<String> cbDiaNasc;
 	private JComboBox<String> cbMesNasc;
-	private JComboBox<Integer> cbAnoNasc;
+	private JComboBox<String> cbAnoNasc;
 	private JComboBox<String> cbEstado;
 	private JTextField txCidade;
 	private JComboBox<String> cbPerguntaSecret;
@@ -63,8 +63,132 @@ public class PerfilPanel extends JPanel implements ItemListener{
 		JPanel fieldset = new JPanel(new MigLayout());
 		JPanel profile = new JPanel(new MigLayout("", "[center]"));
 
+		Icon avatar = new ImageIcon();
+		switch (usuario.getAvatar()) {
+			case 0: {
+				avatar = new ImageIcon("avatar/default.png");
+				break;
+			}
+			case 1: {
+				avatar = new ImageIcon("avatar/avatar1.png");
+				break;
+			}
+			case 2: {
+				avatar = new ImageIcon("avatar/avatar2.png");
+				break;
+			}
+			case 3: {
+				avatar = new ImageIcon("avatar/avatar3.png");
+				break;
+			}
+			case 4: {
+				avatar = new ImageIcon("avatar/avatar4.png");
+				break;
+			}
+			case 5: {
+				avatar = new ImageIcon("avatar/avatar5.png");
+				break;
+			}
+			case 6: {
+				avatar = new ImageIcon("avatar/avatar6.png");
+				break;
+			}
+
+			case 7: {
+				avatar = new ImageIcon("avatar/avatar7.png");
+				break;
+			}
+
+			case 8: {
+				avatar = new ImageIcon("avatar/avatar8.png");
+				break;
+			}
+
+			case 9: {
+				avatar = new ImageIcon("avatar/avatar9.png");
+				break;
+			}
+
+			case 10: {
+				avatar = new ImageIcon("avatar/avatar10.png");
+				break;
+			}
+
+			case 11: {
+				avatar = new ImageIcon("avatar/avatar11.png");
+				break;
+			}
+
+			case 12: {
+				avatar = new ImageIcon("avatar/avatar12.png");
+				break;
+			}
+
+			case 13: {
+				avatar = new ImageIcon("avatar/avatar13.png");
+				break;
+			}
+
+			case 14: {
+				avatar = new ImageIcon("avatar/avatar14.png");
+				break;
+			}
+
+			case 15: {
+				avatar = new ImageIcon("avatar/avatar15.png");
+				break;
+			}
+
+			case 16: {
+				avatar = new ImageIcon("avatar/avatar16.png");
+				break;
+			}
+
+			case 17: {
+				avatar = new ImageIcon("avatar/mago.png");
+				break;
+			}
+
+			case 18: {
+				avatar = new ImageIcon("avatar/ninja.png");
+				break;
+			}
+
+			case 19: {
+				avatar = new ImageIcon("avatar/pirata.png");
+				break;
+			}
+
+			case 20: {
+				avatar = new ImageIcon("avatar/preguiça.png");
+				break;
+			}
+
+			case 21: {
+				avatar = new ImageIcon("avatar/rainha.png");
+				break;
+			}
+
+			case 22: {
+				avatar = new ImageIcon("avatar/robo.png");
+				break;
+			}
+
+			case 23: {
+				avatar = new ImageIcon("avatar/urso.png");
+				break;
+			}
+
+			case 24: {
+				avatar = new ImageIcon("avatar/zumbi.png");
+				break;
+			}
+
+		}
+
+
 		lblTitulo = new JLabel("Perfil");
-		lblAvatar = new JLabel(iconAvatar(usuario.getAvatar()));
+		lblAvatar = new JLabel(avatar);
 		lblNome = new JLabel("Nome");
 		lblGenero = new JLabel("Gênero");
 		lblDataNasc = new JLabel("Data de nascimento");
@@ -103,17 +227,17 @@ public class PerfilPanel extends JPanel implements ItemListener{
 		String[] estados = {"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB" , "PE", "PI", "PR", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
 		String[] dias = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
 		String[] meses = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-		Integer[] anos = new Integer[117];
+		String[] anos = new String[117];
 
 		for(int i = 1900, a = 0; i < 2017; i = i + 1, a = a + 1){
-			anos[a] = i;
+			anos[a] = String.valueOf(i);
 		}
 
 		cbFoto = new JComboBox<String>(fotos);
 		cbGenero = new JComboBox<String>(generos);
 		cbDiaNasc = new JComboBox<String>(dias);
 		cbMesNasc = new JComboBox<String>(meses);
-		cbAnoNasc = new JComboBox<Integer>(anos);
+		cbAnoNasc = new JComboBox<String>(anos);
 		cbEstado = new JComboBox<String>(estados);
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
 
@@ -129,9 +253,9 @@ public class PerfilPanel extends JPanel implements ItemListener{
 		txRespostaSecret.setText(usuario.getRespostaSecret());
 
 		String[] dataNasc = usuario.getDataNasc().split("/");
-		cbAnoNasc.setSelectedItem(Integer.parseInt(dataNasc[2]));
-		cbMesNasc.setSelectedItem(Integer.parseInt(dataNasc[1]));
-		cbDiaNasc.setSelectedItem(Integer.parseInt(dataNasc[0]));
+		cbAnoNasc.setSelectedItem(dataNasc[2]);
+		cbMesNasc.setSelectedItem(dataNasc[1]);
+		cbDiaNasc.setSelectedItem(dataNasc[0]);
 
 		cbEstado.setSelectedItem(usuario.getEstado());
 		cbGenero.setSelectedItem(usuario.getGenero());
@@ -183,7 +307,9 @@ public class PerfilPanel extends JPanel implements ItemListener{
 	}
 
 	public boolean trocarSenha() {
-		if(String.valueOf(txNovaSenha.getPassword()).equals("") & String.valueOf(txConfirmarSenha.getPassword()).equals("")) {
+		String senha1 = String.valueOf(txNovaSenha.getPassword());
+		String senha2 = String.valueOf(txConfirmarSenha.getPassword());
+		if(senha1.equals("") & senha2.equals("")) {
 			return false;
 		} else {
 			return true;
@@ -191,7 +317,7 @@ public class PerfilPanel extends JPanel implements ItemListener{
 	}
 
 	public boolean validarSenha() {
-		if(txNovaSenha.getPassword().equals(txConfirmarSenha.getPassword())) {
+		if(String.valueOf(txNovaSenha.getPassword()).equals(String.valueOf(txConfirmarSenha.getPassword()))) {
 			return true;
 		} else {
 			return false;
@@ -216,21 +342,14 @@ public class PerfilPanel extends JPanel implements ItemListener{
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		Integer fotoSelecionada = (Integer) e.getSource();
-		lblAvatar = new JLabel(iconAvatar(fotoSelecionada));
+		@SuppressWarnings("unchecked")
+		JComboBox<String> fotoSelecionada = (JComboBox<String>) e.getSource();
+		lblAvatar.setIcon(iconAvatar(fotoSelecionada.getSelectedIndex()));
 	}
 
 	public Icon iconAvatar(int avatarInt) {
-		int foto = 0;
-		for(int contador = 0; contador < 7; contador++) {
-			if(avatarInt == Integer.parseInt(cbFoto.getItemAt(contador))) {
-				foto = contador;
-				break;
-			}
-		}
-
 		Icon avatar = new ImageIcon();
-		switch (foto) {
+		switch (avatarInt) {
 			case 0: {
 				avatar = new ImageIcon("avatar/default.png");
 				break;
