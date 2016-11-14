@@ -57,6 +57,8 @@ public class PrincipalView extends JFrame implements IView{
 		barraVertical = new BarraVerticalPanel();
 		mainPage = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		mainPage.getVerticalScrollBar().setUnitIncrement(10);
+		sideBar.getVerticalScrollBar().setUnitIncrement(10);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
@@ -68,7 +70,7 @@ public class PrincipalView extends JFrame implements IView{
 
 		mainContent = new JPanel();
 		contentPane.add(mainContent, "cell 0 0,grow");
-		mainContent.setLayout(new MigLayout("", "[grow][::400,grow]", "[::150,grow][grow,bottom]"));
+		mainContent.setLayout(new MigLayout("", "[150::n, grow][::400,grow]", "[::150,grow][grow,bottom]"));
 
 		mainContent.add(barraHorizontal, "cell 0 0 2 1,grow");
 		mainContent.add(sideBar, "cell 1 1, grow");

@@ -53,7 +53,7 @@ public class VisualizarTopicoPanel extends JPanel {
 	}
 
 	public JButton getBtnResponder() {
-		return null;
+		return btnResponder;
 	}
 
 	public JButton getBtnVoltar() {
@@ -64,6 +64,18 @@ public class VisualizarTopicoPanel extends JPanel {
 		int idTopico = getIdTopico();
 		panelResposta = new ResponderTopicoPanel(idTopico);
 		main.add(panelResposta, "grow, wrap 16");
+		main.revalidate();
+		main.repaint();
+	}
+	
+	public void fecharPanelResposta() {
+		remove(panelResposta);
+		main.remove(panelResposta);
+		panelResposta = null;
+		main.revalidate();
+		main.repaint();
+		revalidate();
+		repaint();
 	}
 
 	public JButton getBtnPostarResposta() {
@@ -79,6 +91,7 @@ public class VisualizarTopicoPanel extends JPanel {
 	}
 
 	public void setPostagens(PostagemModel[] postagens) {
+		posts = new PanelPostagem[postagens.length];
 		for(int contador = 0; contador < postagens.length; contador++) {
 			posts[contador] = new PanelPostagem(postagens[contador]);
 			main.add(posts[contador], "grow, wrap 16");

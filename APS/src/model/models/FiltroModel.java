@@ -6,17 +6,15 @@ public class FiltroModel {
 	public static final boolean DESCENDENTE = true;
 
 	private String tag;
-	private String data;
 	private String usuario;
 	private String titulo;
 	private boolean orderDate;
 
 	public FiltroModel(){
 		this.tag = "";
-		this.data = "";
 		this.usuario = "";
 		this.titulo = "";
-		this.orderDate = false;
+		this.orderDate = true;
 	}
 
 	public String getTag() {
@@ -25,14 +23,6 @@ public class FiltroModel {
 
 	public void setTag(String tag) {
 		this.tag = tag;
-	}
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
 	}
 
 	public String getUsuario() {

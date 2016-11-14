@@ -18,6 +18,7 @@ public class MainController {
 
 	public static void abrirTelaLogin(){
 		loginController = new LoginController(new LoginModel(),  new LoginView());
+		loginController.setCamposEnabled();
 	}
 
 	public static void abrirTelaCadastro(){
@@ -34,6 +35,7 @@ public class MainController {
 	}
 
 	public static UsuarioModel getUsuarioConectado() {
+		usuarioConectado = DAOForum.conferirUsuario(usuarioConectado.getUsuario());
 		return usuarioConectado;
 	}
 
@@ -48,7 +50,7 @@ public class MainController {
 				loginController.setCamposEnabled();
 			}
 		}.start();
-		MainController.abrirTelaLogin();
+		loginController = new LoginController(new LoginModel(),  new LoginView());
 	}
 
 }

@@ -18,7 +18,7 @@ public class PostagemModel {
 	private int idPostagem;
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "idTopico")
-	private TopicoModel topico;
+	private TopicoModel idTopico;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario")
 	private UsuarioModel usuario;
@@ -32,11 +32,11 @@ public class PostagemModel {
 	}
 
 	public TopicoModel getTopico() {
-		return topico;
+		return idTopico;
 	}
 
 	public void setTopico(TopicoModel topico) {
-		this.topico = topico;
+		this.idTopico = topico;
 	}
 
 	public UsuarioModel getUsuario() {

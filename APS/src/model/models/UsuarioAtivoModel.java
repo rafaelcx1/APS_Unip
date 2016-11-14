@@ -3,13 +3,13 @@ package model.models;
 public class UsuarioAtivoModel {
 
 	private String usuario;
-	private long numPublicacoes;
+	private int numPublicacoes;
 
 	public UsuarioAtivoModel() {
 
 	}
 
-	public UsuarioAtivoModel(String usuario, long numPublicacoes) {
+	public UsuarioAtivoModel(String usuario, int numPublicacoes) {
 		this.usuario = usuario;
 		this.numPublicacoes = numPublicacoes;
 	}
@@ -20,10 +20,10 @@ public class UsuarioAtivoModel {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public long getNumPublicacoes() {
+	public int getNumPublicacoes() {
 		return numPublicacoes;
 	}
-	public void setNumPublicacoes(long numPublicacoes) {
+	public void setNumPublicacoes(int numPublicacoes) {
 		this.numPublicacoes = numPublicacoes;
 	}
 

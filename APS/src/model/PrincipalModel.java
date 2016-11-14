@@ -21,12 +21,16 @@ public class PrincipalModel {
 	}
 
 	public TopicoModel[] getTopicos(int numeroPag) {
-		TopicoModel[] topicos = new TopicoModel[5];
-		for(int contador = 0; contador < this.topicos.length; contador++){
-			if(this.topicos[contador] != null)
-				topicos[contador] = this.topicos[contador + (numeroPag * 5)];
+		if(numeroPag * 5 < this.topicos.length) {
+			TopicoModel[] topicos = new TopicoModel[5];
+			for(int contador = 0; contador < 5; contador++){
+				if(contador + (numeroPag * 5) < this.topicos.length)
+					topicos[contador] = this.topicos[contador + (numeroPag * 5)];
+			}
+			return topicos;
+		} else {
+			return null;
 		}
-		return topicos;
 	}
 
 	public String getMsgErro() {
@@ -116,9 +120,14 @@ public class PrincipalModel {
 	public PostagemModel[] getPostagens(int idTopico) {
 		try {
 			List<PostagemModel> postagensList = DAOForum.getPostagens(idTopico);
-			return (PostagemModel[])postagensList.toArray();
+			PostagemModel[] postagens = new PostagemModel[postagensList.size()];
+			for(int contador = 0; contador < postagensList.size(); contador++){
+				postagens[contador] = postagensList.get(contador);
+			}
+			return postagens;
 		} catch(Exception e) {
 			msgErro = DAOForum.getMsgErro();
+			e.printStackTrace();
 			return null;
 		}
 	}

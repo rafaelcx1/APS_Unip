@@ -34,6 +34,7 @@ public class PanelPostagem extends JPanel{
 		MatteBorder division = BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(0xBDBDBD));
 
 		setBackground(background);
+		setBorder(BorderFactory.createLineBorder(new Color(0,0,0), 1, true));
 
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
 
@@ -46,11 +47,11 @@ public class PanelPostagem extends JPanel{
 
 		UsuarioModel usuario = postagem.getUsuario();
 		lblAvatar = new JLabel(iconAvatar(usuario.getAvatar()));
-		lblNome = new JLabel("Nome: " + usuario.getNome());
+		lblNome = new JLabel("Usuario: " + usuario.getUsuario());
 		lblEstadoCidade = new JLabel("Cidade/Estado: " + usuario.getCidade() + " - " + usuario.getEstado());
 		lblQtdPostagens = new JLabel("Quantidade de Postagens: " + usuario.getQtdPostagens(), new ImageIcon("images/comment.png"), 0);
 		lblDataCadastro = new JLabel("Data de Cadastro: " + usuario.getDataCadastro());
-		lblDataResposta = new JLabel("Data desta postagem: " + postagem.getDataPost());
+		lblDataResposta = new JLabel("Data desta postagem: " + postagem.getDataPost().replace("|", "às").replace(".", "/"));
 		lblTextoPostagem = new JLabel(postagem.getTextoPost());
 
 		lblNome.setFont(titulo1);
@@ -58,8 +59,8 @@ public class PanelPostagem extends JPanel{
 		info.add(lblNome, "wrap 16");
 		info.add(lblTextoPostagem, "wrap 16");
 		info.add(div, "wrap 16, grow, span");
-		info.add(lblQtdPostagens);
-		info.add(lblDataCadastro);
+		info.add(lblQtdPostagens, "gapright 30px");
+		info.add(lblDataCadastro, "gapright 30px");
 		info.add(lblDataResposta, "wrap 16");
 		info.add(lblEstadoCidade);
 

@@ -74,13 +74,13 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public void next() {
-		setPaginaAtual(paginaAtual++);
+		setPaginaAtual(paginaAtual + 1);
 		atualizarPagina();
 	}
 
 	public void prev() {
 		if(paginaAtual > 0) {
-			setPaginaAtual(paginaAtual--);
+			setPaginaAtual(paginaAtual - 1);
 		}
 		atualizarPagina();
 	}
@@ -123,22 +123,35 @@ public class PrincipalForumPanel extends JPanel {
 	}
 
 	public void setTopicos(TopicoModel[] topicos) {
+		removerTopicos();
 		if(topicos != null) {
 			for(int contador = 0; contador < topicos.length; contador++) {
 				if(topicos[contador] != null){
 					topicosPanel[contador] = new PanelTopicosPrincipal(topicos[contador]);
-					String miglayout =  "cell 0 " + (contador + 2) + ",growx,aligny top";
+					String miglayout =  "cell 0 " + (contador + 2) + ", grow";
 					add(topicosPanel[contador], miglayout);
+					topicosPanel[contador].atualizarLayout();
 				}
 			}
 		}
 	}
 
+	private void removerTopicos() {
+		for(int contador = 0; contador < 5; contador++){
+			if(topicosPanel[contador] != null)
+				remove(topicosPanel[contador]);
+		}
+		revalidate();
+		repaint();
+	}
+
 	public PanelTopicosPrincipal getTopicoPanel(int idTopico) {
 		PanelTopicosPrincipal panelTopicosPrincipal = null;
 		for (int contador = 0; contador < 5; contador++) {
-			if (topicosPanel[contador].getIdTopico() == idTopico) {
-				panelTopicosPrincipal = topicosPanel[contador];
+			PanelTopicosPrincipal topicoPanel = topicosPanel[contador];
+			if (topicoPanel != null) {
+				if(topicosPanel[contador].getIdTopico() == idTopico)
+					panelTopicosPrincipal = topicosPanel[contador];
 			}
 		}
 		return panelTopicosPrincipal;

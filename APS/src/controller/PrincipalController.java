@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import model.PrincipalModel;
 import model.models.FiltroModel;
 import model.tables.PostagemModel;
+import model.tables.TopicoModel;
 import model.tables.UsuarioModel;
 import view.BotaoTopicoPanel;
 import view.PrincipalView;
@@ -76,7 +77,6 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnSalvarPerfilListener implements ActionListener {
 
 		@Override
@@ -98,7 +98,6 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnSairListener implements ActionListener {
 
 		@Override
@@ -108,7 +107,6 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnMinhasPostagensListener implements ActionListener {
 
 		@Override
@@ -117,7 +115,7 @@ public class PrincipalController {
 			filtroModel.setUsuario(MainController.getUsuarioConectado().getUsuario());
 			if(principalModel.atualizarTopicos(filtroModel)) {
 				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
-				principalView.getPrincipalForumPanel().setPaginaAtual(1);
+				principalView.getPrincipalForumPanel().setPaginaAtual(0);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -125,7 +123,6 @@ public class PrincipalController {
 		}
 
 	}
-
 
 	private class BtnMeuPerfilListener implements ActionListener {
 
@@ -138,26 +135,24 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnInicioListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.abrirPrincipalForumPanel(principalModel.getTags(), principalModel.getTopicos(0));
+			abrirPrincipalForumPanel();
 		}
 
 	}
-
 
 	private class BtnFiltrarListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			FiltroModel filtroModel = new FiltroModel();
-			filtroModel = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroData();
+			filtroModel = principalView.getPrincipalForumPanel().getPanelFiltros().getFiltroModel();
 			if(principalModel.atualizarTopicos(filtroModel)) {
 				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
-				principalView.getPrincipalForumPanel().setPaginaAtual(1);
+				principalView.getPrincipalForumPanel().setPaginaAtual(0);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -165,18 +160,21 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnNextListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			principalView.getPrincipalForumPanel().next();
-			int pagina = principalView.getPrincipalForumPanel().getPagina();
-			principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(pagina));
+			int pagina = principalView.getPrincipalForumPanel().getPagina() + 1;
+			TopicoModel[] topicos = principalModel.getTopicos(pagina);
+			if(topicos != null) {
+				principalView.getPrincipalForumPanel().setTopicos(topicos);
+				principalView.getPrincipalForumPanel().next();
+				principalView.setBtnCurtirListener(new BtnCurtirListener());
+				principalView.setBtnVisualizarListener(new BtnVisualizarListener());
+			}
 		}
 
 	}
-
 
 	private class BtnPreviousListener implements ActionListener {
 
@@ -185,10 +183,11 @@ public class PrincipalController {
 			principalView.getPrincipalForumPanel().prev();
 			int pagina = principalView.getPrincipalForumPanel().getPagina();
 			principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(pagina));
+			principalView.setBtnCurtirListener(new BtnCurtirListener());
+			principalView.setBtnVisualizarListener(new BtnVisualizarListener());
 		}
 
 	}
-
 
 	private class BtnVoltarListener implements ActionListener {
 
@@ -200,14 +199,14 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnPostarTopicoListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			PostagemModel postagem = principalView.getCriarTopicoPanel().getPostagemModel();
-			postagem.setUsuario(MainController.getUsuarioConectado());
-			postagem.getTopico().setUsuario(MainController.getUsuarioConectado());
+			UsuarioModel usuario = MainController.getUsuarioConectado();
+			postagem.setUsuario(usuario);
+			postagem.getTopico().setUsuario(usuario);
 			if(principalModel.postarTopico(postagem)) {
 				principalView.displayMsg("Tópico postado com sucesso!");
 			} else {
@@ -218,24 +217,25 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnPostarRespostaListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			PostagemModel postagem = principalView.getVisualizarTopicoPanel().getResponderTopicoPanel().getPostagemModel();
-			postagem.setUsuario(MainController.getUsuarioConectado());
+			UsuarioModel usuario = MainController.getUsuarioConectado();
+			postagem.setUsuario(usuario);
 			int idTopico = principalView.getVisualizarTopicoPanel().getResponderTopicoPanel().getIdTopico();
 			if(principalModel.postarPostagem(idTopico, postagem)) {
 				principalView.displayMsg("Postagem feita com sucesso!");
+				principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(idTopico));
+				principalView.setBtnResponderTopicoListener(new BtnResponderTopicoListener());
+				principalView.setBtnVoltarListener(new BtnVoltarListener());
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
-
 		}
 
 	}
-
 
 	private class BtnVisualizarListener implements ActionListener {
 
@@ -248,11 +248,11 @@ public class PrincipalController {
 				principalView.setBtnVoltarListener(new BtnVoltarListener());
 			} catch(Exception e1) {
 				principalView.displayMsg(principalModel.getMsgErro());
+				e1.printStackTrace();
 			}
 		}
 
 	}
-
 
 	private class BtnCriarTopicoListener implements ActionListener {
 
@@ -265,7 +265,6 @@ public class PrincipalController {
 
 	}
 
-
 	private class LblFiltrarDataTopicosListener implements MouseListener {
 
 		@Override
@@ -275,7 +274,7 @@ public class PrincipalController {
 			principalView.getPrincipalForumPanel().getPanelFiltros().setDataAscendente(!dataAscendente);
 			if(principalModel.atualizarTopicos(filtroData)) {
 				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
-				principalView.getPrincipalForumPanel().setPaginaAtual(1);
+				principalView.getPrincipalForumPanel().setPaginaAtual(0);
 			} else {
 				principalView.displayMsg(principalModel.getMsgErro());
 			}
@@ -306,13 +305,26 @@ public class PrincipalController {
 
 	}
 
-
 	private class BtnResponderTopicoListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			principalView.getVisualizarTopicoPanel().abrirPanelResposta();
+			principalView.setBtnVoltarListener(new BtnVoltarListener());
+			principalView.setBtnResponderTopicoListener(new BtnResponderTopicoFecharListener());
 			principalView.setBtnPostarRespostaListener(new BtnPostarRespostaListener());
+		}
+
+	}
+
+	private class BtnResponderTopicoFecharListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			principalView.getVisualizarTopicoPanel().fecharPanelResposta();
+			principalView.abrirVisualizarTopicoPanel(principalModel.getPostagens(principalView.getVisualizarTopicoPanel().getIdTopico()));
+			principalView.setBtnVoltarListener(new BtnVoltarListener());
+			principalView.setBtnResponderTopicoListener(new BtnResponderTopicoListener());
 		}
 
 	}

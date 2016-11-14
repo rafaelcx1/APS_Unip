@@ -41,7 +41,7 @@ public class PanelFiltros extends JPanel {
 		lblTag = new JLabel("Tag");
 		lblUsuario = new JLabel("Usuário");
 		lblTitulo = new JLabel("Título");
-		lblFiltrarData = new JLabel("Ordenar por tópicos mais recentes");
+		lblFiltrarData = new JLabel("Ordenar por tópicos mais antigos");
 
 		lblTag.setForeground(Color.WHITE);
 		lblTag.setFont(word);
@@ -79,6 +79,7 @@ public class PanelFiltros extends JPanel {
 	}
 
 	public void setTags(String[] tags) {
+		jcTags.addItem("Todos");
 		for(int contador = 0; contador < tags.length; contador++) {
 			jcTags.addItem(tags[contador]);
 		}
@@ -87,6 +88,15 @@ public class PanelFiltros extends JPanel {
     public FiltroModel getFiltroData() {
 	    FiltroModel filtroData = new FiltroModel();
 	    filtroData.setOrderDate(dataAscendente);
+	    return filtroData;
+    }
+
+    public FiltroModel getFiltroModel() {
+	    FiltroModel filtroData = new FiltroModel();
+	    filtroData.setTitulo(txTitulo.getText());
+	    filtroData.setUsuario(txUsuario.getText());
+	    if(!((String) jcTags.getSelectedItem()).equals("Todos"))
+	    	filtroData.setTag((String) jcTags.getSelectedItem());
 	    return filtroData;
     }
 

@@ -44,7 +44,7 @@ public class BarraHorizontalPanel extends JPanel {
 
 		btnInicio = new JButton("Início");
 		btnPerfil = new JButton("Perfil");
-		btnPostagens = new JButton("Postagens");
+		btnPostagens = new JButton("Minhas Postagens");
 		btnSair = new JButton("Sair");
 
 		btnInicio.setBackground(null);

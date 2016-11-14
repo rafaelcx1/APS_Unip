@@ -146,18 +146,13 @@ public class DAOForum {
 			contaFiltros++;
 		}
 
-		if(filtro.getData() != null & !filtro.getData().equals("")) {
-			filtros += " t.dtCriacao = " + filtro.getData() + ",";
-			contaFiltros++;
-		}
-
 		if(filtro.getTag() != null & !filtro.getTag().equals("")) {
-			filtros += " t.tag = " + filtro.getTag() + ",";
+			filtros += " t.tag = '" + filtro.getTag() + "',";
 			contaFiltros++;
 		}
 
 		if(filtro.getTitulo() != null & !filtro.getTitulo().equals("")) {
-			filtros += " t.titulo = " + filtro.getTitulo() + ",";
+			filtros += " t.titulo = '" + filtro.getTitulo() + "',";
 			contaFiltros++;
 		}
 
@@ -229,7 +224,7 @@ public class DAOForum {
 			manager = factory.createEntityManager();
 			List<UsuarioAtivoModel> usuariosAtivos = null;
 			if(factory != null & manager != null)
-				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, count(*) as qtdPostagens) from UsuarioModel order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(5).getResultList();
+				usuariosAtivos = manager.createQuery("select new model.models.UsuarioAtivoModel(usuario, qtdPostagens) from UsuarioModel where qtdPostagens > 0 order by qtdPostagens DESC", UsuarioAtivoModel.class).setMaxResults(5).getResultList();
 
 			return usuariosAtivos;
 		} catch(Exception e) {
@@ -287,6 +282,7 @@ public class DAOForum {
 		try {
 			manager = factory.createEntityManager();
 			postagem.setTopico(manager.getReference(TopicoModel.class, idTopico));
+			postagem.setUsuario(manager.getReference(UsuarioModel.class, postagem.getUsuario().getUsuario()));
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
 				manager.merge(postagem);
@@ -303,28 +299,11 @@ public class DAOForum {
 		}
 	}
 
-	public static boolean postarTopico(TopicoModel topico) {
-		try {
-			manager = factory.createEntityManager();
-			if(factory != null & manager != null) {
-				manager.getTransaction().begin();
-				manager.merge(topico);
-				manager.getTransaction().commit();
-			}
-			return true;
-		} catch(Exception e) {
-			e.printStackTrace();
-			msgErro = "Ocorreu um erro ao postar o tópico.\nMensagem do erro: " + e.getMessage();
-			return false;
-		} finally {
-			closeConexaoEntity();
-		}
-	}
-
-	//Para testar
 	public static boolean postarTopico(PostagemModel topico) {
 		try {
 			manager = factory.createEntityManager();
+			topico.setUsuario(manager.getReference(UsuarioModel.class, topico.getUsuario().getUsuario()));
+			topico.getTopico().setUsuario(manager.getReference(UsuarioModel.class, topico.getUsuario().getUsuario()));
 			if(factory != null & manager != null) {
 				manager.getTransaction().begin();
 				manager.merge(topico);
@@ -351,7 +330,6 @@ public class DAOForum {
 	private static void closeConexaoEntity() {
 		if(factory != null & manager != null) {
 			manager.close();
-			manager = null;
 		}
 	}
 
