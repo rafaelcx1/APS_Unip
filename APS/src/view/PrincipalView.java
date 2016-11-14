@@ -60,21 +60,21 @@ public class PrincipalView extends JFrame implements IView{
 		mainPage.getVerticalScrollBar().setUnitIncrement(10);
 		sideBar.getVerticalScrollBar().setUnitIncrement(10);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
-		setMinimumSize(new Dimension(1024, 768));
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setBorder(null);
 		contentPane.setLayout(new MigLayout("", "[grow]", "[grow]"));
 
 		mainContent = new JPanel();
-		contentPane.add(mainContent, "cell 0 0,grow");
-		mainContent.setLayout(new MigLayout("", "[150::n, grow][::400,grow]", "[::150,grow][grow,bottom]"));
+		mainContent.setLayout(new MigLayout("", "[150::n, grow][200::n,grow]", "[::150,grow][grow,bottom]"));
 
 		mainContent.add(barraHorizontal, "cell 0 0 2 1,grow");
 		mainContent.add(sideBar, "cell 1 1, grow");
 		mainContent.add(mainPage, "cell 0 1, grow");
+		contentPane.add(mainContent, "cell 0 0,grow");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setExtendedState(MAXIMIZED_BOTH);
+		setMinimumSize(new Dimension(1024, 768));
 	}
 
 	public PerfilPanel getPerfilPanel() {
