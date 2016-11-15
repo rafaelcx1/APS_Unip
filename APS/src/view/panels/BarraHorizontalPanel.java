@@ -29,7 +29,7 @@ public class BarraHorizontalPanel extends JPanel {
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 		Font word = new Font("Open Sans", Font.BOLD , 14);
 		//setLayout(new MigLayout("", "[100%]"));
-		setLayout(new MigLayout("", "[250][][][][][grow 1][][::150, grow]", "[grow]"));
+		setLayout(new MigLayout("", "[250][][][][][grow 1][][::150, grow]", "[::120,grow]"));
 		setBackground(new Color(0x212121));
 
 		//JPanel img = new JPanel(new MigLayout("insets 12px"));
