@@ -54,7 +54,7 @@ public class PrincipalView extends JFrame implements IView{
 		mainContent.add(mainPage, "cell 0 1, grow, width 70%");
 		contentPane.add(mainContent, "cell 0 0,grow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(MAXIMIZED_BOTH);
+		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(1280, 720));
 	}
 
