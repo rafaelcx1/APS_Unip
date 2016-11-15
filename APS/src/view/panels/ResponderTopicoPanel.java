@@ -45,6 +45,7 @@ public class ResponderTopicoPanel extends JPanel {
 		btnPostarResposta.setBackground(Color.BLACK);
 		btnPostarResposta.setForeground(Color.WHITE);
 		btnPostarResposta.setBorder(defaultLayout);
+		btnPostarResposta.setFocusPainted(false);
 
 		add(lblTitulo, "alignx left,aligny center,wrap");
 		add(lblTextoResposta, "wrap 16");

@@ -92,14 +92,14 @@ public class PanelTopicosPrincipal extends JPanel {
 	}
 
 	public void atualizarLayout() {
-		setLayout(new MigLayout("", "[200:n][100:n][60:n,grow][200:n, grow][::120,grow]", "[::50,grow][::35,grow][::35,grow][::35,grow][20::n, grow][::25,grow]"));
+		setLayout(new MigLayout("", "[150:n][100:n][grow][grow]", "[::50,grow][::35,grow][::35,grow][::35,grow][20::n, grow][::25,grow]"));
 		add(lblAvatar, "cell 0 0 1 6,alignx center,aligny center");
 		add(lblTituloTopico, "cell 1 0 2 1,alignx left,aligny center");
 		add(lblUsuario, "cell 1 1,alignx left,aligny bottom");
 		add(lblTag, "cell 1 2,alignx left,aligny center");
 		add(lblDataCriacao, "cell 1 3,alignx left,aligny center");
-		add(btnCurtir, "cell 4 1,alignx left,aligny center");
-		add(btnVisualizar, "cell 4 2,alignx left,aligny center");
+		add(btnCurtir, "cell 4 1,alignx right,aligny center");
+		add(btnVisualizar, "cell 4 2,alignx right,aligny center");
 		add(lblQtdCurtidas, "cell 1 5,alignx left,aligny bottom");
 		add(lblQtdRespostas, "cell 2 5,alignx left,aligny bottom");
 	}
@@ -139,7 +139,7 @@ public class PanelTopicosPrincipal extends JPanel {
 			qtdCurtidas = qtdCurtidas + 1;
 		curtido = !curtido;
 		lblQtdCurtidas.setText(String.valueOf(qtdCurtidas));
-		
+
 	}
 
 	public Icon iconAvatar(int avatarInt) {

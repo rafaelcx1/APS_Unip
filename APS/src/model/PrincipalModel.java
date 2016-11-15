@@ -13,7 +13,7 @@ import model.tables.UsuarioModel;
 public class PrincipalModel {
 
 	private TopicoModel[] topicos;
-	private String[] tags = {"Hardware|TI", "Redes e Internet|TI", "Edição de Áudio e Vídeo|TI", "Programação|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e Mangás", "Notícias"};
+	private String[] tags = {"Hardware|TI", "Rede e Internet|TI", "Áudio e Vídeo|TI", "Programação|TI", "Sistemas Operacionais|TI", "Jogos", "HQs e Mangás", "Notícias"};
 	private String msgErro;
 
 	public PrincipalModel() {
@@ -70,7 +70,7 @@ public class PrincipalModel {
 			String[] topicosMaisCurtidos = new String[5];
 			for(int contador = 0; contador < topicosMaisCurtidosList.size(); contador++) {
 				if(topicosMaisCurtidosList.get(contador) != null)
-					topicosMaisCurtidos[contador] = "Título: " + topicosMaisCurtidosList.get(contador).getTitulo() + " | Curtidas: " + topicosMaisCurtidosList.get(contador).getQtdCurtidas() + " | Tag: " + topicosMaisCurtidosList.get(contador).getTag() + " | Usuário: " + topicosMaisCurtidosList.get(contador).getUsuario().getUsuario();
+					topicosMaisCurtidos[contador] = "Título: " + topicosMaisCurtidosList.get(contador).getTitulo() + " | Curtidas: " + topicosMaisCurtidosList.get(contador).getQtdCurtidas();
 			}
 			return topicosMaisCurtidos;
 		} catch (Exception e) {

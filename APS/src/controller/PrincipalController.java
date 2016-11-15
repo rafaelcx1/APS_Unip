@@ -81,7 +81,17 @@ public class PrincipalController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(principalView.getPerfilPanel().validarSenha() & !principalView.getPerfilPanel().trocarSenha()) {
+			if(!principalView.getPerfilPanel().trocarSenha()) {
+				UsuarioModel usuarioModel = new UsuarioModel();
+				usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
+				if(principalModel.atualizarPerfil(usuarioModel)){
+					principalView.displayMsg("Perfil atualizado !");
+					abrirPrincipalForumPanel();
+					atualizar();
+				}else{
+					principalView.displayMsg(principalModel.getMsgErro());
+				}
+			} else if(principalView.getPerfilPanel().validarSenha() & principalView.getPerfilPanel().trocarSenha()){
 				UsuarioModel usuarioModel = new UsuarioModel();
 				usuarioModel = principalView.getPerfilPanel().getUsuarioModel();
 				if(principalModel.atualizarPerfil(usuarioModel)){
@@ -114,6 +124,7 @@ public class PrincipalController {
 			FiltroModel filtroModel = new FiltroModel();
 			filtroModel.setUsuario(MainController.getUsuarioConectado().getUsuario());
 			if(principalModel.atualizarTopicos(filtroModel)) {
+				abrirPrincipalForumPanel();
 				principalView.getPrincipalForumPanel().setTopicos(principalModel.getTopicos(0));
 				principalView.getPrincipalForumPanel().setPaginaAtual(0);
 			} else {
