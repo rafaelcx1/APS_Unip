@@ -47,12 +47,12 @@ public class PrincipalView extends JFrame implements IView{
 		contentPane.setLayout(new MigLayout("insets 0%", "[grow]", "[grow]"));
 
 		mainContent = new JPanel();
-		mainContent.setLayout(new MigLayout("", "[824::n, grow][270::270]", "[::150,grow][grow,bottom]"));
+		mainContent.setLayout(new MigLayout("", "[824::n, grow][270::270]", ""));
 
 		mainContent.add(barraHorizontal, "cell 0 0 2 1, grow");
-		mainContent.add(sideBar, "cell 1 1, grow, width 30%");
-		mainContent.add(mainPage, "cell 0 1, grow, width 70%");
-		contentPane.add(mainContent, "cell 0 0,grow");
+		mainContent.add(sideBar, "cell 1 1, grow, width 30%, height 100%");
+		mainContent.add(mainPage, "cell 0 1, grow, width 70%, height 100%");
+		contentPane.add(mainContent, "cell 0 0,grow, height 100%");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		setMinimumSize(new Dimension(1280, 720));
