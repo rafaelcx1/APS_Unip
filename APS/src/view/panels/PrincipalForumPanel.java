@@ -24,7 +24,7 @@ public class PrincipalForumPanel extends JPanel {
 	private int paginaAtual;
 
 	public PrincipalForumPanel() {
-		setLayout(new MigLayout("", "[grow]", "[::120][::70,grow][100:n][100:n][100:n][100:n][100:n]"));
+		setLayout(new MigLayout("", "[grow]", "[::120][::70,grow][][][][][]"));
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
 		panelFiltros = new PanelFiltros();
@@ -42,8 +42,10 @@ public class PrincipalForumPanel extends JPanel {
 
 		btnNext.setBorder(defaultLayout);
 		btnNext.setBackground(Color.BLACK);
+		btnNext.setFocusPainted(false);
 		btnPrevious.setBorder(defaultLayout);
 		btnPrevious.setBackground(Color.BLACK);
+		btnPrevious.setFocusPainted(false);
 		btnPag.setBorder(BorderFactory.createEmptyBorder(10, 12, 10, 12));
 		btnPag.setBackground(Color.BLACK);
 		btnPag.setForeground(Color.WHITE);
@@ -54,7 +56,7 @@ public class PrincipalForumPanel extends JPanel {
 		main.add(btnPag);
 		main.add(btnNext);
 
-		add(panelFiltros, "cell 0 0,grow");
+		add(panelFiltros, "cell 0 0, grow");
 		add(main, "cell 0 1,growx,aligny top");
 
 		//header.add(panelFiltros);

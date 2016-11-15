@@ -27,13 +27,15 @@ public class VisualizarTopicoPanel extends JPanel {
 		Border btnLayout = BorderFactory.createEmptyBorder(10, 16, 10, 16);
 		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
 
-		JPanel header = new JPanel(new MigLayout());
+		JPanel header = new JPanel(new MigLayout("", "[::50, grow][grow 1][]", "[::30, grow]"));
 		main = new JPanel(new MigLayout("fillx"));
 
 		header.setBackground(new Color(0x212121));
 
 		btnResponder = new JButton("Responder");
 		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+		btnResponder.setFocusPainted(false);
+		btnVoltar.setFocusPainted(false);
 
 		btnResponder.setBackground(Color.BLACK);
 		btnResponder.setForeground(Color.WHITE);
@@ -41,8 +43,9 @@ public class VisualizarTopicoPanel extends JPanel {
 		btnVoltar.setBackground(Color.BLACK);
 		btnVoltar.setBorder(btnLayout);
 
-		header.add(btnVoltar);
-		header.add(btnResponder, "gapleft 85%");
+		header.setLayout(new MigLayout("", "[::50, grow][grow 1][]", "[::50, grow]"));
+		header.add(btnVoltar, "cell 0 0, alignx left, aligny center");
+		header.add(btnResponder, "cell 2 0, alignx right, aligny center");
 
 		add(header, "North");
 		add(main, "Center");
@@ -67,7 +70,7 @@ public class VisualizarTopicoPanel extends JPanel {
 		main.revalidate();
 		main.repaint();
 	}
-	
+
 	public void fecharPanelResposta() {
 		remove(panelResposta);
 		main.remove(panelResposta);

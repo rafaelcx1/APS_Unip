@@ -59,8 +59,8 @@ public class PanelPostagem extends JPanel{
 		info.add(lblNome, "wrap 16");
 		info.add(lblTextoPostagem, "wrap 16");
 		info.add(div, "wrap 16, grow, span");
-		info.add(lblQtdPostagens, "gapright 30px");
-		info.add(lblDataCadastro, "gapright 30px");
+		info.add(lblQtdPostagens, "gapright 5%");
+		info.add(lblDataCadastro, "gapright 5%");
 		info.add(lblDataResposta, "wrap 16");
 		info.add(lblEstadoCidade);
 

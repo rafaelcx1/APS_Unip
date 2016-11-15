@@ -242,7 +242,9 @@ public class PerfilPanel extends JPanel implements ItemListener{
 		cbPerguntaSecret = new JComboBox<String>(perguntas);
 
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.setFocusPainted(false);
 		btnVoltar = new JButton("", new ImageIcon("images/back.png"));
+		btnVoltar.setFocusPainted(false);
 
 		btnSalvar.setBackground(Color.BLACK);
 		btnSalvar.setForeground(Color.WHITE);

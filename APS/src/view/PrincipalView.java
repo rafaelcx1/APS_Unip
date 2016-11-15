@@ -36,22 +36,6 @@ public class PrincipalView extends JFrame implements IView{
 
 
 	public PrincipalView(UsuarioModel usuario) {
-		/*this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		barraHorizontal = new BarraHorizontalPanel(usuario);
-		barraVertical = new BarraVerticalPanel();
-
-		mainPage = new JScrollPane();
-		JScrollPane sideBar = new JScrollPane(barraVertical, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-		mainContent.add(mainPage, "grow, height 100%, split");
-		mainContent.add(sideBar, "width 20%, height 100%");
-
-		main.add(barraHorizontal, "North");
-		main.add(mainContent, "Center");
-
-		getContentPane().add(main);
-		setResizable(false);
-		*/
 		super("JSolve - Fórum | Bem-Vindo!");
 		barraHorizontal = new BarraHorizontalPanel(usuario);
 		barraVertical = new BarraVerticalPanel();
@@ -66,7 +50,7 @@ public class PrincipalView extends JFrame implements IView{
 		contentPane.setLayout(new MigLayout("", "[grow]", "[grow]"));
 
 		mainContent = new JPanel();
-		mainContent.setLayout(new MigLayout("", "[150::n, grow][200::n,grow]", "[::150,grow][grow,bottom]"));
+		mainContent.setLayout(new MigLayout("", "[824::n, grow][270::270]", "[::150,grow][grow,bottom]"));
 
 		mainContent.add(barraHorizontal, "cell 0 0 2 1,grow");
 		mainContent.add(sideBar, "cell 1 1, grow");
@@ -74,7 +58,7 @@ public class PrincipalView extends JFrame implements IView{
 		contentPane.add(mainContent, "cell 0 0,grow");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(MAXIMIZED_BOTH);
-		setMinimumSize(new Dimension(1024, 768));
+		setMinimumSize(new Dimension(1280, 720));
 	}
 
 	public PerfilPanel getPerfilPanel() {

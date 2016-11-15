@@ -17,12 +17,15 @@ public class UsuarioAtivoModel {
 	public String getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
 	public int getNumPublicacoes() {
 		return numPublicacoes;
 	}
+
 	public void setNumPublicacoes(int numPublicacoes) {
 		this.numPublicacoes = numPublicacoes;
 	}

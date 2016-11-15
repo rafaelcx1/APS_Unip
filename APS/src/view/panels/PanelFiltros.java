@@ -2,6 +2,7 @@ package view.panels;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.Map;
@@ -16,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import model.models.FiltroModel;
-import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class PanelFiltros extends JPanel {
@@ -32,11 +32,11 @@ public class PanelFiltros extends JPanel {
 	private boolean dataAscendente = false;
 
 	public PanelFiltros() {
-		setLayout(new MigLayout());
+		setLayout(new FlowLayout());
 		setBackground(new Color(0x212121));
 
-		Font word = new Font("Open Sans", Font.BOLD , 14);
-		Border defaultLayout = BorderFactory.createEmptyBorder(6, 12, 6, 12);
+		Font word = new Font("Open Sans", Font.BOLD , 12);
+		Border defaultLayout = BorderFactory.createEmptyBorder(4, 7, 4, 7);
 
 		lblTag = new JLabel("Tag");
 		lblUsuario = new JLabel("Usuário");
@@ -52,10 +52,11 @@ public class PanelFiltros extends JPanel {
 		lblFiltrarData.setForeground(Color.WHITE);
 		lblFiltrarData.setFont(word);
 
-		txTitulo = new JTextField(16);
-		txUsuario = new JTextField(16);
+		txTitulo = new JTextField(10);
+		txUsuario = new JTextField(10);
 
 		jcTags = new JComboBox<>();
+		jcTags.setFont(new Font("Open Sans", Font.BOLD , 12));
 
 		btnFiltrar = new JButton("Filtrar");
 		btnCriarTopico = new JButton("Criar Tópico ", new ImageIcon("images/create.png"));
@@ -63,19 +64,21 @@ public class PanelFiltros extends JPanel {
 		btnFiltrar.setBackground(Color.BLACK);
 		btnFiltrar.setForeground(Color.WHITE);
 		btnFiltrar.setBorder(defaultLayout);
+		btnFiltrar.setFocusPainted(false);
 		btnCriarTopico.setBackground(Color.BLACK);
 		btnCriarTopico.setForeground(Color.WHITE);
 		btnCriarTopico.setBorder(defaultLayout);
+		btnCriarTopico.setFocusPainted(false);
 
 		add(lblTag);
 		add(jcTags);
-		add(lblUsuario, "gapleft 16px");
+		add(lblUsuario);
 		add(txUsuario);
-		add(lblTitulo, "gapleft 16px");
+		add(lblTitulo);
 		add(txTitulo);
-		add(btnFiltrar, "gapleft 16px");
-		add(lblFiltrarData, "gapleft 16px, gapright 16px");
-		add(btnCriarTopico, "alignx right");
+		add(btnFiltrar);
+		add(lblFiltrarData);
+		add(btnCriarTopico);
 	}
 
 	public void setTags(String[] tags) {
