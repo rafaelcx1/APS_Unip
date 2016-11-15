@@ -49,7 +49,7 @@ public class PrincipalView extends JFrame implements IView{
 		mainContent = new JPanel();
 		mainContent.setLayout(new MigLayout("", "[824::n, grow][270::270]", "[::150,grow][grow,bottom]"));
 
-		mainContent.add(barraHorizontal, "cell 0 0 2 1,grow");
+		mainContent.add(barraHorizontal, "cell 0 0 2 1, grow");
 		mainContent.add(sideBar, "cell 1 1, grow, width 30%");
 		mainContent.add(mainPage, "cell 0 1, grow, width 70%");
 		contentPane.add(mainContent, "cell 0 0,grow");

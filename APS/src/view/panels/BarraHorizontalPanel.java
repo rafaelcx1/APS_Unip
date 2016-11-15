@@ -2,6 +2,7 @@ package view.panels;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.time.LocalDateTime;
 
 import javax.swing.BorderFactory;
@@ -246,6 +247,6 @@ public class BarraHorizontalPanel extends JPanel {
 		}
 
 		}
-		return avatar;
+		return new ImageIcon(avatar.getImage().getScaledInstance(64, 64, Image.SCALE_DEFAULT));
 	}
 }
