@@ -92,7 +92,7 @@ public class PanelTopicosPrincipal extends JPanel {
 	}
 
 	public void atualizarLayout() {
-		setLayout(new MigLayout("", "[150:n][100:n][grow][grow]", "[::50,grow][::35,grow][::35,grow][::35,grow][20::n, grow][::25,grow]"));
+		setLayout(new MigLayout("", "[150:n][100:n][grow 1][grow]", "[::50,grow][::35,grow][::35,grow][::35,grow][20::n, grow][::25,grow]"));
 		add(lblAvatar, "cell 0 0 1 6,alignx center,aligny center");
 		add(lblTituloTopico, "cell 1 0 2 1,alignx left,aligny center");
 		add(lblUsuario, "cell 1 1,alignx left,aligny bottom");

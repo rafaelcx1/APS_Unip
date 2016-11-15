@@ -15,12 +15,15 @@ public class TagsMaisAtivasModel {
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public long getNumPublicacoes() {
 		return numPublicacoes;
 	}
+
 	public void setNumPublicacoes(long numPublicacoes) {
 		this.numPublicacoes = numPublicacoes;
 	}

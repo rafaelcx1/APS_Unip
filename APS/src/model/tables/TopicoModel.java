@@ -82,15 +82,12 @@ public class TopicoModel {
 		this.qtdRespostas = qtdRespostas;
 	}
 
-
 	public String getTag() {
 		return tag;
 	}
 
-
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-
 
 }
