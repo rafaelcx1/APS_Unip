@@ -447,7 +447,7 @@ public class PerfilPanel extends JPanel implements ItemListener{
 			}
 
 			case 20: {
-				avatar = new ImageIcon("avatar/preguiça.png");
+				avatar = new ImageIcon("avatar/preguica.png");
 				break;
 			}
 
