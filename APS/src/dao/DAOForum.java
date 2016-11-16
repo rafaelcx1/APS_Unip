@@ -22,7 +22,7 @@ public class DAOForum {
 	private static EntityManager manager;
 
 	public static void iniciarFactory() {
-		factory = Persistence.createEntityManagerFactory("forumdb");
+		factory = Persistence.createEntityManagerFactory("forum");
 	}
 
 	public static String getMsgErro() {
