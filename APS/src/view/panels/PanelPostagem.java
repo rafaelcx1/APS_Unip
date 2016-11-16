@@ -180,7 +180,7 @@ public class PanelPostagem extends JPanel{
 		}
 
 		case 20: {
-			avatar = new ImageIcon("avatar/preguiça.png");
+			avatar = new ImageIcon("avatar/preguica.png");
 			break;
 		}
 
