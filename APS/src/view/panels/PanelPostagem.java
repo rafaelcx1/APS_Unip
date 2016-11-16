@@ -8,6 +8,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 
 import model.tables.PostagemModel;
@@ -22,7 +24,7 @@ public class PanelPostagem extends JPanel{
 	private JLabel lblQtdPostagens;
 	private JLabel lblDataCadastro;
 	private JLabel lblDataResposta;
-	private JLabel lblTextoPostagem;
+	private JTextArea lblTextoPostagem;
 	private PostagemModel postagem;
 
 	public PanelPostagem(PostagemModel postagem) {
@@ -39,7 +41,7 @@ public class PanelPostagem extends JPanel{
 		Font titulo1 = new Font("Open Sans", Font.BOLD , 18);
 
 		JPanel div = new JPanel();
-		JPanel info = new JPanel(new MigLayout());
+		JPanel info = new JPanel(new MigLayout("", "[::200][grow][grow]", "[][][][][]"));
 
 		div.setBorder(division);
 		div.setBackground(background);
@@ -52,17 +54,25 @@ public class PanelPostagem extends JPanel{
 		lblQtdPostagens = new JLabel("Quantidade de Postagens: " + usuario.getQtdPostagens(), new ImageIcon("images/comment.png"), 0);
 		lblDataCadastro = new JLabel("Data de Cadastro: " + usuario.getDataCadastro());
 		lblDataResposta = new JLabel("Data desta postagem: " + postagem.getDataPost().replace("|", "às").replace(".", "/"));
-		lblTextoPostagem = new JLabel(postagem.getTextoPost());
-
+		lblTextoPostagem = new JTextArea(postagem.getTextoPost(), 3, 60);
+		lblTextoPostagem.setWrapStyleWord(true);
+		lblTextoPostagem.setLineWrap(true);
+		lblTextoPostagem.setOpaque(false);
+		lblTextoPostagem.setEditable(false);
+		lblTextoPostagem.setFocusable(false);
+		lblTextoPostagem.setBackground(UIManager.getColor("Label.background"));
+	    lblTextoPostagem.setFont(UIManager.getFont("Label.font"));
+	    lblTextoPostagem.setBorder(UIManager.getBorder("Label.border"));
+	    
 		lblNome.setFont(titulo1);
 
-		info.add(lblNome, "wrap 16");
-		info.add(lblTextoPostagem, "wrap 16");
-		info.add(div, "wrap 16, grow, span");
-		info.add(lblQtdPostagens, "gapright 5%");
-		info.add(lblDataCadastro, "gapright 5%");
-		info.add(lblDataResposta, "wrap 16");
-		info.add(lblEstadoCidade);
+		info.add(lblNome, "cell 0 0");
+		info.add(lblTextoPostagem, "cell 0 1 3 1");
+		info.add(div, "cell 0 2 3 1,grow");
+		info.add(lblQtdPostagens, "cell 0 3,gapx null 5%");
+		info.add(lblDataCadastro, "cell 1 3,gapx null 5%");
+		info.add(lblDataResposta, "cell 2 3");
+		info.add(lblEstadoCidade, "cell 0 4");
 
 		add(lblAvatar);
 		add(info, "gapleft 16");
